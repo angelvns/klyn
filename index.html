@@ -337,45 +337,74 @@ const IC={
 function ic(n,s=22,w=2.2){return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[n]}</svg>`}
 
 /* ---------- Lolo the axolotl ---------- */
+let LUID=0;
 function lolo(mood='happy',size=64,cls=''){
-  const skin='#FFC94F',belly='#FFF0C4',shade='#EDA83A',spotC='#F3B040',gill='#F07A62',gillIn='#FFBFAC',eye='#2E2220',lip='#9C5A2E',ol=`stroke="${shade}" stroke-width="1.3"`;
-  const tilt=mood==='sad'?-20:mood==='cheer'?8:0;
-  const leaf=L=>`M0 -3 C${-L*.3} -7.5 ${-L*.72} -7.5 ${-L*.95} -2.2 Q${-L*1.03} -.2 ${-L*.95} 1.6 C${-L*.72} 7 ${-L*.3} 7 0 3z`;
-  const g=[[31,34,42,19],[28,42,14,21],[29,50,-14,18]].map(([x,y,r,L])=>`<g transform="translate(${x} ${y}) rotate(${r+tilt})"><path d="${leaf(L)}" fill="${gill}"/><ellipse cx="${-L*.52}" cy="-.2" rx="${L*.27}" ry="2.2" fill="${gillIn}"/></g>`).join('');
-  const gills=`<g>${g}</g><g transform="translate(120 0) scale(-1 1)">${g}</g>`;
-  const arms=mood==='cheer'
-    ?`<ellipse cx="36" cy="80" rx="5" ry="8" transform="rotate(-40 36 80)" fill="${skin}" ${ol}/><ellipse class="arm-r" cx="84" cy="80" rx="5" ry="8" transform="rotate(40 84 80)" fill="${skin}" ${ol}/>`
-    :mood==='sad'
-    ?`<ellipse cx="47" cy="96" rx="5" ry="7" transform="rotate(-20 47 96)" fill="${skin}" ${ol}/><ellipse cx="73" cy="96" rx="5" ry="7" transform="rotate(20 73 96)" fill="${skin}" ${ol}/>`
-    :`<ellipse cx="41" cy="93" rx="5" ry="8" transform="rotate(12 41 93)" fill="${skin}" ${ol}/><ellipse class="arm-r" cx="79" cy="93" rx="5" ry="8" transform="rotate(-12 79 93)" fill="${skin}" ${ol}/>`;
-  const eyes=mood==='cheer'
-    ?`<path d="M38 53 q5 -6 10 0" stroke="${eye}" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M72 53 q5 -6 10 0" stroke="${eye}" stroke-width="2.8" fill="none" stroke-linecap="round"/>`
-    :mood==='sad'
-    ?`<circle cx="43" cy="53" r="5.4" fill="${eye}"/><circle cx="77" cy="53" r="5.4" fill="${eye}"/><circle cx="44.6" cy="51.4" r="1.5" fill="#fff"/><circle cx="78.6" cy="51.4" r="1.5" fill="#fff"/><path d="M37 45 l8 -3" stroke="${lip}" stroke-width="2" stroke-linecap="round"/><path d="M83 45 l-8 -3" stroke="${lip}" stroke-width="2" stroke-linecap="round"/>`
-    :`<circle cx="43" cy="52" r="6" fill="${eye}"/><circle cx="77" cy="52" r="6" fill="${eye}"/><circle cx="45" cy="50" r="1.7" fill="#fff"/><circle cx="79" cy="50" r="1.7" fill="#fff"/>`;
-  const mouth=mood==='cheer'
-    ?`<path d="M52 59 q8 1.5 16 0 q-1 11 -8 11 q-7 0 -8 -11z" fill="#C95A45"/><path d="M55 66 q5 -3 10 0 q-2 3.5 -5 3.5 q-3 0 -5 -3.5z" fill="#EE8B6E"/>`
-    :mood==='sad'
-    ?`<path d="M54 64 q6 -4.5 12 0" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>`
-    :`<path d="M54 60.5 q6 11 12 0z" fill="#C95A45"/><path d="M56 65.5 q4 -2.2 8 0 q-1.5 3 -4 3 q-2.5 0 -4 -3z" fill="#EE8B6E"/><path d="M52 59 q4 3.5 8 0 q4 3.5 8 0" stroke="${lip}" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
-  const extra=mood==='sad'?`<path class="tear" d="M41 60 q-3.5 6 0 8.5 q3.5 -2.5 0 -8.5z" fill="#7CC7FF"/>`
-    :mood==='cheer'?`<g fill="#FFC93C"><path d="M10 12l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/><path d="M110 6l1.5 3.5 3.5 1.5-3.5 1.5-1.5 3.5-1.5-3.5-3.5-1.5 3.5-1.5z"/></g>`:'';
-  return `<svg class="lolo ${cls}" width="${size}" height="${size}" viewBox="0 0 120 120" aria-hidden="true" style="flex:none">
-  ${extra}
-  <path d="M76 104 q18 2 24 -16 q4 14 -4 22 q-8 6 -20 2z" fill="${skin}" ${ol}/>
-  <path d="M92 106 q8 -5 8 -14 q3 11 -4 17z" fill="${shade}" opacity=".55"/>
-  ${gills}
-  <path d="M41 66 C30 84 30 112 60 112 C90 112 90 84 79 66z" fill="${skin}" ${ol}/>
-  <ellipse cx="60" cy="98" rx="13" ry="12.5" fill="${belly}"/>
-  ${arms}
-  <ellipse cx="46" cy="110" rx="9" ry="6" fill="${skin}" ${ol}/><ellipse cx="74" cy="110" rx="9" ry="6" fill="${skin}" ${ol}/>
-  <path d="M43 108 v3 M47 108 v3 M71 108 v3 M75 108 v3" stroke="${shade}" stroke-width="1.1" stroke-linecap="round"/>
-  <ellipse cx="60" cy="48" rx="36" ry="32" fill="${skin}" ${ol}/>
-  <ellipse cx="46" cy="27" rx="10" ry="4" fill="#fff" opacity=".4" transform="rotate(-18 46 27)"/>
-  <g fill="${spotC}"><circle cx="58" cy="22" r="3"/><circle cx="68" cy="25" r="2"/><circle cx="50" cy="24" r="1.8"/><circle cx="74" cy="30" r="1.5"/><circle cx="62" cy="29" r="1.4"/><circle cx="54" cy="89" r="1.2"/></g>
-  <path d="M60 11 q-6 8 0 12 q6 -4 0 -12z" fill="#14B3A1"/>
-  <ellipse cx="34" cy="62" rx="6.5" ry="4" fill="#F27A5E" opacity=".38"/><ellipse cx="86" cy="62" rx="6.5" ry="4" fill="#F27A5E" opacity=".38"/>
-  ${eyes}${mouth}</svg>`;
+  const u='lo'+(LUID++),ink='#5A3322';
+  const defs=`<defs>
+  <radialGradient id="${u}s" cx="40%" cy="30%" r="75%"><stop offset="0" stop-color="#FFF8DC"/><stop offset=".5" stop-color="#FFE8A8"/><stop offset=".85" stop-color="#FCDD9A"/><stop offset="1" stop-color="#F6CB80"/></radialGradient>
+  <radialGradient id="${u}b" cx="42%" cy="25%" r="85%"><stop offset="0" stop-color="#FFF4CC"/><stop offset=".6" stop-color="#FFE4A4"/><stop offset="1" stop-color="#F5C77C"/></radialGradient>
+  <linearGradient id="${u}g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D92F3A"/><stop offset=".55" stop-color="#EE4A46"/><stop offset="1" stop-color="#F7775F"/></linearGradient>
+  <linearGradient id="${u}t" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FFE7B0" stop-opacity=".95"/><stop offset="1" stop-color="#F9B98C" stop-opacity=".75"/></linearGradient>
+  <radialGradient id="${u}k"><stop offset="0" stop-color="#FF8A78" stop-opacity=".55"/><stop offset="1" stop-color="#FF8A78" stop-opacity="0"/></radialGradient>
+  <radialGradient id="${u}e" cx="45%" cy="65%" r="65%"><stop offset="0" stop-color="#8A5030"/><stop offset=".7" stop-color="#3C2216"/><stop offset="1" stop-color="#26150E"/></radialGradient>
+  <radialGradient id="${u}f"><stop offset="0" stop-color="#B98A4A" stop-opacity=".22"/><stop offset="1" stop-color="#B98A4A" stop-opacity="0"/></radialGradient>
+  <radialGradient id="${u}w" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E4F0FF"/></radialGradient>
+  <linearGradient id="${u}d" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFE3FF"/><stop offset="1" stop-color="#6FB6F2"/></linearGradient>
+  <filter id="${u}n" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .62  0 0 0 0 .42  0 0 0 0 .18  0 0 0 .9 -.25"/></filter>
+  </defs>`;
+  const frond=(L,w)=>{const top=[],bot=[],n=8;for(let i=0;i<=n;i++){const t=i/n,x=-L*(.08+.9*t),k=Math.sin(Math.PI*(.15+.85*t))*.85+.15;
+      top.push(`${x.toFixed(1)},${(-w*.72*k).toFixed(1)}`,`${(x-2.4).toFixed(1)},${(-w*k).toFixed(1)}`);
+      bot.unshift(`${(x-2.4).toFixed(1)},${(w*k).toFixed(1)}`,`${x.toFixed(1)},${(w*.72*k).toFixed(1)}`)}
+    return `M0,-2.5 L${top.join(' L')} L${(-L*1.02).toFixed(1)},0 L${bot.join(' L')} L0,2.5Z`};
+  const tilt=mood==='sad'?-24:mood==='cheer'?8:mood==='sleep'?-6:0;
+  const gl=[[33,35,66,21],[28,43,30,23],[29,52,-8,20]].map(([x,y,r,L])=>`<g transform="translate(${x} ${y}) rotate(${r+tilt})"><path d="${frond(L,8)}" fill="url(#${u}g)" stroke="url(#${u}g)" stroke-width=".6" stroke-linejoin="round"/><path d="M-1 0 L${-L*.92} 0" stroke="#FF9E88" stroke-width="1.7" stroke-linecap="round" opacity=".75"/></g>`).join('');
+  const gills=`<g>${gl}</g><g transform="translate(120 0) scale(-1 1)">${gl}</g>`;
+  const eyesOpen=(r=5.6,y=52)=>[44,76].map(x=>`<circle cx="${x}" cy="${y}" r="${r}" fill="url(#${u}e)"/><circle cx="${x+1.9}" cy="${y-2}" r="${r*.34}" fill="#fff"/><circle cx="${x-1.6}" cy="${y+2}" r="${r*.14}" fill="#fff" opacity=".85"/>`).join('');
+  let eyes,mouth,extraHead='';
+  if(mood==='cheer'){eyes=[44,76].map(x=>`<path d="M${x-6} 54 q6 -7 12 0" stroke="${ink}" stroke-width="2.6" fill="none" stroke-linecap="round"/>`).join('');
+    mouth=`<path d="M52 59.5 q8 1.4 16 0 q-1 11 -8 11 q-7 0 -8 -11z" fill="#C9483F"/><path d="M55 66.5 q5 -3 10 0 q-2 3.6 -5 3.6 q-3 0 -5 -3.6z" fill="#F4917F"/>`}
+  else if(mood==='sad'){eyes=eyesOpen(5.2,54)+`<path d="M37 45.5 q5 -3 10 -1" stroke="${ink}" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"/><path d="M83 45.5 q-5 -3 -10 -1" stroke="${ink}" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"/>`;
+    mouth=`<path d="M54 66 q3 -2.4 6 0 q3 2.4 6 0" stroke="${ink}" stroke-width="1.7" fill="none" stroke-linecap="round"/>`;
+    extraHead=`<path class="tear" d="M40 60 q-3.2 5.4 0 7.6 q3.2 -2.2 0 -7.6z" fill="url(#${u}d)" opacity=".9"/>`}
+  else if(mood==='sleep'){eyes=[44,76].map(x=>`<path d="M${x-6} 53 q6 5 12 0" stroke="${ink}" stroke-width="2.3" fill="none" stroke-linecap="round"/>`).join('');
+    mouth=`<path d="M55 61 q2.5 2.4 5 0 q2.5 2.4 5 0" stroke="${ink}" stroke-width="1.6" fill="none" stroke-linecap="round"/>`}
+  else{eyes=eyesOpen();
+    mouth=`<path d="M56 61 q4 7.5 8 0z" fill="#C9483F"/><path d="M57.4 63.8 q2.6 -1.4 5.2 0 q-1 2.2 -2.6 2.2 q-1.6 0 -2.6 -2.2z" fill="#F4917F"/><path d="M53 59.5 q3.5 3 7 0 q3.5 3 7 0" stroke="${ink}" stroke-width="1.6" fill="none" stroke-linecap="round"/>`}
+  const head=`${gills}
+    <ellipse cx="60" cy="50" rx="37" ry="30" fill="url(#${u}s)"/>
+    <ellipse cx="60" cy="73" rx="24" ry="5" fill="#E9AE5C" opacity=".22"/>
+    <g clip-path="url(#${u}hc)"><rect x="20" y="18" width="80" height="64" filter="url(#${u}n)" opacity=".13"/></g>
+    <ellipse cx="47" cy="30" rx="12" ry="4.6" fill="#fff" opacity=".6" transform="rotate(-16 47 30)"/><circle cx="62" cy="27" r="1.6" fill="#fff" opacity=".7"/>
+    <ellipse cx="35" cy="63" rx="9" ry="5.5" fill="url(#${u}k)"/><ellipse cx="85" cy="63" rx="9" ry="5.5" fill="url(#${u}k)"/>
+    ${eyes}${mouth}${extraHead}`;
+  const clip=`<clipPath id="${u}hc"><ellipse cx="60" cy="50" rx="37" ry="30"/></clipPath>`;
+  const star=(x,y,s)=>`<path d="M${x} ${y-s}Q${x+s*.18} ${y-s*.18} ${x+s} ${y}Q${x+s*.18} ${y+s*.18} ${x} ${y+s}Q${x-s*.18} ${y+s*.18} ${x-s} ${y}Q${x-s*.18} ${y-s*.18} ${x} ${y-s}Z" fill="#FFCF3F"/>`;
+  let body='';
+  if(mood==='sleep'){
+    body=`<ellipse cx="60" cy="108" rx="52" ry="9" fill="url(#${u}w)"/><ellipse cx="34" cy="103" rx="20" ry="9" fill="url(#${u}w)"/><ellipse cx="82" cy="104" rx="24" ry="9" fill="url(#${u}w)"/>
+    <path d="M86 92 C100 90 112 80 114 64 C106 70 98 76 88 80Z" fill="url(#${u}t)"/>
+    <ellipse cx="74" cy="92" rx="30" ry="14" fill="url(#${u}b)"/>
+    <ellipse cx="92" cy="102" rx="7" ry="4" fill="url(#${u}b)"/>
+    <g transform="translate(44 76) rotate(-7) scale(.78) translate(-60 -52)">${head}</g>
+    <ellipse cx="44" cy="100" rx="8" ry="4.5" fill="url(#${u}b)"/>
+    <g class="zzz" fill="#8DB2EE" font-family="Nunito,Poppins,sans-serif" font-weight="900"><text x="8" y="30" font-size="13">z</text><text x="18" y="20" font-size="10">z</text><text x="26" y="12" font-size="8">z</text></g>`;
+  } else {
+    const arms=mood==='cheer'
+      ?`<ellipse cx="35" cy="72" rx="5.5" ry="9.5" transform="rotate(-42 35 72)" fill="url(#${u}b)"/><g class="arm-r"><ellipse cx="85" cy="72" rx="5.5" ry="9.5" transform="rotate(42 85 72)" fill="url(#${u}b)"/></g>`
+      :mood==='sad'
+      ?`<ellipse cx="48" cy="92" rx="5" ry="7.5" transform="rotate(-18 48 92)" fill="url(#${u}b)"/><ellipse cx="72" cy="92" rx="5" ry="7.5" transform="rotate(18 72 92)" fill="url(#${u}b)"/>`
+      :`<ellipse cx="40" cy="90" rx="5.5" ry="8" transform="rotate(18 40 90)" fill="#FBD98F"/><g class="arm-r"><ellipse cx="80" cy="90" rx="5.5" ry="8" transform="rotate(-18 80 90)" fill="#FBD98F"/></g>`;
+    body=`<ellipse cx="60" cy="113" rx="31" ry="4.5" fill="url(#${u}f)"/>
+    <path d="M76 104 C90 108 106 100 110 84 C112 76 108 70 104 70 C102 84 92 94 78 96Z" fill="url(#${u}t)"/>
+    <path d="M84 100 C94 98 102 90 106 78 M82 97 C90 94 98 86 102 76" stroke="#F3A77C" stroke-width="1" fill="none" opacity=".45"/>
+    <path d="M39 64 C24 88 28 111 60 111 C92 111 96 88 81 64Z" fill="url(#${u}b)"/>
+    <ellipse cx="60" cy="96" rx="16" ry="12" fill="#FFF3CC" opacity=".6"/>
+    <ellipse cx="45" cy="108.5" rx="9" ry="5" fill="url(#${u}b)"/><ellipse cx="75" cy="108.5" rx="9" ry="5" fill="url(#${u}b)"/>
+    ${mood==='cheer'?'':arms}
+    <g transform="translate(0 ${mood==='sad'?2.5:0})">${head}</g>
+    ${mood==='cheer'?arms+star(14,20,5)+star(106,14,4)+star(100,40,3):''}`;
+  }
+  return `<svg class="lolo ${cls}" width="${size}" height="${size}" viewBox="0 0 120 120" aria-hidden="true" style="flex:none">${defs.replace('</defs>',clip+'</defs>')}${body}</svg>`;
 }
 
 /* ---------- River illustration ---------- */
@@ -489,7 +518,7 @@ V.success=()=>{const r=R(),n=Math.min(S.today.n,S.dailyGoal);
   <div style="width:100%;max-width:190px;margin:0 auto 18px">${ringSVG(1,1)}</div>
   <div class="stack" style="width:100%"><button class="btn btn-primary" data-act="breakStart">Istirahat 5 menit</button>
   <button class="btn btn-ghost" data-act="retry">Lanjut fokus</button><button class="btn btn-quiet" data-act="go" data-v="home">Selesai</button></div></div>`};
-V.break=()=>`<div class="result"><p class="muted">Istirahat</p><h1>Tarik napas sejenak</h1>
+V.break=()=>`<div class="result">${lolo('sleep',130,'m-float')}<p class="muted">Istirahat</p><h1>Tarik napas sejenak</h1>
   <div class="ring-box sm">${ringSVG(0,S.segDone/R().seg,{knob:false})}</div>
   <div class="timer" id="btime">05 : 00</div><p class="lead">Minum air, regangkan badan, dan jauhkan mata dari layar.</p>
   <div style="width:100%;margin-top:22px"><button class="btn btn-ghost" data-act="breakEnd">Selesai istirahat</button></div></div>`;

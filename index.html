@@ -339,72 +339,103 @@ function ic(n,s=22,w=2.2){return `<svg width="${s}" height="${s}" viewBox="0 0 2
 /* ---------- Lolo the axolotl ---------- */
 let LUID=0;
 function lolo(mood='happy',size=64,cls=''){
-  const u='lo'+(LUID++),ink='#5A3322';
+  const u='lo'+(LUID++),ink='#4E2A1B';
   const defs=`<defs>
-  <radialGradient id="${u}s" cx="40%" cy="30%" r="75%"><stop offset="0" stop-color="#FFF8DC"/><stop offset=".5" stop-color="#FFE8A8"/><stop offset=".85" stop-color="#FCDD9A"/><stop offset="1" stop-color="#F6CB80"/></radialGradient>
-  <radialGradient id="${u}b" cx="42%" cy="25%" r="85%"><stop offset="0" stop-color="#FFF4CC"/><stop offset=".6" stop-color="#FFE4A4"/><stop offset="1" stop-color="#F5C77C"/></radialGradient>
-  <linearGradient id="${u}g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D92F3A"/><stop offset=".55" stop-color="#EE4A46"/><stop offset="1" stop-color="#F7775F"/></linearGradient>
-  <linearGradient id="${u}t" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FFE7B0" stop-opacity=".95"/><stop offset="1" stop-color="#F9B98C" stop-opacity=".75"/></linearGradient>
-  <radialGradient id="${u}k"><stop offset="0" stop-color="#FF8A78" stop-opacity=".55"/><stop offset="1" stop-color="#FF8A78" stop-opacity="0"/></radialGradient>
+  <radialGradient id="${u}s" cx="40%" cy="28%" r="78%"><stop offset="0" stop-color="#FFF0C4"/><stop offset=".45" stop-color="#FFDA7E"/><stop offset=".82" stop-color="#F8C45E"/><stop offset="1" stop-color="#EDAC47"/></radialGradient>
+  <radialGradient id="${u}b" cx="42%" cy="22%" r="88%"><stop offset="0" stop-color="#FFEDBD"/><stop offset=".55" stop-color="#FFD673"/><stop offset="1" stop-color="#ECAA46"/></radialGradient>
+  <linearGradient id="${u}g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C92230"/><stop offset=".55" stop-color="#E53E41"/><stop offset="1" stop-color="#F26A58"/></linearGradient>
+  <linearGradient id="${u}t" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FFD58F" stop-opacity=".95"/><stop offset="1" stop-color="#F29E6E" stop-opacity=".8"/></linearGradient>
+  <radialGradient id="${u}k"><stop offset="0" stop-color="#FF7560" stop-opacity=".6"/><stop offset="1" stop-color="#FF7560" stop-opacity="0"/></radialGradient>
   <radialGradient id="${u}e" cx="45%" cy="65%" r="65%"><stop offset="0" stop-color="#8A5030"/><stop offset=".7" stop-color="#3C2216"/><stop offset="1" stop-color="#26150E"/></radialGradient>
-  <radialGradient id="${u}f"><stop offset="0" stop-color="#B98A4A" stop-opacity=".22"/><stop offset="1" stop-color="#B98A4A" stop-opacity="0"/></radialGradient>
-  <radialGradient id="${u}w" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E4F0FF"/></radialGradient>
-  <linearGradient id="${u}d" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFE3FF"/><stop offset="1" stop-color="#6FB6F2"/></linearGradient>
-  <filter id="${u}n" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .62  0 0 0 0 .42  0 0 0 0 .18  0 0 0 .9 -.25"/></filter>
+  <radialGradient id="${u}f"><stop offset="0" stop-color="#A8742E" stop-opacity=".28"/><stop offset="1" stop-color="#A8742E" stop-opacity="0"/></radialGradient>
+  <radialGradient id="${u}w" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DDEBFF"/></radialGradient>
+  <linearGradient id="${u}d" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFEBFF" stop-opacity=".95"/><stop offset="1" stop-color="#5FAEF0" stop-opacity=".9"/></linearGradient>
+  <radialGradient id="${u}p" cx="35%" cy="35%" r="70%"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset=".7" stop-color="#CFE8FF" stop-opacity=".55"/><stop offset="1" stop-color="#9CCBF5" stop-opacity=".7"/></radialGradient>
+  <filter id="${u}n" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .62  0 0 0 0 .40  0 0 0 0 .14  0 0 0 .9 -.25"/></filter>
+  <clipPath id="${u}hc"><ellipse cx="60" cy="50" rx="37" ry="30"/></clipPath>
   </defs>`;
   const frond=(L,w)=>{const top=[],bot=[],n=8;for(let i=0;i<=n;i++){const t=i/n,x=-L*(.08+.9*t),k=Math.sin(Math.PI*(.15+.85*t))*.85+.15;
       top.push(`${x.toFixed(1)},${(-w*.72*k).toFixed(1)}`,`${(x-2.4).toFixed(1)},${(-w*k).toFixed(1)}`);
       bot.unshift(`${(x-2.4).toFixed(1)},${(w*k).toFixed(1)}`,`${x.toFixed(1)},${(w*.72*k).toFixed(1)}`)}
     return `M0,-2.5 L${top.join(' L')} L${(-L*1.02).toFixed(1)},0 L${bot.join(' L')} L0,2.5Z`};
-  const tilt=mood==='sad'?-24:mood==='cheer'?8:mood==='sleep'?-6:0;
-  const gl=[[33,35,66,21],[28,43,30,23],[29,52,-8,20]].map(([x,y,r,L])=>`<g transform="translate(${x} ${y}) rotate(${r+tilt})"><path d="${frond(L,8)}" fill="url(#${u}g)" stroke="url(#${u}g)" stroke-width=".6" stroke-linejoin="round"/><path d="M-1 0 L${-L*.92} 0" stroke="#FF9E88" stroke-width="1.7" stroke-linecap="round" opacity=".75"/></g>`).join('');
+  const tilt={sad:-30,cheer:14,sleep:-8,happy:4}[mood]||0;
+  const gl=[[33,35,66,21],[28,43,30,23],[29,52,-8,20]].map(([x,y,r,L])=>`<g transform="translate(${x} ${y}) rotate(${r+tilt})"><path d="${frond(L,8)}" fill="url(#${u}g)" stroke="url(#${u}g)" stroke-width=".6" stroke-linejoin="round"/><path d="M-1 0 L${-L*.92} 0" stroke="#FF9A84" stroke-width="1.7" stroke-linecap="round" opacity=".75"/></g>`).join('');
   const gills=`<g>${gl}</g><g transform="translate(120 0) scale(-1 1)">${gl}</g>`;
-  const eyesOpen=(r=5.6,y=52)=>[44,76].map(x=>`<circle cx="${x}" cy="${y}" r="${r}" fill="url(#${u}e)"/><circle cx="${x+1.9}" cy="${y-2}" r="${r*.34}" fill="#fff"/><circle cx="${x-1.6}" cy="${y+2}" r="${r*.14}" fill="#fff" opacity=".85"/>`).join('');
-  let eyes,mouth,extraHead='';
-  if(mood==='cheer'){eyes=[44,76].map(x=>`<path d="M${x-6} 54 q6 -7 12 0" stroke="${ink}" stroke-width="2.6" fill="none" stroke-linecap="round"/>`).join('');
-    mouth=`<path d="M52 59.5 q8 1.4 16 0 q-1 11 -8 11 q-7 0 -8 -11z" fill="#C9483F"/><path d="M55 66.5 q5 -3 10 0 q-2 3.6 -5 3.6 q-3 0 -5 -3.6z" fill="#F4917F"/>`}
-  else if(mood==='sad'){eyes=eyesOpen(5.2,54)+`<path d="M37 45.5 q5 -3 10 -1" stroke="${ink}" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"/><path d="M83 45.5 q-5 -3 -10 -1" stroke="${ink}" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"/>`;
-    mouth=`<path d="M54 66 q3 -2.4 6 0 q3 2.4 6 0" stroke="${ink}" stroke-width="1.7" fill="none" stroke-linecap="round"/>`;
-    extraHead=`<path class="tear" d="M40 60 q-3.2 5.4 0 7.6 q3.2 -2.2 0 -7.6z" fill="url(#${u}d)" opacity=".9"/>`}
-  else if(mood==='sleep'){eyes=[44,76].map(x=>`<path d="M${x-6} 53 q6 5 12 0" stroke="${ink}" stroke-width="2.3" fill="none" stroke-linecap="round"/>`).join('');
-    mouth=`<path d="M55 61 q2.5 2.4 5 0 q2.5 2.4 5 0" stroke="${ink}" stroke-width="1.6" fill="none" stroke-linecap="round"/>`}
-  else{eyes=eyesOpen();
-    mouth=`<path d="M56 61 q4 7.5 8 0z" fill="#C9483F"/><path d="M57.4 63.8 q2.6 -1.4 5.2 0 q-1 2.2 -2.6 2.2 q-1.6 0 -2.6 -2.2z" fill="#F4917F"/><path d="M53 59.5 q3.5 3 7 0 q3.5 3 7 0" stroke="${ink}" stroke-width="1.6" fill="none" stroke-linecap="round"/>`}
+  const eye=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="url(#${u}e)"/><circle cx="${x+r*.34}" cy="${y-r*.38}" r="${r*.36}" fill="#fff"/><circle cx="${x-r*.3}" cy="${y+r*.38}" r="${r*.15}" fill="#fff" opacity=".9"/>`;
+  const star=(x,y,s,c='#FFC52E')=>`<path d="M${x} ${y-s}Q${x+s*.18} ${y-s*.18} ${x+s} ${y}Q${x+s*.18} ${y+s*.18} ${x} ${y+s}Q${x-s*.18} ${y+s*.18} ${x-s} ${y}Q${x-s*.18} ${y-s*.18} ${x} ${y-s}Z" fill="${c}"/>`;
+  let face='',over='';
+  if(mood==='cheer'){
+    face=[44,76].map(x=>`<path d="M${x-6.5} 54 q6.5 -8 13 0" stroke="${ink}" stroke-width="2.8" fill="none" stroke-linecap="round"/>`).join('')+
+      `<path d="M50 59 q10 2 20 0 q-1.5 14 -10 14 q-8.5 0 -10 -14z" fill="#B83A33"/><path d="M53.5 67.5 q6.5 -4 13 0 q-2.5 5 -6.5 5 q-4 0 -6.5 -5z" fill="#F4917F"/>`+
+      `<ellipse cx="34" cy="62" rx="10" ry="6" fill="url(#${u}k)"/><ellipse cx="86" cy="62" rx="10" ry="6" fill="url(#${u}k)"/>`;
+  } else if(mood==='sad'){
+    face=eye(44,55,6.2)+eye(76,55,6.2)+
+      `<path d="M38 60.5 q6 3 12 0" stroke="#8FD0FF" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".9"/><path d="M70 60.5 q6 3 12 0" stroke="#8FD0FF" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".9"/>`+
+      `<path d="M36 46 L48 41.5" stroke="${ink}" stroke-width="2.2" stroke-linecap="round" opacity=".75"/><path d="M84 46 L72 41.5" stroke="${ink}" stroke-width="2.2" stroke-linecap="round" opacity=".75"/>`+
+      `<path d="M50 70 Q60 58 70 70 Q60 67 50 70Z" fill="#B83A33"/><path d="M55 68.6 Q60 65.5 65 68.6 Q60 67.6 55 68.6Z" fill="#F4917F"/>`+
+      `<g class="tear"><path d="M39 61 C37 68 36 76 38 82 C40 84 43 83 43 80 C43 74 42 67 41 61Z" fill="url(#${u}d)"/><path d="M81 61 C83 68 84 76 82 82 C80 84 77 83 77 80 C77 74 78 67 79 61Z" fill="url(#${u}d)"/></g>`+
+      `<ellipse cx="33" cy="66" rx="8" ry="5" fill="url(#${u}k)"/><ellipse cx="87" cy="66" rx="8" ry="5" fill="url(#${u}k)"/>`;
+    over=`<g fill="url(#${u}d)"><path d="M20 56 q-3 5 0 7 q3 -2 0 -7z"/><path d="M100 54 q-3 5 0 7 q3 -2 0 -7z"/><path d="M14 66 q-2.2 3.6 0 5 q2.2 -1.4 0 -5z"/><path d="M106 66 q-2.2 3.6 0 5 q2.2 -1.4 0 -5z"/></g>`;
+  } else if(mood==='sleep'){
+    face=[44,76].map(x=>`<path d="M${x-6} 53 q6 5 12 0" stroke="${ink}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`).join('')+
+      `<path d="M55 61 q2.5 2.4 5 0 q2.5 2.4 5 0" stroke="${ink}" stroke-width="1.7" fill="none" stroke-linecap="round"/>`+
+      `<ellipse cx="35" cy="62" rx="9" ry="5.5" fill="url(#${u}k)"/><ellipse cx="85" cy="62" rx="9" ry="5.5" fill="url(#${u}k)"/>`+
+      `<circle class="snot" cx="67" cy="60" r="5" fill="url(#${u}p)"/><circle cx="65.5" cy="58.4" r="1.3" fill="#fff"/>`;
+  } else {
+    face=eye(44,52,6)+eye(76,52,6)+
+      `<path d="M53 59 q7 8 14 0z" fill="#B83A33"/><path d="M55.5 62.5 q4.5 -2.4 9 0 q-1.8 3 -4.5 3 q-2.7 0 -4.5 -3z" fill="#F4917F"/>`+
+      `<path d="M52 58.5 q4 3.2 8 0 q4 3.2 8 0" stroke="${ink}" stroke-width="1.7" fill="none" stroke-linecap="round"/>`+
+      `<ellipse cx="35" cy="62" rx="9" ry="5.5" fill="url(#${u}k)"/><ellipse cx="85" cy="62" rx="9" ry="5.5" fill="url(#${u}k)"/>`;
+  }
   const head=`${gills}
     <ellipse cx="60" cy="50" rx="37" ry="30" fill="url(#${u}s)"/>
-    <ellipse cx="60" cy="73" rx="24" ry="5" fill="#E9AE5C" opacity=".22"/>
-    <g clip-path="url(#${u}hc)"><rect x="20" y="18" width="80" height="64" filter="url(#${u}n)" opacity=".13"/></g>
+    <ellipse cx="60" cy="73" rx="24" ry="5" fill="#D9923C" opacity=".22"/>
+    <g clip-path="url(#${u}hc)"><rect x="20" y="18" width="80" height="64" filter="url(#${u}n)" opacity=".12"/></g>
     <ellipse cx="47" cy="30" rx="12" ry="4.6" fill="#fff" opacity=".6" transform="rotate(-16 47 30)"/><circle cx="62" cy="27" r="1.6" fill="#fff" opacity=".7"/>
-    <ellipse cx="35" cy="63" rx="9" ry="5.5" fill="url(#${u}k)"/><ellipse cx="85" cy="63" rx="9" ry="5.5" fill="url(#${u}k)"/>
-    ${eyes}${mouth}${extraHead}`;
-  const clip=`<clipPath id="${u}hc"><ellipse cx="60" cy="50" rx="37" ry="30"/></clipPath>`;
-  const star=(x,y,s)=>`<path d="M${x} ${y-s}Q${x+s*.18} ${y-s*.18} ${x+s} ${y}Q${x+s*.18} ${y+s*.18} ${x} ${y+s}Q${x-s*.18} ${y+s*.18} ${x-s} ${y}Q${x-s*.18} ${y-s*.18} ${x} ${y-s}Z" fill="#FFCF3F"/>`;
-  let body='';
+    ${face}`;
+  const tail=(d='M76 104 C90 108 106 100 110 84 C112 76 108 70 104 70 C102 84 92 94 78 96Z')=>`<path d="${d}" fill="url(#${u}t)"/>`;
+  const body='M39 64 C24 88 28 111 60 111 C92 111 96 88 81 64Z';
+  const arm=(x,y,r,c='',ry=9)=>`<g class="${c}"><ellipse cx="${x}" cy="${y}" rx="5.6" ry="${ry}" transform="rotate(${r} ${x} ${y})" fill="url(#${u}b)"/></g>`;
+  let out='';
   if(mood==='sleep'){
-    body=`<ellipse cx="60" cy="108" rx="52" ry="9" fill="url(#${u}w)"/><ellipse cx="34" cy="103" rx="20" ry="9" fill="url(#${u}w)"/><ellipse cx="82" cy="104" rx="24" ry="9" fill="url(#${u}w)"/>
+    out=`<ellipse cx="60" cy="108" rx="52" ry="9" fill="url(#${u}w)"/><ellipse cx="34" cy="103" rx="20" ry="9" fill="url(#${u}w)"/><ellipse cx="82" cy="104" rx="24" ry="9" fill="url(#${u}w)"/>
     <path d="M86 92 C100 90 112 80 114 64 C106 70 98 76 88 80Z" fill="url(#${u}t)"/>
-    <ellipse cx="74" cy="92" rx="30" ry="14" fill="url(#${u}b)"/>
-    <ellipse cx="92" cy="102" rx="7" ry="4" fill="url(#${u}b)"/>
+    <ellipse cx="74" cy="92" rx="30" ry="14" fill="url(#${u}b)"/><ellipse cx="92" cy="102" rx="7" ry="4" fill="url(#${u}b)"/>
     <g transform="translate(44 76) rotate(-7) scale(.78) translate(-60 -52)">${head}</g>
     <ellipse cx="44" cy="100" rx="8" ry="4.5" fill="url(#${u}b)"/>
-    <g class="zzz" fill="#8DB2EE" font-family="Nunito,Poppins,sans-serif" font-weight="900"><text x="8" y="30" font-size="13">z</text><text x="18" y="20" font-size="10">z</text><text x="26" y="12" font-size="8">z</text></g>`;
-  } else {
-    const arms=mood==='cheer'
-      ?`<ellipse cx="35" cy="72" rx="5.5" ry="9.5" transform="rotate(-42 35 72)" fill="url(#${u}b)"/><g class="arm-r"><ellipse cx="85" cy="72" rx="5.5" ry="9.5" transform="rotate(42 85 72)" fill="url(#${u}b)"/></g>`
-      :mood==='sad'
-      ?`<ellipse cx="48" cy="92" rx="5" ry="7.5" transform="rotate(-18 48 92)" fill="url(#${u}b)"/><ellipse cx="72" cy="92" rx="5" ry="7.5" transform="rotate(18 72 92)" fill="url(#${u}b)"/>`
-      :`<ellipse cx="40" cy="90" rx="5.5" ry="8" transform="rotate(18 40 90)" fill="#FBD98F"/><g class="arm-r"><ellipse cx="80" cy="90" rx="5.5" ry="8" transform="rotate(-18 80 90)" fill="#FBD98F"/></g>`;
-    body=`<ellipse cx="60" cy="113" rx="31" ry="4.5" fill="url(#${u}f)"/>
-    <path d="M76 104 C90 108 106 100 110 84 C112 76 108 70 104 70 C102 84 92 94 78 96Z" fill="url(#${u}t)"/>
-    <path d="M84 100 C94 98 102 90 106 78 M82 97 C90 94 98 86 102 76" stroke="#F3A77C" stroke-width="1" fill="none" opacity=".45"/>
-    <path d="M39 64 C24 88 28 111 60 111 C92 111 96 88 81 64Z" fill="url(#${u}b)"/>
-    <ellipse cx="60" cy="96" rx="16" ry="12" fill="#FFF3CC" opacity=".6"/>
+    <g fill="#7FA6EA" font-family="Nunito,Poppins,sans-serif" font-weight="900"><text x="8" y="30" font-size="13">z</text><text x="18" y="20" font-size="10">z</text><text x="26" y="12" font-size="8">z</text></g>`;
+  } else if(mood==='cheer'){
+    out=`<ellipse cx="60" cy="114" rx="22" ry="3.2" fill="url(#${u}f)"/>
+    <g transform="translate(0 -6)">
+      ${tail('M76 100 C92 100 108 88 108 68 C110 62 106 58 102 60 C102 76 92 88 78 92Z')}
+      <path d="M39 64 C24 88 28 108 60 108 C92 108 96 88 81 64Z" fill="url(#${u}b)"/>
+      <ellipse cx="60" cy="94" rx="16" ry="12" fill="#FFEDB8" opacity=".6"/>
+      <ellipse cx="42" cy="108" rx="8.5" ry="5" transform="rotate(-18 42 108)" fill="url(#${u}b)"/><ellipse cx="78" cy="108" rx="8.5" ry="5" transform="rotate(18 78 108)" fill="url(#${u}b)"/>
+      <g transform="rotate(-4 60 60)">${head}</g>
+      ${arm(21,50,-58)}${arm(99,50,58,'arm-r')}
+    </g>
+    <path d="M44 117 h-6 M82 117 h6 M60 119 v0" stroke="#E8B660" stroke-width="1.6" stroke-linecap="round" opacity=".7"/>
+    ${star(12,18,5)}${star(108,12,4.5)}${star(104,42,3)}${star(16,48,2.6,'#FF9D5C')}`;
+  } else if(mood==='sad'){
+    out=`<ellipse cx="60" cy="113" rx="31" ry="4.5" fill="url(#${u}f)"/>
+    ${tail('M78 106 C94 110 106 106 112 96 C106 96 96 96 80 98Z')}
+    <path d="M38 68 C24 90 28 111 60 111 C92 111 96 90 82 68Z" fill="url(#${u}b)"/>
+    <ellipse cx="60" cy="98" rx="16" ry="11" fill="#FFEDB8" opacity=".55"/>
     <ellipse cx="45" cy="108.5" rx="9" ry="5" fill="url(#${u}b)"/><ellipse cx="75" cy="108.5" rx="9" ry="5" fill="url(#${u}b)"/>
-    ${mood==='cheer'?'':arms}
-    <g transform="translate(0 ${mood==='sad'?2.5:0})">${head}</g>
-    ${mood==='cheer'?arms+star(14,20,5)+star(106,14,4)+star(100,40,3):''}`;
+    ${arm(78,94,-8)}
+    <g transform="translate(0 4) rotate(-5 60 60)">${head}</g>
+    ${arm(40,74,38)}
+    ${over}`;
+  } else {
+    out=`<ellipse cx="60" cy="113" rx="31" ry="4.5" fill="url(#${u}f)"/>
+    ${tail()}
+    <path d="M${body.slice(1)}" fill="url(#${u}b)"/>
+    <ellipse cx="60" cy="96" rx="16" ry="12" fill="#FFEDB8" opacity=".6"/>
+    <ellipse cx="45" cy="108.5" rx="9" ry="5" fill="url(#${u}b)"/><ellipse cx="75" cy="108.5" rx="9" ry="5" fill="url(#${u}b)"/>
+    ${arm(40,90,18)}${arm(82,86,-34,'arm-r')}
+    <g transform="rotate(5 60 60)">${head}</g>`;
   }
-  return `<svg class="lolo ${cls}" width="${size}" height="${size}" viewBox="0 0 120 120" aria-hidden="true" style="flex:none">${defs.replace('</defs>',clip+'</defs>')}${body}</svg>`;
+  return `<svg class="lolo ${cls}" width="${size}" height="${size}" viewBox="0 0 120 120" aria-hidden="true" style="flex:none">${defs}${out}</svg>`;
 }
 
 /* ---------- River illustration ---------- */

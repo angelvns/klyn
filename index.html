@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Klyn — fokus untuk sungai Indonesia</title>
+<meta name="description" content="Timer fokus bergaya Pomodoro: selama kamu fokus, sungai Indonesia dibersihkan bersama Lolo si axolotl.">
+<meta name="theme-color" content="#14B3A1">
+<meta property="og:title" content="Klyn — fokus untuk sungai Indonesia">
+<meta property="og:description" content="Timer fokus bergaya Pomodoro dengan maskot Lolo si axolotl.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --display:'Nunito','Poppins',system-ui,sans-serif;
+  --font:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --page:#E6E9F2;--bg:#F5F6FA;--surface:#FFFFFF;--surface-2:#EEF1F7;
+  --text:#1D2433;--muted:#6A7185;--line:#E3E6EF;
+  --teal:#14B3A1;--teal-dk:#0B8F80;--teal-soft:#D8F5F0;--teal-ink:#0A6B60;
+  --orange:#FF9D5C;--orange-dk:#E07A36;--orange-soft:#FFEBDD;--orange-ink:#94440F;
+  --blue:#8FB8FF;--blue-dk:#6C97E6;--blue-soft:#E3EDFF;--blue-ink:#2F5AA8;
+  --yellow:#FFC93C;--yellow-dk:#E0A814;--yellow-soft:#FFF2C9;--yellow-ink:#7A5600;
+  --coral:#FF6B6B;--coral-soft:#FFE5E5;--coral-ink:#A12F2F;
+  --sky:#DDF3F8;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{height:100%;margin:0;background:var(--page);font-family:var(--font);color:var(--text);display:flex;justify-content:center;-webkit-font-smoothing:antialiased}
+#app{position:relative;width:100%;max-width:430px;height:100%;display:flex;flex-direction:column;background:var(--bg);overflow:hidden}
+@media (min-width:640px){body{align-items:center}#app{height:min(880px,calc(100% - 32px));border-radius:36px;box-shadow:0 0 0 1px var(--line)}}
+#screen{flex:1;overflow-y:auto;overflow-x:hidden}
+button{font-family:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+h1,h2,h3,.num{font-family:var(--display)}
+h1{font-size:26px;line-height:1.2;font-weight:900;margin:0 0 6px}
+h2{font-size:19px;font-weight:800;margin:26px 0 12px}
+p{margin:0}
+.muted{color:var(--muted);font-size:14px}
+.lead{color:var(--muted);font-size:15px;line-height:1.6}
+.pad{padding:0 20px 28px}
+.sky{background:linear-gradient(var(--sky),var(--bg))}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px;min-height:64px;gap:10px}
+.icon-btn{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;cursor:pointer;color:var(--teal);padding:6px;border-radius:12px}
+.icon-btn small{font-size:10px;font-weight:500}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px 20px;border-radius:18px;font-family:var(--display);font-size:17px;font-weight:800;border:0;cursor:pointer;line-height:1.2;transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translateY(3px)}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 4px 0 var(--teal-dk)}
+.btn-primary:active{box-shadow:0 1px 0 var(--teal-dk)}
+.btn-ghost{background:var(--surface);color:var(--teal-ink);border:2px solid var(--line);box-shadow:0 4px 0 var(--line)}
+.btn-ghost:active{box-shadow:0 1px 0 var(--line)}
+.btn-yellow{background:var(--yellow);color:var(--yellow-ink);box-shadow:0 4px 0 var(--yellow-dk)}
+.btn-quiet{background:transparent;color:var(--muted);font-weight:700}
+.btn-danger{background:var(--surface);color:var(--coral);border:2px solid var(--coral-soft);box-shadow:0 4px 0 var(--coral-soft)}
+.btn.small{width:auto;padding:10px 24px;font-size:15px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:9px 16px;border-radius:14px;border:2px solid var(--line);background:var(--surface);font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 3px 0 var(--line)}
+.chip.on{border-color:var(--teal);background:var(--teal-soft);color:var(--teal-ink);box-shadow:0 3px 0 var(--teal)}
+.stat-chip{display:inline-flex;align-items:center;gap:5px;font-family:var(--display);font-weight:900;font-size:17px;padding:5px 12px;border-radius:14px;background:var(--surface)}
+.stat-chip.fire{color:#F07A2A}.stat-chip.drop{color:var(--teal)}
+.goal-chip{font-size:13px;font-weight:600;padding:6px 12px;border-radius:14px;background:var(--yellow-soft);color:var(--yellow-ink)}
+.ring-box{position:relative;width:min(260px,72vw);margin:8px auto}
+.ring-box.sm{width:min(190px,54vw)}
+.ring{display:block;width:100%;height:auto}
+.pct{position:absolute;top:10%;right:-2%;background:var(--surface);color:var(--teal-ink);font-weight:700;font-size:14px;padding:5px 10px;border-radius:10px;box-shadow:0 0 0 1px var(--line)}
+.segbar{display:flex;gap:5px;margin:12px 0 6px}
+.segbar i{flex:1;height:10px;border-radius:5px;background:var(--line)}
+.segbar i.done{background:var(--teal)}.segbar i.now{background:var(--yellow)}
+.bubble-row{display:flex;align-items:flex-end;gap:8px;margin:6px 0 4px}
+.bubble{position:relative;background:var(--surface);border:2px solid var(--line);border-radius:18px 18px 18px 4px;padding:10px 14px;font-size:14px;line-height:1.5;text-align:left}
+.field{margin-top:20px}
+.field label{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);margin-bottom:10px}
+.field label b{color:var(--text);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--teal);margin:0 0 12px}
+.demo-note{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+.focus-wrap{display:flex;flex-direction:column;align-items:center;padding:0 22px 24px;text-align:center}
+.river-name{font-size:14px;color:var(--muted);margin-bottom:4px}
+.stage{font-size:14px;color:var(--teal-ink);font-weight:500;min-height:21px;margin:6px 0 12px}
+.tag-pill{background:var(--surface-2);padding:7px 20px;border-radius:999px;font-size:14px;font-weight:500}
+.timer{font-family:var(--font);font-size:52px;font-weight:500;letter-spacing:.02em;margin:10px 0 16px;font-variant-numeric:tabular-nums}
+.demo-row{display:flex;gap:16px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.demo-row button{background:none;border:0;color:var(--muted);font-size:12px;text-decoration:underline;cursor:pointer}
+.result{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 20px 28px;min-height:100%}
+.result.win{background:linear-gradient(var(--teal-soft),var(--bg) 55%)}
+.result.lose{background:linear-gradient(var(--coral-soft),var(--bg) 55%)}
+.rewards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;margin:18px 0}
+.reward{border-radius:18px;padding:12px 6px;border:2px solid transparent}
+.reward b{display:block;font-family:var(--display);font-size:24px;font-weight:900}
+.reward span{font-size:12px}
+.r-y{background:var(--yellow-soft);color:var(--yellow-ink)}.r-o{background:var(--orange-soft);color:var(--orange-ink)}.r-b{background:var(--blue-soft);color:var(--blue-ink)}.r-t{background:var(--teal-soft);color:var(--teal-ink)}
+.note{background:var(--teal-soft);color:var(--teal-ink);border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.5;text-align:left;width:100%}
+.bonus{display:inline-block;background:var(--yellow);color:var(--yellow-ink);font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+#nav{display:flex;gap:4px;border-top:2px solid var(--line);background:var(--surface);padding:6px 8px 8px}
+#nav[hidden]{display:none}
+#nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:2px solid transparent;cursor:pointer;color:var(--muted);font-size:11px;font-weight:600;padding:5px 0;border-radius:14px}
+#nav button.on{color:var(--teal-ink);background:var(--teal-soft);border-color:var(--teal)}
+#overlay{position:absolute;inset:0;z-index:20}
+#overlay[hidden]{display:none}
+.scrim{position:absolute;inset:0;background:rgba(20,26,40,.45)}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-radius:28px 28px 0 0;padding:22px 20px 26px;max-height:85%;overflow-y:auto}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.sheet-head h2{margin:0}
+.x{background:none;border:0;cursor:pointer;color:var(--muted);padding:4px}
+.sound-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sound{position:relative;border:2px solid var(--line);background:var(--surface);border-radius:18px;padding:16px 12px;text-align:left;cursor:pointer;font-size:15px;font-weight:600;box-shadow:0 3px 0 var(--line)}
+.sound small{display:block;font-size:12px;color:var(--muted);font-weight:400;margin-top:2px}
+.sound.on{border-color:var(--teal);background:var(--teal-soft);box-shadow:0 3px 0 var(--teal)}
+.sound .lk{position:absolute;top:10px;right:10px;color:var(--muted)}
+.lock{position:absolute;inset:0;background:#172235;color:#fff;display:flex;flex-direction:column;align-items:center;padding:60px 22px 30px;gap:18px}
+.lock-time{font-size:64px;font-weight:300}
+.notif{background:rgba(255,255,255,.14);border-radius:18px;padding:14px 16px;width:100%;font-size:14px;line-height:1.5}
+.notif-head{display:flex;align-items:center;gap:8px;font-size:12px;opacity:.85;margin-bottom:6px}
+.app-dot{width:20px;height:20px;border-radius:6px;background:var(--teal);display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:11px}
+.lock-note{font-size:12px;opacity:.6;margin-top:auto}
+.onb{display:flex;flex-direction:column;min-height:100%;padding:28px 20px 26px}
+.onb-foot{margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:16px;align-items:center}
+.dots{display:flex;gap:6px}.dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}.dots i.on{width:24px;border-radius:4px;background:var(--teal)}
+.opt{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;border:2px solid var(--line);background:var(--surface);border-radius:18px;padding:16px;cursor:pointer;font-family:var(--display);font-size:17px;font-weight:800;box-shadow:0 4px 0 var(--line)}
+.opt small{display:block;font-family:var(--font);font-size:13px;color:var(--muted);font-weight:400}
+.opt.on{border-color:var(--teal);background:var(--teal-soft);box-shadow:0 4px 0 var(--teal)}
+.rules{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-direction:column;gap:10px}
+.rules li{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:12px 14px;font-size:14px;line-height:1.5}
+.rules li svg{flex:none;color:var(--teal);margin-top:1px}
+
+/* Map */
+.unit{margin:0 20px 8px;border-radius:22px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:0 4px 0 rgba(0,0,0,.08)}
+.unit h3{margin:0;font-size:20px;font-weight:900}
+.unit p{font-size:13px;margin-top:2px}
+.unit .thumb{width:62px;height:62px;border-radius:50%;overflow:hidden;flex:none;border:3px solid rgba(255,255,255,.8)}
+.u0{background:var(--orange);color:#fff}.u1{background:var(--blue);color:#fff}.u2{background:var(--yellow);color:var(--yellow-ink)}.u3{background:var(--teal);color:#fff}
+.path{position:relative;display:flex;flex-direction:column;align-items:center;padding:22px 0 30px}
+.pnode{position:relative;width:70px;height:64px;border-radius:50%;border:0;cursor:pointer;margin-bottom:18px;display:flex;align-items:center;justify-content:center;color:#fff}
+.pnode.done{background:var(--c);box-shadow:0 6px 0 var(--cd)}
+.pnode.now{background:var(--c);box-shadow:0 6px 0 var(--cd),0 0 0 7px var(--bg),0 0 0 11px var(--c)}
+.pnode.lock{background:var(--surface-2);color:#B5BACB;box-shadow:0 6px 0 var(--line);cursor:default}
+.pnode.chest.done,.pnode.chest.now{background:var(--yellow);box-shadow:0 6px 0 var(--yellow-dk);color:var(--yellow-ink)}
+.start-tip{position:absolute;bottom:calc(100% + 18px);left:50%;transform:translateX(-50%);background:var(--surface);color:var(--teal-ink);font-family:var(--display);font-weight:900;font-size:15px;padding:8px 14px;border-radius:12px;border:2px solid var(--line);white-space:nowrap}
+.start-tip::after{content:"";position:absolute;top:100%;left:50%;margin-left:-7px;border:7px solid transparent;border-top-color:var(--line)}
+.path-mascot{position:absolute;pointer-events:none}
+.more{font-size:13px;color:var(--muted);margin:-4px 0 20px}
+
+/* Stats */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{border-radius:20px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.tile .ico{width:36px;height:36px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center}
+.tile b{font-family:var(--display);font-size:26px;font-weight:900;line-height:1}
+.tile span{font-size:12px}
+.t-o{background:var(--orange-soft);color:var(--orange-ink)}.t-b{background:var(--blue-soft);color:var(--blue-ink)}.t-y{background:var(--yellow-soft);color:var(--yellow-ink)}
+.card{background:var(--surface);border-radius:22px;padding:16px;box-shadow:0 0 0 2px var(--line)}
+.card-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.card-h h3{margin:0;font-size:17px;font-weight:900}
+.card-h span{font-size:12px;color:var(--muted)}
+.lvl{display:flex;gap:12px;align-items:center}
+.xpbar{height:14px;border-radius:7px;background:var(--surface-2);overflow:hidden;margin:8px 0 6px}
+.xpbar i{display:block;height:100%;background:var(--yellow);border-radius:7px}
+.league li{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:14px;font-size:14px}
+.league ol{list-style:none;padding:0;margin:0}
+.league li.me{background:var(--teal-soft);font-weight:600}
+.league .rk{width:22px;font-family:var(--display);font-weight:900;color:var(--muted)}
+.league li:nth-child(-n+3) .rk{color:var(--yellow-dk)}
+.av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+.league .pts{margin-left:auto;font-family:var(--display);font-weight:800}
+.zone{font-size:12px;color:var(--teal-ink);text-align:center;border-top:2px dashed var(--line);margin-top:6px;padding-top:8px}
+.bars{display:flex;align-items:flex-end;gap:8px;height:150px}
+.bars div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:6px;font-size:11px;color:var(--muted)}
+.bars i{display:block;width:100%;border-radius:10px 10px 6px 6px;background:var(--orange);min-height:6px}
+.bars div.today i{background:var(--yellow)}
+.bars em{font-style:normal;font-size:10px;background:var(--surface-2);padding:1px 5px;border-radius:6px}
+.heat{display:grid;grid-template-columns:44px repeat(7,1fr);gap:5px;align-items:center;font-size:11px;color:var(--muted)}
+.heat i{display:block;aspect-ratio:1.4;border-radius:7px}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:4px}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.donut-row{display:flex;align-items:center;gap:16px}
+.donut{width:110px;height:110px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center}
+.donut div{width:62px;height:62px;border-radius:50%;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;color:var(--muted)}
+.donut b{font-family:var(--display);font-size:18px;color:var(--text)}
+.tagrow{display:flex;align-items:center;gap:8px;font-size:14px;margin:6px 0}
+.tagrow i{width:10px;height:28px;border-radius:5px}
+.tagrow b{margin-left:auto;font-family:var(--display)}
+.stack-lg{display:flex;flex-direction:column;gap:14px;margin-top:14px}
+
+/* Profile */
+.hero{position:relative;overflow:hidden;background:var(--blue-soft);border-radius:26px;padding:20px;display:flex;gap:14px;align-items:center}
+.hero .bub{position:absolute;border-radius:50%;background:#fff;opacity:.6}
+.hero .avatar{position:relative;width:96px;height:96px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex:none;box-shadow:0 5px 0 var(--blue)}
+.hero h1{font-size:22px;margin:0}
+.lvl-pill{display:inline-block;background:var(--blue);color:#fff;font-weight:700;font-size:12px;padding:4px 10px;border-radius:999px;margin-top:6px}
+.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.mini-stats div{background:var(--surface);border-radius:16px;padding:10px;box-shadow:0 0 0 2px var(--line);display:flex;gap:8px;align-items:center}
+.mini-stats b{font-family:var(--display);font-size:18px;font-weight:900;display:block;line-height:1}
+.mini-stats span{font-size:11px;color:var(--muted)}
+.ach{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:2px solid var(--surface-2)}
+.ach:last-child{border:0}
+.ach .ai{width:54px;height:54px;border-radius:18px;display:flex;align-items:center;justify-content:center;flex:none}
+.ach .ai.off{background:var(--surface-2)!important;color:#B5BACB!important;box-shadow:0 4px 0 var(--line)!important}
+.ach .body{flex:1;min-width:0}
+.ach b{font-family:var(--display);font-size:16px;font-weight:800}
+.ach p{font-size:12px;color:var(--muted);margin:1px 0 6px}
+.ach .xpbar{height:10px;margin:0}
+.ach small{font-size:11px;color:var(--muted)}
+.badges{display:flex;gap:12px;flex-wrap:wrap}
+.bdg{width:78px;text-align:center;font-size:12px;font-weight:600}
+.bdg div{width:64px;height:64px;margin:0 auto 6px;border-radius:50%;overflow:hidden;border:4px solid var(--yellow);box-shadow:0 4px 0 var(--yellow-dk)}
+.invite{background:var(--orange-soft);border-radius:22px;padding:16px;display:flex;gap:12px;align-items:center;margin-top:14px}
+.invite b{font-family:var(--display);font-size:17px;color:var(--orange-ink)}
+.invite p{font-size:13px;color:var(--orange-ink)}
+.code{display:inline-block;margin-top:6px;background:#fff;border:2px dashed var(--orange);border-radius:10px;padding:4px 10px;font-weight:700;color:var(--orange-ink);letter-spacing:.06em}
+.plus{position:relative;background:var(--yellow);border-radius:24px;padding:18px;margin-top:14px;color:var(--yellow-ink);overflow:hidden}
+.plus h3{margin:0 0 4px;font-size:20px;font-weight:900}
+.plus ul{padding-left:18px;margin:8px 0 14px;font-size:13px;line-height:1.6;max-width:70%}
+.plus .pm{position:absolute;right:-6px;top:10px}
+.plus .btn{background:#fff;color:var(--yellow-ink);box-shadow:0 4px 0 var(--yellow-dk)}
+.row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:2px solid var(--surface-2);font-size:15px}
+.switch{width:50px;height:30px;border-radius:15px;background:var(--line);border:0;position:relative;cursor:pointer;flex:none}
+.switch::after{content:"";position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .2s}
+.switch.on{background:var(--teal)}.switch.on::after{transform:translateX(20px)}
+
+/* Share */
+.share-card{width:min(250px,64vw);aspect-ratio:9/16;border-radius:24px;padding:18px 16px;margin:6px auto 16px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.share-card .wm{font-family:var(--display);font-weight:900;font-size:18px}
+.share-card h3{font-size:21px;line-height:1.2;margin:12px 0 10px;font-weight:900}
+.ba{display:flex;justify-content:space-between;gap:8px}
+.ba div{flex:1;text-align:center;font-size:11px}
+.ba svg{width:100%;height:auto;display:block;margin-bottom:4px}
+.sc-stats{display:flex;gap:8px;margin:12px 0}
+.sc-stats div{flex:1;border-radius:12px;padding:8px;font-size:11px}
+.sc-stats b{display:block;font-family:var(--display);font-size:18px}
+.sc-foot{margin-top:auto;font-size:11px;line-height:1.4}
+.sc-foot b{font-size:13px;letter-spacing:.04em}
+.sc-mascot{position:absolute;right:6px;bottom:44px}
+.share-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.share-btns button{border:2px solid var(--line);background:var(--surface);border-radius:16px;padding:12px 4px;font-size:12px;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 3px 0 var(--line)}
+
+#toast{position:absolute;left:16px;right:16px;bottom:92px;z-index:40;background:var(--text);color:#fff;padding:12px 16px;border-radius:16px;font-size:14px;line-height:1.45;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;pointer-events:none}
+#toast.show{opacity:1;transform:none}
+
+/* Mascot motion: only on reactions and calm idle outside focus */
+.lolo{overflow:visible}
+@media (prefers-reduced-motion:no-preference){
+  .m-float{animation:float 3.6s ease-in-out infinite}
+  .m-cheer{transform-origin:50% 100%;animation:hop .55s ease-out 3}
+  .m-sad{transform-origin:50% 100%;animation:droop 1s ease-out forwards}
+  .m-sad .tear{animation:tear 1.6s ease-in 0.6s infinite}
+  .m-wave .arm-r{transform-box:fill-box;transform-origin:20% 90%;animation:wave .5s ease-in-out 4 alternate}
+  .start-tip{animation:bob 1.8s ease-in-out infinite}
+  .confetti i{animation:fall 1.9s cubic-bezier(.3,.6,.5,1) forwards}
+  .pop{animation:pop .45s cubic-bezier(.3,1.6,.5,1) both}
+}
+@keyframes float{50%{transform:translateY(-5px)}}
+@keyframes hop{0%{transform:translateY(0) scale(1,1)}30%{transform:translateY(-16px) scale(.96,1.05)}60%{transform:translateY(0) scale(1.06,.94)}100%{transform:translateY(0) scale(1)}}
+@keyframes droop{to{transform:translateY(5px) rotate(-4deg) scale(.97)}}
+@keyframes tear{0%{opacity:0;transform:translateY(0)}20%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
+@keyframes wave{to{transform:rotate(-28deg)}}
+@keyframes bob{50%{transform:translate(-50%,-5px)}}
+@keyframes fall{0%{opacity:1;transform:translate(0,-20px) rotate(0)}100%{opacity:0;transform:translate(var(--dx),480px) rotate(540deg)}}
+@keyframes pop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+.confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.confetti i{position:absolute;top:0;width:9px;height:14px;border-radius:3px;opacity:0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app">
+  <main id="screen" aria-live="polite"></main>
+  <nav id="nav" aria-label="Navigasi utama" hidden></nav>
+  <div id="overlay" hidden></div>
+  <div id="toast" role="status"></div>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const RIVERS=[
+  {name:'Ciliwung',seg:5,region:'Jawa Barat dan DKI Jakarta',fact:'Mengalir dari kawasan Puncak, Bogor, membelah Jakarta, lalu bermuara di Teluk Jakarta.'},
+  {name:'Citarum',seg:7,region:'Jawa Barat',fact:'Sungai terpanjang di Jawa Barat yang mengairi tiga waduk besar: Saguling, Cirata, dan Jatiluhur.'},
+  {name:'Brantas',seg:8,region:'Jawa Timur',fact:'Sungai terpanjang di Jawa Timur, mengalir melingkar melewati Malang, Blitar, Tulungagung, dan Kediri.'},
+  {name:'Musi',seg:10,region:'Sumatera Selatan',fact:'Membelah kota Palembang dan dilintasi Jembatan Ampera.'},
+  {name:'Mahakam',seg:12,region:'Kalimantan Timur',fact:'Rumah bagi pesut mahakam, lumba-lumba air tawar yang terancam punah.'},
+  {name:'Kapuas',seg:14,region:'Kalimantan Barat',fact:'Sungai terpanjang di Indonesia, sekitar 1.143 km, dari Kapuas Hulu sampai Selat Karimata.'}
+];
+const UNIT=[['var(--orange)','var(--orange-dk)'],['var(--blue)','var(--blue-dk)'],['var(--yellow)','var(--yellow-dk)'],['var(--teal)','var(--teal-dk)']];
+const LV=150;
+function dstr(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function dayOffset(n){const d=new Date();d.setDate(d.getDate()+n);return dstr(d)}
+const TODAY=()=>dstr(new Date());
+const SLOTS=['Pagi','Siang','Sore','Malam'];
+function slotOf(h){return h>=5&&h<11?'Pagi':h>=11&&h<15?'Siang':h>=15&&h<19?'Sore':'Malam'}
+
+function fresh(){
+  const h={},td={},heat={},sample=[40,0,55,25,70,50];
+  for(let i=6;i>=1;i--){const d=dayOffset(-i),m=sample[6-i];h[d]=m;td[d]=m;
+    if(m){const main=['Pagi','Malam','Sore'][i%3];heat[d+'|'+main]=Math.round(m*.6);heat[d+'|Siang']=m-Math.round(m*.6)}}
+  return{onboarded:false,view:'onb',onb:0,goal:'Belajar',duration:25,dailyGoal:2,tag:'Belajar',
+    riverIdx:0,segDone:0,tetes:240,tetesDay:td,streak:4,best:4,lastSuccess:dayOffset(-1),history:h,heat,
+    tagMin:{Belajar:100,Kerja:140,Lainnya:0},today:{date:TODAY(),n:0},sessions:6,longest:45,
+    riverSessions:0,riverMinutes:0,riverStart:null,restored:[],lastRestored:null,demo:true,shareVar:'sungai',failReason:'leave',lastGain:0,lastBonus:0,lastLevelUp:false};
+}
+let S;
+try{S=JSON.parse(localStorage.getItem('klyn-app-v1'))}catch(e){S=null}
+if(!S||typeof S!=='object')S=fresh();
+if(!['home','map','stats','profile','onb','share','congrats'].includes(S.view))S.view=S.onboarded?'home':'onb';
+if(S.today.date!==TODAY())S.today={date:TODAY(),n:0};
+if(S.lastSuccess!==TODAY()&&S.lastSuccess!==dayOffset(-1))S.streak=0;
+function save(){try{localStorage.setItem('klyn-app-v1',JSON.stringify(S))}catch(e){}}
+
+const IC={
+ home:'<path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/>',
+ map:'<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/>',
+ chart:'<path d="M5 20V11M12 20V5M19 20v-6M3 20h18"/>',
+ user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',
+ flame:'<path d="M12 3c1 4 5 5 5 10a5 5 0 01-10 0c0-3 2-4 2-6 1 1 2 2 3 2 0-2-1-4 0-6z"/>',
+ drop:'<path d="M12 3s6 7 6 11a6 6 0 01-12 0c0-4 6-11 6-11z"/>',
+ head:'<path d="M4 15v-3a8 8 0 0116 0v3"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/>',
+ x:'<path d="M6 6l12 12M18 6L6 18"/>',
+ back:'<path d="M15 5l-7 7 7 7"/>',
+ lock:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/>',
+ check:'<path d="M5 12l5 5 9-10"/>',
+ share:'<path d="M12 3v12M7 8l5-5 5 5M5 14v6h14v-6"/>',
+ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+ bell:'<path d="M6 16V11a6 6 0 0112 0v5l2 2H4zM10 21h4"/>',
+ img:'<rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/>',
+ chat:'<path d="M4 20l1.5-4A8 8 0 1112 20a8 8 0 01-4-1z"/>',
+ story:'<rect x="6" y="2" width="12" height="20" rx="3"/><circle cx="12" cy="11" r="3"/>',
+ star:'<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
+ trophy:'<path d="M8 4h8v5a4 4 0 01-8 0zM8 6H4a3 3 0 003 4M16 6h4a3 3 0 01-3 4M12 13v4M8 21h8M9 17h6v4H9z"/>',
+ target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>'
+};
+function ic(n,s=22,w=2.2){return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[n]}</svg>`}
+
+/* ---------- Lolo the axolotl ---------- */
+function lolo(mood='happy',size=64,cls=''){
+  const skin='#FFC94F',belly='#FFF0C4',shade='#EDA83A',spotC='#F3B040',gill='#F07A62',gillIn='#FFBFAC',eye='#2E2220',lip='#9C5A2E',ol=`stroke="${shade}" stroke-width="1.3"`;
+  const tilt=mood==='sad'?-20:mood==='cheer'?8:0;
+  const leaf=L=>`M0 -3 C${-L*.3} -7.5 ${-L*.72} -7.5 ${-L*.95} -2.2 Q${-L*1.03} -.2 ${-L*.95} 1.6 C${-L*.72} 7 ${-L*.3} 7 0 3z`;
+  const g=[[31,34,42,19],[28,42,14,21],[29,50,-14,18]].map(([x,y,r,L])=>`<g transform="translate(${x} ${y}) rotate(${r+tilt})"><path d="${leaf(L)}" fill="${gill}"/><ellipse cx="${-L*.52}" cy="-.2" rx="${L*.27}" ry="2.2" fill="${gillIn}"/></g>`).join('');
+  const gills=`<g>${g}</g><g transform="translate(120 0) scale(-1 1)">${g}</g>`;
+  const arms=mood==='cheer'
+    ?`<ellipse cx="36" cy="80" rx="5" ry="8" transform="rotate(-40 36 80)" fill="${skin}" ${ol}/><ellipse class="arm-r" cx="84" cy="80" rx="5" ry="8" transform="rotate(40 84 80)" fill="${skin}" ${ol}/>`
+    :mood==='sad'
+    ?`<ellipse cx="47" cy="96" rx="5" ry="7" transform="rotate(-20 47 96)" fill="${skin}" ${ol}/><ellipse cx="73" cy="96" rx="5" ry="7" transform="rotate(20 73 96)" fill="${skin}" ${ol}/>`
+    :`<ellipse cx="41" cy="93" rx="5" ry="8" transform="rotate(12 41 93)" fill="${skin}" ${ol}/><ellipse class="arm-r" cx="79" cy="93" rx="5" ry="8" transform="rotate(-12 79 93)" fill="${skin}" ${ol}/>`;
+  const eyes=mood==='cheer'
+    ?`<path d="M38 53 q5 -6 10 0" stroke="${eye}" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M72 53 q5 -6 10 0" stroke="${eye}" stroke-width="2.8" fill="none" stroke-linecap="round"/>`
+    :mood==='sad'
+    ?`<circle cx="43" cy="53" r="5.4" fill="${eye}"/><circle cx="77" cy="53" r="5.4" fill="${eye}"/><circle cx="44.6" cy="51.4" r="1.5" fill="#fff"/><circle cx="78.6" cy="51.4" r="1.5" fill="#fff"/><path d="M37 45 l8 -3" stroke="${lip}" stroke-width="2" stroke-linecap="round"/><path d="M83 45 l-8 -3" stroke="${lip}" stroke-width="2" stroke-linecap="round"/>`
+    :`<circle cx="43" cy="52" r="6" fill="${eye}"/><circle cx="77" cy="52" r="6" fill="${eye}"/><circle cx="45" cy="50" r="1.7" fill="#fff"/><circle cx="79" cy="50" r="1.7" fill="#fff"/>`;
+  const mouth=mood==='cheer'
+    ?`<path d="M52 59 q8 1.5 16 0 q-1 11 -8 11 q-7 0 -8 -11z" fill="#C95A45"/><path d="M55 66 q5 -3 10 0 q-2 3.5 -5 3.5 q-3 0 -5 -3.5z" fill="#EE8B6E"/>`
+    :mood==='sad'
+    ?`<path d="M54 64 q6 -4.5 12 0" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>`
+    :`<path d="M54 60.5 q6 11 12 0z" fill="#C95A45"/><path d="M56 65.5 q4 -2.2 8 0 q-1.5 3 -4 3 q-2.5 0 -4 -3z" fill="#EE8B6E"/><path d="M52 59 q4 3.5 8 0 q4 3.5 8 0" stroke="${lip}" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const extra=mood==='sad'?`<path class="tear" d="M41 60 q-3.5 6 0 8.5 q3.5 -2.5 0 -8.5z" fill="#7CC7FF"/>`
+    :mood==='cheer'?`<g fill="#FFC93C"><path d="M10 12l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/><path d="M110 6l1.5 3.5 3.5 1.5-3.5 1.5-1.5 3.5-1.5-3.5-3.5-1.5 3.5-1.5z"/></g>`:'';
+  return `<svg class="lolo ${cls}" width="${size}" height="${size}" viewBox="0 0 120 120" aria-hidden="true" style="flex:none">
+  ${extra}
+  <path d="M76 104 q18 2 24 -16 q4 14 -4 22 q-8 6 -20 2z" fill="${skin}" ${ol}/>
+  <path d="M92 106 q8 -5 8 -14 q3 11 -4 17z" fill="${shade}" opacity=".55"/>
+  ${gills}
+  <path d="M41 66 C30 84 30 112 60 112 C90 112 90 84 79 66z" fill="${skin}" ${ol}/>
+  <ellipse cx="60" cy="98" rx="13" ry="12.5" fill="${belly}"/>
+  ${arms}
+  <ellipse cx="46" cy="110" rx="9" ry="6" fill="${skin}" ${ol}/><ellipse cx="74" cy="110" rx="9" ry="6" fill="${skin}" ${ol}/>
+  <path d="M43 108 v3 M47 108 v3 M71 108 v3 M75 108 v3" stroke="${shade}" stroke-width="1.1" stroke-linecap="round"/>
+  <ellipse cx="60" cy="48" rx="36" ry="32" fill="${skin}" ${ol}/>
+  <ellipse cx="46" cy="27" rx="10" ry="4" fill="#fff" opacity=".4" transform="rotate(-18 46 27)"/>
+  <g fill="${spotC}"><circle cx="58" cy="22" r="3"/><circle cx="68" cy="25" r="2"/><circle cx="50" cy="24" r="1.8"/><circle cx="74" cy="30" r="1.5"/><circle cx="62" cy="29" r="1.4"/><circle cx="54" cy="89" r="1.2"/></g>
+  <path d="M60 11 q-6 8 0 12 q6 -4 0 -12z" fill="#14B3A1"/>
+  <ellipse cx="34" cy="62" rx="6.5" ry="4" fill="#F27A5E" opacity=".38"/><ellipse cx="86" cy="62" rx="6.5" ry="4" fill="#F27A5E" opacity=".38"/>
+  ${eyes}${mouth}</svg>`;
+}
+
+/* ---------- River illustration ---------- */
+function mix(c1,c2,t){const a=parseInt(c1.slice(1),16),b=parseInt(c2.slice(1),16),L=(x,y)=>Math.round(x+(y-x)*t);
+  return '#'+((1<<24)|(L(a>>16,b>>16)<<16)|(L((a>>8)&255,(b>>8)&255)<<8)|L(a&255,b&255)).toString(16).slice(1)}
+function bez(p,t){const u=1-t;return[0,1].map(k=>u*u*u*p[0][k]+3*u*u*t*p[1][k]+3*u*t*t*p[2][k]+t*t*t*p[3][k])}
+const SEGS=[[[60,-10],[20,50],[150,70],[100,110]],[[100,110],[50,150],[40,170],[120,215]]];
+const RIVER_D='M60,-10 C20,50 150,70 100,110 C50,150 40,170 120,215';
+const TRASH=(()=>{let s=11;const R=()=>{s=(s*16807)%2147483647;return(s-1)/2147483646};
+  const cols=['#EDE8DC','#D94F45','#F2C14E','#5C8FD6','#FFFFFF','#9A9A9A','#E07A1F'];const out=[];
+  for(let i=0;i<28;i++){const pt=bez(SEGS[i%2],0.08+R()*0.84);
+    out.push({x:pt[0]+(R()-.5)*22,y:pt[1]+(R()-.5)*14,shape:i%3,c:cols[Math.floor(R()*cols.length)],r:Math.round(R()*180),th:0.04+R()*0.86})}
+  return out})();
+let uid=0;
+function riverG(p){
+  const id='rc'+(uid++),e=p*p*(3-2*p);
+  const water=mix('#6E4B2C','#2F95B9',e),grass=mix('#97A55E','#8BCB6B',e),bush=mix('#6F8247','#57A04A',e);
+  let g=`<defs><clipPath id="${id}"><circle cx="100" cy="100" r="100"/></clipPath></defs><g clip-path="url(#${id})"><rect width="200" height="200" fill="${grass}"/>`;
+  [[22,122,9],[36,138,6],[160,38,8],[178,58,6],[150,172,9],[30,58,7],[172,122,7],[135,20,5]].forEach(b=>g+=`<circle cx="${b[0]}" cy="${b[1]}" r="${b[2]}" fill="${bush}"/>`);
+  g+=`<path d="${RIVER_D}" fill="none" stroke="#7A5634" stroke-width="52" stroke-linecap="round"/><path d="${RIVER_D}" fill="none" stroke="${water}" stroke-width="38" stroke-linecap="round"/>`;
+  if(p>.45)g+=`<path d="${RIVER_D}" fill="none" stroke="#7FCBE3" stroke-width="12" stroke-linecap="round" opacity="${((p-.45)/.55*.55).toFixed(2)}"/>`;
+  TRASH.forEach(t=>{const op=p<t.th?1:Math.max(0,1-(p-t.th)*9);if(op<=0)return;
+    const sh=t.shape===0?`<rect x="-4" y="-2" width="8" height="4" rx="1.5"/>`:t.shape===1?`<circle r="2.8"/>`:`<path d="M-4 3 L0 -4 L4 3z"/>`;
+    g+=`<g transform="translate(${t.x.toFixed(1)} ${t.y.toFixed(1)}) rotate(${t.r})" fill="${t.c}" stroke="#3A2A1A" stroke-width=".5" opacity="${op.toFixed(2)}">${sh}</g>`});
+  if(p>.7){const o=Math.min(1,(p-.7)/.2).toFixed(2);
+    [[86,96,20],[108,142,-15],[72,38,30]].forEach(f=>g+=`<g transform="translate(${f[0]} ${f[1]}) rotate(${f[2]})" opacity="${o}"><ellipse rx="6" ry="2.8" fill="#F2994A"/><path d="M5 0 L10 -3 L10 3z" fill="#F2994A"/><circle cx="-3" cy="-.6" r=".8" fill="#222"/></g>`)}
+  if(p>.82){const o=((p-.82)/.18).toFixed(2);g+=`<g stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity="${o}"><path d="M78 70 l7 -2"/><path d="M96 124 l8 -3"/><path d="M60 170 l6 -1"/><path d="M92 176 l7 1"/></g>`}
+  if(p>.92)g+=`<g fill="none" stroke="#2E3B2A" stroke-width="1.6" stroke-linecap="round"><path d="M150 88 q4 -4 8 0 q4 -4 8 0"/><path d="M28 94 q3 -3 6 0 q3 -3 6 0"/></g>`;
+  return g+'</g>';
+}
+function ringSVG(pr,pv,o={}){
+  const C=2*Math.PI*120,a=(-90+360*pr)*Math.PI/180,kx=130+120*Math.cos(a),ky=130+120*Math.sin(a),knob=o.knob!==false&&pr>0&&pr<1;
+  return `<svg viewBox="0 0 260 260" class="ring" role="img" aria-label="Sungai ${Math.round(pv*100)} persen bersih">
+  <circle cx="130" cy="130" r="120" fill="none" stroke="var(--line)" stroke-width="14"/>
+  ${pr>0?`<circle cx="130" cy="130" r="120" fill="none" stroke="var(--teal)" stroke-width="14" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-pr)).toFixed(1)}" transform="rotate(-90 130 130)"/>`:''}
+  <g transform="translate(30 30)">${riverG(pv)}</g>
+  ${knob?`<circle cx="${kx.toFixed(1)}" cy="${ky.toFixed(1)}" r="13" fill="var(--teal)" stroke="#fff" stroke-width="4"/>`:''}</svg>`;
+}
+function mini(p){return `<svg viewBox="0 0 200 200" width="100%" height="100%" aria-hidden="true">${riverG(p)}</svg>`}
+function confetti(){if(RM)return '';const cols=['#FF9D5C','#8FB8FF','#FFC93C','#14B3A1','#4FC7B5'];let h='<div class="confetti" aria-hidden="true">';
+  for(let i=0;i<28;i++)h+=`<i style="left:${Math.random()*100}%;background:${cols[i%5]};--dx:${Math.round((Math.random()-.5)*120)}px;animation-delay:${(Math.random()*.4).toFixed(2)}s"></i>`;return h+'</div>'}
+
+/* ---------- Derived ---------- */
+const R=()=>RIVERS[S.riverIdx];
+const level=()=>Math.floor(S.tetes/LV)+1;
+function weekTetes(){let t=0;for(let i=0;i<7;i++)t+=S.tetesDay[dayOffset(-i)]||0;return t}
+function dots(i){return `<div class="dots" aria-hidden="true">${[0,1,2,3].map(k=>`<i class="${k===i?'on':''}"></i>`).join('')}</div>`}
+
+/* ---------- Views ---------- */
+const V={};
+V.onb=()=>{
+  const s=S.onb;
+  if(s===0)return `<div class="onb sky"><div style="display:flex;justify-content:center;margin:24px 0 18px">${lolo('happy',150,'m-float')}</div>
+    <h1>Fokusmu membersihkan sungai Indonesia</h1>
+    <p class="lead">Setiap sesi fokus yang selesai memulihkan satu segmen sungai. Pulihkan semua segmennya, lalu lanjut ke sungai berikutnya.</p>
+    <div class="onb-foot">${dots(0)}<button class="btn btn-primary" data-act="onbNext">Mulai</button></div></div>`;
+  if(s===1)return `<div class="onb"><h1>Kamu ingin fokus untuk apa?</h1><p class="lead">Ini menentukan tag bawaan di sesimu. Bisa diubah kapan saja.</p>
+    <div class="chips" style="margin-top:18px">${['Belajar','Kerja','Keduanya'].map(g=>`<button class="chip ${S.goal===g?'on':''}" data-act="onbSet" data-k="goal" data-v="${g}">${g}</button>`).join('')}</div>
+    <h2>Berapa lama biasanya kamu fokus?</h2>
+    <div class="chips">${[25,45,60].map(d=>`<button class="chip ${S.duration===d?'on':''}" data-act="onbSet" data-k="duration" data-v="${d}">${d} menit</button>`).join('')}</div>
+    <div class="onb-foot">${dots(1)}<button class="btn btn-primary" data-act="onbNext">Lanjut</button></div></div>`;
+  if(s===2)return `<div class="onb"><h1>Pilih target harian</h1><p class="lead">Streak bertambah setiap hari kamu menyelesaikan minimal satu sesi. Capai target harian untuk bonus 10 tetes.</p>
+    <div class="stack" style="margin-top:20px">${[[1,'Santai'],[2,'Serius'],[4,'Ambisius']].map(([n,l])=>`<button class="opt ${S.dailyGoal===n?'on':''}" data-act="onbSet" data-k="dailyGoal" data-v="${n}"><span>${l}<small>${n} sesi per hari, sekitar ${n*S.duration} menit</small></span>${S.dailyGoal===n?ic('check'):''}</button>`).join('')}</div>
+    <div class="onb-foot">${dots(2)}<button class="btn btn-primary" data-act="onbNext">Lanjut</button></div></div>`;
+  return `<div class="onb"><div style="display:flex;justify-content:center;margin:6px 0 10px">${lolo('cheer',130,'m-wave')}</div>
+    <h1>Halo, aku Lolo</h1><p class="lead">Aku axolotl yang butuh air bersih. Begini cara kita memulihkan sungai bersama:</p>
+    <ul class="rules"><li>${ic('clock',20)}<span>Selama sesi berjalan, tetap di Klyn sampai waktunya habis. Layar akan tetap menyala.</span></li>
+    <li>${ic('x',20)}<span>Keluar dari Klyn lebih dari 10 detik membuat sampah kembali ke sungai.</span></li>
+    <li>${ic('bell',20)}<span>Izinkan notifikasi supaya aku bisa memanggilmu kembali dan menjaga streak-mu.</span></li></ul>
+    <div class="onb-foot">${dots(3)}<button class="btn btn-primary" data-act="onbDone">Mulai sesi pertama</button></div></div>`;
+};
+V.home=()=>{
+  const r=R(),overall=S.segDone/r.seg,n=S.today.n;
+  const msg=n>=S.dailyGoal?'Target hari ini tercapai. Satu sesi lagi?':(S.streak>0&&n===0)?`Streak ${S.streak} hari menunggumu. Satu sesi hari ini menjaganya.`:`Sungai ${r.name} menunggumu. Sampahnya masih banyak.`;
+  return `<div class="topbar sky"><div class="chips"><span class="stat-chip fire" title="Hari beruntun">${ic('flame',20)}${S.streak}</span><span class="stat-chip drop" title="Tetes">${ic('drop',20)}${S.tetes}</span></div>
+    <span class="goal-chip">Target ${Math.min(n,S.dailyGoal)}/${S.dailyGoal} sesi</span></div>
+  <div class="pad"><h1>Pulihkan Sungai ${r.name}</h1>
+    <div class="segbar" aria-hidden="true">${Array.from({length:r.seg},(_,i)=>`<i class="${i<S.segDone?'done':i===S.segDone?'now':''}"></i>`).join('')}</div>
+    <p class="muted">Segmen ${S.segDone+1} dari ${r.seg} berikutnya</p>
+    <div class="ring-box sm">${ringSVG(0,overall,{knob:false})}</div>
+    <div class="bubble-row">${lolo('happy',64,'m-float')}<p class="bubble">${msg}</p></div>
+    <div class="field"><label>Fokus untuk</label><div class="chips">${['Belajar','Kerja','Lainnya'].map(t=>`<button class="chip ${S.tag===t?'on':''}" data-act="tag" data-v="${t}">${t}</button>`).join('')}</div></div>
+    <div class="field"><label for="dur">Durasi <b id="durVal">${S.duration} menit</b></label>
+      <input type="range" id="dur" min="10" max="120" step="5" value="${S.duration}">
+      <div class="chips">${[25,45,60,90].map(d=>`<button class="chip ${S.duration===d?'on':''}" data-act="preset" data-v="${d}">${d}</button>`).join('')}</div></div>
+    <div style="margin-top:24px"><button class="btn btn-primary" data-act="start">Mulai memulihkan</button></div>
+    ${S.demo?'<p class="demo-note">Mode demo aktif: 1 detik = 1 menit. Ubah di Profil.</p>':''}</div>`;
+};
+V.focus=()=>{const r=R();return `<div class="topbar sky"><span style="width:44px"></span><b id="fTitle">Tetap fokus</b>
+  <button class="icon-btn" data-act="music" aria-label="Pilih suara">${ic('head',26)}<small id="mLabel">${SOUND_LABEL[cur]||'Senyap'}</small></button></div>
+  <div class="focus-wrap"><p class="river-name">Sungai ${r.name}, segmen ${S.segDone+1} dari ${r.seg}</p>
+  <div class="ring-box"><div id="ring">${ringSVG(0,0)}</div><span class="pct" id="pct">0%</span></div>
+  <p class="stage" id="stage">Sampah menumpuk di bantaran</p><span class="tag-pill">${S.tag}</span>
+  <div class="timer" id="time" aria-live="off">${fmt(F.dur*60)}</div>
+  <button class="btn btn-ghost small" data-act="giveup">Menyerah</button>
+  <div class="demo-row">${S.demo?'<button data-act="skip">Lewati ke akhir</button>':''}<button data-act="simleave">Simulasikan keluar app</button></div></div>`};
+V.fail=()=>{const n=S.segDone+1,leave=S.failReason==='leave';
+  return `<div class="result lose">${lolo('sad',150,'m-sad')}
+  <h1 style="margin-top:6px">Yah, sampahnya kembali</h1><p class="lead">${leave?`Kamu keluar dari Klyn lebih dari 10 detik, jadi segmen ${n} kotor lagi.`:`Sesi berhenti sebelum waktunya, jadi segmen ${n} kotor lagi.`}</p>
+  <div class="bubble" style="margin:16px 0;border-radius:18px">Tidak apa-apa. Sesi yang lebih pendek biasanya lebih mudah diselesaikan. Aku tunggu, ya.</div>
+  <p class="note">Streak-mu tetap aman. Streak hanya putus kalau tidak ada sesi yang berhasil dalam sehari.</p>
+  <div class="stack" style="width:100%;margin-top:20px"><button class="btn btn-primary" data-act="retry">Coba lagi, ${S.duration} menit</button>
+  ${S.duration>15?'<button class="btn btn-ghost" data-act="retryShort">Coba 15 menit</button>':''}
+  <button class="btn btn-quiet" data-act="go" data-v="home">Kembali ke beranda</button></div></div>`};
+V.success=()=>{const r=R(),n=Math.min(S.today.n,S.dailyGoal);
+  return `<div class="result win">${lolo('cheer',140,'m-cheer')}
+  <h1 style="margin-top:4px">Segmen ${S.segDone} bersih!</h1><p class="lead">Sungai ${r.name}: ${S.segDone} dari ${r.seg} segmen sudah pulih.</p>
+  <div class="rewards"><div class="reward r-y pop"><b id="gain">+0</b><span>tetes</span></div><div class="reward r-o pop" style="animation-delay:.1s"><b>${S.streak}</b><span>hari beruntun</span></div><div class="reward r-b pop" style="animation-delay:.2s"><b>${n}/${S.dailyGoal}</b><span>target hari ini</span></div></div>
+  ${S.lastBonus?`<span class="bonus pop">Target harian tercapai, bonus +${S.lastBonus} tetes</span>`:''}
+  ${S.lastLevelUp?`<span class="bonus pop" style="background:var(--blue);color:#fff">Naik ke level ${level()}!</span>`:''}
+  <div style="width:100%;max-width:190px;margin:0 auto 18px">${ringSVG(1,1)}</div>
+  <div class="stack" style="width:100%"><button class="btn btn-primary" data-act="breakStart">Istirahat 5 menit</button>
+  <button class="btn btn-ghost" data-act="retry">Lanjut fokus</button><button class="btn btn-quiet" data-act="go" data-v="home">Selesai</button></div></div>`};
+V.break=()=>`<div class="result"><p class="muted">Istirahat</p><h1>Tarik napas sejenak</h1>
+  <div class="ring-box sm">${ringSVG(0,S.segDone/R().seg,{knob:false})}</div>
+  <div class="timer" id="btime">05 : 00</div><p class="lead">Minum air, regangkan badan, dan jauhkan mata dari layar.</p>
+  <div style="width:100%;margin-top:22px"><button class="btn btn-ghost" data-act="breakEnd">Selesai istirahat</button></div></div>`;
+V.congrats=()=>{const L=S.lastRestored,next=RIVERS[S.riverIdx+1];
+  return `<div class="result win">${confetti()}
+  <div style="position:relative;width:min(230px,64vw)"><div id="cring">${ringSVG(1,0)}</div>
+    <div style="position:absolute;left:-30px;bottom:-18px">${lolo('cheer',110,'m-cheer')}</div></div>
+  <p class="bonus pop" style="margin-top:22px">Badge baru: Pemulih ${L.name}</p>
+  <h1 style="font-size:30px">Sungai ${L.name} pulih!</h1><p class="lead">Kamu membersihkan ${L.seg} segmen. Ikan dan burung sudah kembali.</p>
+  <div class="rewards"><div class="reward r-t"><b>${L.sessions}</b><span>sesi</span></div><div class="reward r-y"><b>${L.minutes}</b><span>menit fokus</span></div><div class="reward r-o"><b>${L.days}</b><span>hari</span></div></div>
+  <div class="stack" style="width:100%"><button class="btn btn-primary" data-act="go" data-v="share">${ic('share',20)}Bagikan pencapaian</button>
+  <button class="btn btn-ghost" data-act="nextRiver">${next?`Buka Sungai ${next.name}`:'Kembali ke beranda'}</button></div></div>`};
+const SV={sungai:{bg:'#14B3A1',ink:'#FFFFFF',soft:'rgba(255,255,255,.18)'},oranye:{bg:'#FF9D5C',ink:'#FFFFFF',soft:'rgba(255,255,255,.2)'},cerah:{bg:'#FFC93C',ink:'#5A3F00',soft:'rgba(90,63,0,.1)'}};
+V.share=()=>{const L=S.lastRestored||{name:R().name,minutes:0,seg:R().seg},c=SV[S.shareVar]||SV.sungai;
+  return `<div class="topbar"><button class="icon-btn" data-act="go" data-v="congrats" aria-label="Kembali" style="color:var(--text)">${ic('back',24)}</button><b>Bagikan</b><span style="width:44px"></span></div>
+  <div class="pad"><div class="share-card" style="background:${c.bg};color:${c.ink}">
+    <span class="wm">klyn</span><h3>Aku memulihkan Sungai ${L.name}</h3>
+    <div class="ba"><div>${mini(0)}Sebelum</div><div>${mini(1)}Sesudah</div></div>
+    <div class="sc-stats"><div style="background:${c.soft}"><b>${L.minutes}</b>menit fokus</div><div style="background:${c.soft}"><b>${S.streak}</b>hari beruntun</div></div>
+    <div class="sc-mascot">${lolo('cheer',62)}</div>
+    <div class="sc-foot">Fokus bareng dan pulihkan sungaimu juga.<br>Kode undangan <b>KLYN-8Q2F</b></div></div>
+  <div class="chips" style="justify-content:center;margin-bottom:18px">${[['sungai','Sungai'],['oranye','Oranye'],['cerah','Cerah']].map(([k,l])=>`<button class="chip ${S.shareVar===k?'on':''}" data-act="shareVar" data-v="${k}">${l}</button>`).join('')}</div>
+  <div class="share-btns"><button data-act="shareBtn" data-v="ig">${ic('story')}Instagram Story</button><button data-act="shareBtn" data-v="wa">${ic('chat')}WhatsApp</button><button data-act="shareBtn" data-v="save">${ic('img')}Simpan gambar</button></div></div>`};
+
+V.map=()=>{
+  const off=[0,48,72,48,0,-48,-72,-48];let h=`<div class="topbar sky"><h1 style="margin:0">Peta sungai</h1><div class="chips"><span class="stat-chip fire">${ic('flame',20)}${S.streak}</span><span class="stat-chip drop">${ic('drop',20)}${S.tetes}</span></div></div>`;
+  RIVERS.forEach((r,ri)=>{const [c,cd]=UNIT[ri%4],st=ri<S.riverIdx?'done':ri===S.riverIdx?'now':'lock';
+    const p=st==='done'?1:st==='now'?S.segDone/r.seg:0;
+    h+=`<div class="unit u${ri%4}" style="${st==='lock'?'opacity:.55':''}"><div><p style="opacity:.9">Sungai ${ri+1}, ${r.region}</p><h3>${r.name}</h3><p>${st==='done'?'Sudah pulih':st==='now'?`${S.segDone} dari ${r.seg} segmen bersih`:`${r.seg} segmen menunggu`}</p></div>
+      <button class="thumb" data-act="riverInfo" data-v="${ri}" aria-label="Info Sungai ${r.name}" style="padding:0;cursor:pointer;background:none">${mini(p)}</button></div>`;
+    h+=`<div class="path">`;const show=st==='lock'?3:r.seg;
+    for(let i=0;i<show;i++){const s2=st==='done'||(st==='now'&&i<S.segDone)?'done':st==='now'&&i===S.segDone?'now':'lock';
+      const inner=s2==='done'?ic('check',30,3):s2==='now'?ic('star',30,2.4):ic('lock',24);
+      const tip=s2==='now'?`<span class="start-tip">Mulai</span>`:'';
+      const side=off[i%8],mascot=s2==='now'?`<span class="path-mascot" style="${side>=0?'right:-96px':'left:-96px'};top:-14px">${lolo('happy',80,'m-float')}</span>`:'';
+      h+=`<button class="pnode ${s2}" style="--c:${c};--cd:${cd};transform:translateX(${side}px)" ${s2==='lock'?'disabled aria-label="Terkunci"':`data-act="${s2==='now'?'go':'segInfo'}" data-v="${s2==='now'?'home':ri}" aria-label="${s2==='now'?'Mulai segmen berikutnya':'Segmen selesai'}"`}>${tip}${inner}${mascot}</button>`}
+    if(st==='lock')h+=`<p class="more">${r.seg-3} segmen lagi</p>`;
+    else h+=`<button class="pnode chest ${st==='done'?'done':'lock'}" style="width:80px;height:72px" data-act="riverInfo" data-v="${ri}" aria-label="Badge Sungai ${r.name}">${ic('trophy',32)}</button>`;
+    h+=`</div>`});
+  return h+'<div style="height:10px"></div>';
+};
+
+V.stats=()=>{
+  const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const k=dstr(d);days.push({k,l:d.toLocaleDateString('id-ID',{weekday:'short'}),m:S.history[k]||0,t:i===0})}
+  const max=Math.max(30,...days.map(d=>d.m)),tm=S.tagMin,tt=Math.max(1,tm.Belajar+tm.Kerja+tm.Lainnya);
+  const pB=tm.Belajar/tt*100,pK=tm.Kerja/tt*100;
+  const wk=weekTetes(),lv=level(),prog=S.tetes%LV;
+  const league=[{n:'Dimas',t:310,c:'var(--blue-soft)',k:'var(--blue-ink)'},{n:'Sari',t:265,c:'var(--yellow-soft)',k:'var(--yellow-ink)'},{n:'Nadia',t:190,c:'var(--orange-soft)',k:'var(--orange-ink)'},{n:'Rafi',t:120,c:'var(--surface-2)',k:'var(--muted)'},{n:'Kamu',t:wk,me:1}].sort((a,b)=>b.t-a.t);
+  const hc=m=>!m?'#F1F2F7':m<=20?'#DDF3EF':m<=40?'#9FE0D5':m<=60?'#4FC7B5':'#FFC93C';
+  return `<div class="topbar sky"><h1 style="margin:0">Statistik</h1><span class="goal-chip">Minggu ini</span></div><div class="pad">
+  <div class="tiles">
+    <div class="tile t-o"><span class="ico" style="color:#F07A2A">${ic('flame',20)}</span><b>${S.streak}</b><span>hari beruntun</span></div>
+    <div class="tile t-b"><span class="ico">${ic('clock',20)}</span><b>${S.history[TODAY()]||0}</b><span>menit hari ini</span></div>
+    <div class="tile t-y"><span class="ico" style="color:var(--teal)">${ic('drop',20)}</span><b>${S.tetes}</b><span>total tetes</span></div></div>
+  <div class="stack-lg">
+  <div class="card"><div class="lvl">${lolo('happy',66)}<div style="flex:1"><div class="card-h" style="margin:0"><h3>Level ${lv}</h3><span>${prog}/${LV} tetes</span></div>
+    <div class="xpbar"><i style="width:${prog/LV*100}%"></i></div><p class="muted" style="font-size:12px">${LV-prog} tetes lagi menuju level ${lv+1}</p></div></div>
+    <p class="note" style="margin-top:12px">Tetes adalah poin fokus: 1 menit fokus = 1 tetes, plus bonus saat target harian tercapai. Tetes bukan uang donasi.</p></div>
+  <div class="card league"><div class="card-h"><h3>Liga Sungai</h3><span>Reset setiap Senin</span></div><ol>
+    ${league.map((u,i)=>`<li class="${u.me?'me':''}"><span class="rk">${i+1}</span><span class="av" style="background:${u.me?'#fff':u.c};color:${u.me?'var(--teal-ink)':u.k}">${u.me?lolo('happy',30):u.n[0]}</span>${u.n}<span class="pts">${u.t} tetes</span></li>`).join('')}</ol>
+    <p class="zone">3 teratas naik ke Liga Citarum minggu depan</p></div>
+  <div class="card"><div class="card-h"><h3>Menit fokus</h3><span>7 hari terakhir</span></div>
+    <div class="bars">${days.map(d=>`<div class="${d.t?'today':''}">${d.m?`<em>${d.m}</em>`:''}<i style="height:${Math.round(d.m/max*78)}%"></i>${d.l}</div>`).join('')}</div></div>
+  <div class="card"><div class="card-h"><h3>Kapan kamu paling fokus</h3></div>
+    <div class="heat"><span></span>${days.map(d=>`<span style="text-align:center">${d.l.slice(0,3)}</span>`).join('')}
+    ${SLOTS.map(s=>`<span>${s}</span>${days.map(d=>`<i title="${s}: ${S.heat[d.k+'|'+s]||0} menit" style="background:${hc(S.heat[d.k+'|'+s]||0)}"></i>`).join('')}`).join('')}</div>
+    <div class="legend"><span><i style="background:#DDF3EF"></i>1–20</span><span><i style="background:#9FE0D5"></i>21–40</span><span><i style="background:#4FC7B5"></i>41–60</span><span><i style="background:#FFC93C"></i>60+ menit</span></div></div>
+  <div class="card"><div class="card-h"><h3>Waktu per tag</h3></div><div class="donut-row">
+    <div class="donut" style="background:conic-gradient(var(--orange) 0 ${pB}%,var(--blue) ${pB}% ${pB+pK}%,var(--yellow) ${pB+pK}% 100%)"><div><b>${tt}</b>menit</div></div>
+    <div style="flex:1">${[['Belajar','var(--orange)'],['Kerja','var(--blue)'],['Lainnya','var(--yellow)']].map(([k,c])=>`<div class="tagrow"><i style="background:${c}"></i>${k}<b>${Math.round(tm[k]/tt*100)}%</b></div>`).join('')}</div></div></div>
+  </div><p class="demo-note">Termasuk data contoh untuk keperluan prototype.</p></div>`;
+};
+
+V.profile=()=>{const lv=level(),prog=S.tetes%LV;
+  const ach=[
+    {t:'Langkah pertama',d:'Selesaikan 1 sesi fokus',v:S.sessions,m:1,c:'var(--teal)',cd:'var(--teal-dk)',i:'check'},
+    {t:'Api menyala',d:'Capai streak 7 hari',v:S.best,m:7,c:'var(--orange)',cd:'var(--orange-dk)',i:'flame'},
+    {t:'Maraton fokus',d:'Selesaikan satu sesi 60 menit',v:S.longest,m:60,c:'var(--blue)',cd:'var(--blue-dk)',i:'clock'},
+    {t:'Pemulih pertama',d:'Pulihkan 1 sungai sampai bersih',v:S.restored.length,m:1,c:'var(--yellow)',cd:'var(--yellow-dk)',i:'trophy'},
+    {t:'Kolektor tetes',d:'Kumpulkan 1.000 tetes',v:S.tetes,m:1000,c:'var(--teal)',cd:'var(--teal-dk)',i:'drop'}];
+  return `<div class="topbar sky"><h1 style="margin:0">Profil</h1></div><div class="pad">
+  <div class="hero"><span class="bub" style="width:70px;height:70px;right:-14px;top:-18px"></span><span class="bub" style="width:26px;height:26px;right:46px;bottom:12px"></span><span class="bub" style="width:14px;height:14px;right:24px;top:62px"></span>
+    <div class="avatar">${lolo('happy',86,'m-float')}</div>
+    <div style="position:relative"><h1>Pemulih sungai</h1><p class="muted" style="color:var(--blue-ink)">${S.restored.length} sungai pulih, ${S.sessions} sesi selesai</p><span class="lvl-pill">Level ${lv}</span></div></div>
+  <div class="mini-stats"><div><span style="color:#F07A2A">${ic('flame',22)}</span><div><b>${S.streak}</b><span>streak</span></div></div>
+    <div><span style="color:var(--teal)">${ic('drop',22)}</span><div><b>${S.tetes}</b><span>tetes</span></div></div>
+    <div><span style="color:var(--yellow-dk)">${ic('trophy',22)}</span><div><b>${prog}</b><span>/${LV} ke Lv ${lv+1}</span></div></div></div>
+  <h2>Pencapaian</h2><div class="card" style="padding:4px 16px">
+  ${ach.map(a=>{const done=a.v>=a.m,pc=Math.min(100,a.v/a.m*100);return `<div class="ach"><span class="ai ${done?'':'off'}" style="background:${a.c};color:#fff;box-shadow:0 4px 0 ${a.cd}">${ic(a.i,26)}</span>
+    <div class="body"><b>${a.t}</b><p>${a.d}</p><div class="xpbar"><i style="width:${pc}%;background:${done?'var(--yellow)':a.c}"></i></div></div><small>${Math.min(a.v,a.m)}/${a.m}</small></div>`}).join('')}</div>
+  <h2>Badge sungai</h2>${S.restored.length?`<div class="badges">${S.restored.map(n=>`<div class="bdg"><div>${mini(1)}</div>${n}</div>`).join('')}</div>`:`<div class="bubble-row">${lolo('happy',54)}<p class="bubble">Pulihkan Sungai ${R().name} untuk badge pertamamu.</p></div>`}
+  <div class="invite">${lolo('cheer',64)}<div><b>Ajak teman fokus bareng</b><p>Teman yang bergabung lewat kodemu masuk ke Liga Sungai yang sama.</p><span class="code">KLYN-8Q2F</span></div></div>
+  <div class="plus"><div class="pm">${lolo('cheer',96)}</div><h3>Klyn Plus</h3><ul><li>Ekosistem baru: mangrove, danau, terumbu karang</li><li>Mode fokus ketat (Android)</li><li>Streak freeze untuk hari sibuk</li><li>Pilihan musik lengkap</li></ul>
+    <button class="btn" data-act="plus">Lihat Klyn Plus</button></div>
+  <h2>Pengaturan</h2>
+  <div class="row"><span>Mode demo<br><small class="muted">1 detik = 1 menit</small></span><button class="switch ${S.demo?'on':''}" role="switch" aria-checked="${S.demo}" aria-label="Mode demo" data-act="demo"></button></div>
+  <div class="row" style="flex-direction:column;align-items:flex-start;gap:10px"><span>Target harian</span><div class="chips">${[1,2,4].map(n=>`<button class="chip ${S.dailyGoal===n?'on':''}" data-act="goalSet" data-v="${n}">${n} sesi</button>`).join('')}</div></div>
+  <div style="margin-top:22px"><button class="btn btn-quiet" data-act="reset">Atur ulang prototype</button></div></div>`};
+
+/* ---------- Render ---------- */
+function navHTML(){return [['home','Beranda','home'],['map','Peta','map'],['stats','Statistik','chart'],['profile','Profil','user']].map(([k,l,i])=>`<button class="${S.view===k?'on':''}" data-act="go" data-v="${k}" aria-current="${S.view===k?'page':'false'}">${ic(i,24)}${l}</button>`).join('')}
+function render(keep){const sc=$('#screen'),top=sc.scrollTop;sc.innerHTML=V[S.view]();sc.scrollTop=keep?top:0;
+  const nav=$('#nav');nav.hidden=!['home','map','stats','profile'].includes(S.view);nav.innerHTML=navHTML();save();
+  if(S.view==='success')countUp();if(S.view==='congrats')celebrate();
+  if(S.view==='map'&&!keep){const n=sc.querySelector('.pnode.now');if(n)n.scrollIntoView({block:'center'})}}
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');clearTimeout(toast.h);toast.h=setTimeout(()=>el.classList.remove('show'),2800)}
+function openSheet(html){const o=$('#overlay');o.innerHTML=`<div class="scrim" data-act="closeSheet"></div><div class="sheet" role="dialog" aria-modal="true">${html}</div>`;o.hidden=false;const b=o.querySelector('.sheet button');b&&b.focus()}
+function closeSheet(){const o=$('#overlay');o.hidden=true;o.innerHTML=''}
+const pad=n=>String(Math.floor(n)).padStart(2,'0');
+function fmt(sec){return `${pad(sec/60)} : ${pad(sec%60)}`}
+
+
+/* ---------- PWA helpers: wake lock + grace notification ---------- */
+let wakeLock=null;
+async function keepAwake(on){try{if(on&&'wakeLock' in navigator){if(!wakeLock){wakeLock=await navigator.wakeLock.request('screen');wakeLock.addEventListener('release',()=>{wakeLock=null})}}else if(!on&&wakeLock){await wakeLock.release();wakeLock=null}}catch(e){}}
+function graceNotify(){try{if('Notification' in window&&Notification.permission==='granted'&&navigator.serviceWorker)navigator.serviceWorker.ready.then(r=>r.showNotification('Lolo memanggilmu!',{body:'Sungai mulai kotor lagi. Kembali dalam 10 detik.',icon:'icons/icon-192.png',badge:'icons/icon-192.png',tag:'klyn-grace',renotify:true}))}catch(e){}}
+function graceClear(){try{if(navigator.serviceWorker)navigator.serviceWorker.ready.then(r=>r.getNotifications({tag:'klyn-grace'})).then(ns=>ns&&ns.forEach(n=>n.close()))}catch(e){}}
+/* ---------- Session ---------- */
+let F={},B={};
+function stageText(p){return p<.15?'Sampah menumpuk di bantaran':p<.4?'Sampah mulai terangkat':p<.65?'Air mulai mengalir lancar':p<.85?'Ikan mulai kembali':p<1?'Airnya hampir jernih':'Segmen ini bersih!'}
+function startSession(){stopAll();if(!S.riverStart)S.riverStart=TODAY();
+  F={active:true,start:Date.now(),dur:S.duration,lastP:-1,hiddenAt:null,pauseAt:null};S.view='focus';render();F.int=setInterval(tick,200);keepAwake(true)}
+function tick(){if(!F.active||F.pauseAt)return;const fac=S.demo?60:1,total=F.dur*60,el=(Date.now()-F.start)/1000*fac,p=Math.min(1,el/total);
+  const t=$('#time');if(!t)return;t.textContent=fmt(Math.max(0,Math.ceil(total-el)));$('#pct').textContent=Math.floor(p*100)+'%';
+  if(p-F.lastP>.004||p===1){F.lastP=p;$('#ring').innerHTML=ringSVG(p,p)}
+  $('#stage').textContent=stageText(p);$('#fTitle').textContent=p>=1?'Kamu berhasil!':'Tetap fokus';if(p>=1)complete()}
+function stopAll(){keepAwake(false);clearInterval(F.int);clearInterval(F.graceInt);clearInterval(B.int);F.active=false;stopSound();closeSheet()}
+function addTetes(n,d){S.tetes+=n;S.tetesDay[d]=(S.tetesDay[d]||0)+n}
+function complete(){stopAll();const m=F.dur,t=TODAY(),lvBefore=level();
+  addTetes(m,t);S.history[t]=(S.history[t]||0)+m;S.tagMin[S.tag]=(S.tagMin[S.tag]||0)+m;
+  const sl=t+'|'+slotOf(new Date().getHours());S.heat[sl]=(S.heat[sl]||0)+m;
+  if(S.today.date!==t)S.today={date:t,n:0};S.today.n++;S.sessions++;S.longest=Math.max(S.longest,m);
+  S.lastBonus=0;if(S.today.n===S.dailyGoal){S.lastBonus=10;addTetes(10,t)}
+  S.lastLevelUp=level()>lvBefore;
+  if(S.lastSuccess!==t){S.streak=S.lastSuccess===dayOffset(-1)?S.streak+1:1;S.lastSuccess=t;S.best=Math.max(S.best,S.streak)}
+  S.riverSessions++;S.riverMinutes+=m;S.segDone++;S.lastGain=m;
+  const r=R();if(S.segDone>=r.seg){const days=Math.max(1,Math.round((new Date(t)-new Date(S.riverStart))/864e5)+1);
+    S.lastRestored={name:r.name,seg:r.seg,sessions:S.riverSessions,minutes:S.riverMinutes,days};
+    if(!S.restored.includes(r.name))S.restored.push(r.name);S.view='congrats'}else S.view='success';
+  setTimeout(()=>render(),S.view==='congrats'?0:500)}
+function fail(reason){stopAll();S.failReason=reason;S.view='fail';render()}
+function countUp(){const el=$('#gain');if(!el)return;const g=S.lastGain;if(RM){el.textContent='+'+g;return}
+  const t0=performance.now();(function f(n){const k=Math.min(1,(n-t0)/900);el.textContent='+'+Math.round(g*k);if(k<1)requestAnimationFrame(f)})(t0)}
+function celebrate(){const box=$('#cring');if(!box)return;if(RM){box.innerHTML=ringSVG(1,1);return}
+  const t0=performance.now();(function f(n){const k=Math.min(1,(n-t0)/1800);if(!$('#cring'))return;box.innerHTML=ringSVG(1,k);if(k<1)requestAnimationFrame(f)})(t0)}
+function showGrace(){if(!F.active)return;F.pauseAt=Date.now();let left=10;const o=$('#overlay');
+  const now=new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+  o.innerHTML=`<div class="lock" role="dialog" aria-modal="true"><p class="lock-time">${now}</p>
+  <div class="notif" role="alert"><div class="notif-head"><span class="app-dot">K</span><b>Klyn</b><span>sekarang</span></div>
+  <p><b>Lolo memanggilmu! Sungai mulai kotor lagi.</b></p><p>Kembali dalam <span id="graceN">10</span> detik supaya segmenmu tetap bersih.</p></div>
+  <p class="lock-note">Simulasi: kamu sedang berada di luar Klyn.</p><button class="btn btn-primary" data-act="graceBack">Kembali ke Klyn</button></div>`;o.hidden=false;
+  F.graceInt=setInterval(()=>{left--;const n=$('#graceN');if(n)n.textContent=left;if(left<=0){clearInterval(F.graceInt);closeSheet();fail('leave')}},1000)}
+function graceBack(){clearInterval(F.graceInt);closeSheet();if(F.pauseAt){F.start+=Date.now()-F.pauseAt;F.pauseAt=null}toast('Tepat waktu. Segmenmu tetap aman.')}
+document.addEventListener('visibilitychange',()=>{if(S.view!=='focus'||!F.active)return;
+  if(document.hidden){F.hiddenAt=Date.now();if(S.demo)F.pauseAt=Date.now();graceNotify()}
+  else if(F.hiddenAt){graceClear();keepAwake(true);const gone=Date.now()-F.hiddenAt;F.hiddenAt=null;if(F.pauseAt&&!$('#graceN')){F.start+=Date.now()-F.pauseAt;F.pauseAt=null}
+    if(gone>10000)fail('leave');else toast('Tepat waktu. Segmenmu tetap aman.')}});
+function startBreak(){stopAll();S.view='break';render();B={start:Date.now()};
+  B.int=setInterval(()=>{const fac=S.demo?60:1,rem=300-(Date.now()-B.start)/1000*fac,el=$('#btime');if(el)el.textContent=fmt(Math.max(0,Math.ceil(rem)));
+    if(rem<=0){clearInterval(B.int);S.view='home';render();toast('Istirahat selesai. Siap untuk segmen berikutnya?')}},200)}
+
+/* ---------- Sound (generated) ---------- */
+let AC=null,src=null,cur=null;const SOUND_LABEL={rain:'Hujan',river:'Sungai'};
+function playSound(kind){stopSound();try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();
+  const len=AC.sampleRate*2,buf=AC.createBuffer(1,len,AC.sampleRate),d=buf.getChannelData(0);let last=0;
+  for(let i=0;i<len;i++){const w=Math.random()*2-1;if(kind==='river'){last=(last+.02*w)/1.02;d[i]=last*3.5}else d[i]=w}
+  src=AC.createBufferSource();src.buffer=buf;src.loop=true;const f=AC.createBiquadFilter();f.type='lowpass';f.frequency.value=kind==='rain'?2000:650;
+  const g=AC.createGain();g.gain.value=kind==='rain'?.1:.4;src.connect(f).connect(g).connect(AC.destination);src.start();cur=kind}catch(e){toast('Suara tidak tersedia di perangkat ini.')}}
+function stopSound(){try{src&&src.stop()}catch(e){}src=null;cur=null}
+function openMusic(){const opts=[['off','Senyap','Tanpa suara'],['rain','Hujan','Gerimis lembut'],['river','Aliran sungai','Air mengalir'],['piano','Piano','Klyn Plus'],['guitar','Gitar','Klyn Plus']];
+  openSheet(`<div class="sheet-head"><h2>Pilih suara fokus</h2><button class="x" data-act="closeSheet" aria-label="Tutup">${ic('x')}</button></div>
+  <div class="sound-grid">${opts.map(([k,l,s])=>`<button class="sound ${(cur||'off')===k?'on':''}" data-act="sound" data-v="${k}">${l}<small>${s}</small>${k==='piano'||k==='guitar'?`<span class="lk">${ic('lock',16)}</span>`:''}</button>`).join('')}</div>`)}
+
+/* ---------- Actions ---------- */
+const ACT={
+  onbNext(){S.onb++;render()},
+  onbSet(v,b){const k=b.dataset.k;S[k]=k==='goal'?v:+v;render(true)},
+  onbDone(){try{if('Notification' in window&&Notification.permission==='default')Notification.requestPermission()}catch(e){}S.onboarded=true;S.tag=S.goal==='Kerja'?'Kerja':'Belajar';S.view='home';render()},
+  go(v){if(v==='congrats'&&!S.lastRestored)v='home';S.view=v;render()},
+  tag(v){S.tag=v;render(true)},preset(v){S.duration=+v;render(true)},
+  start:startSession,retry:startSession,retryShort(){S.duration=15;startSession()},
+  music:openMusic,
+  sound(v){if(v==='piano'||v==='guitar'){toast('Pilihan ini tersedia di Klyn Plus.');return}if(v==='off')stopSound();else playSound(v);closeSheet();const l=$('#mLabel');if(l)l.textContent=SOUND_LABEL[cur]||'Senyap'},
+  giveup(){openSheet(`<div style="display:flex;flex-direction:column;align-items:center;text-align:center">${lolo('sad',100)}<h2 style="margin:10px 0 6px">Yakin mau berhenti?</h2>
+    <p class="lead">Sampah akan kembali ke segmen ini. Streak-mu tetap aman.</p><div class="stack" style="width:100%;margin-top:18px">
+    <button class="btn btn-primary" data-act="closeSheet">Lanjut fokus</button><button class="btn btn-danger" data-act="confirmGiveup">Berhenti</button></div></div>`)},
+  confirmGiveup(){fail('giveup')},closeSheet,simleave:showGrace,graceBack,
+  skip(){const fac=S.demo?60:1;F.start=Date.now()-((F.dur*60-2)/fac)*1000},
+  breakStart:startBreak,breakEnd(){clearInterval(B.int);S.view='home';render()},
+  shareVar(v){S.shareVar=v;render(true)},
+  shareBtn(v){toast(v==='ig'?'Di aplikasi asli, kartu ini langsung terbuka di Instagram Story.':v==='wa'?'Di aplikasi asli, kartu dan link undangan dikirim lewat WhatsApp.':'Di aplikasi asli, kartu tersimpan ke galeri.')},
+  nextRiver(){if(S.riverIdx<RIVERS.length-1)S.riverIdx++;S.segDone=0;S.riverSessions=0;S.riverMinutes=0;S.riverStart=null;S.view='home';render()},
+  segInfo(v){toast(`Segmen ini sudah bersih. Lanjutkan di segmen berbintang.`)},
+  riverInfo(v){const i=+v,r=RIVERS[i],st=i<S.riverIdx?'Sudah pulih':i===S.riverIdx?`${S.segDone} dari ${r.seg} segmen pulih`:'Terkunci';
+    openSheet(`<div class="sheet-head"><h2>Sungai ${r.name}</h2><button class="x" data-act="closeSheet" aria-label="Tutup">${ic('x')}</button></div>
+    <div style="width:140px;height:140px;margin:0 auto 14px">${mini(i<S.riverIdx?1:i===S.riverIdx?S.segDone/r.seg:0)}</div>
+    <p class="muted">${r.region}</p><p style="margin:8px 0 12px;line-height:1.6">${r.fact}</p><p class="note">${st}</p>
+    ${i===S.riverIdx?'<div style="margin-top:16px"><button class="btn btn-primary" data-act="sheetStart">Lanjutkan memulihkan</button></div>':''}`)},
+  sheetStart(){closeSheet();S.view='home';render()},
+  plus(){toast('Klyn Plus segera hadir.')},
+  demo(){S.demo=!S.demo;render(true)},goalSet(v){S.dailyGoal=+v;render(true)},
+  reset(){if(confirm('Atur ulang semua progres prototype?')){stopAll();try{localStorage.removeItem('klyn-app-v1')}catch(e){}S=fresh();render()}}
+};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b||b.disabled)return;const f=ACT[b.dataset.act];if(f)f(b.dataset.v,b)});
+document.addEventListener('input',e=>{if(e.target.id==='dur'){S.duration=+e.target.value;$('#durVal').textContent=S.duration+' menit';
+  document.querySelectorAll('[data-act="preset"]').forEach(c=>c.classList.toggle('on',+c.dataset.v===S.duration));save()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#overlay').hidden&&!$('#graceN'))closeSheet()});
+render();
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script>
+</body>
+</html>

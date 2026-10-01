@@ -267,6 +267,65 @@ input[type=range]{width:100%;accent-color:var(--teal);margin:0 0 12px}
 .confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .confetti i{position:absolute;top:0;width:9px;height:14px;border-radius:3px;opacity:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---- v3 features ---- */
+.text-in{width:100%;padding:13px 14px;border:2px solid var(--line);border-radius:14px;font:500 15px var(--font);color:var(--text);background:var(--surface);outline:none}
+.text-in:focus{border-color:var(--teal)}
+.recent{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.recent button{border:0;background:var(--surface-2);color:var(--muted);font:500 12px var(--font);padding:5px 10px;border-radius:999px;cursor:pointer}
+.task-now{font-weight:600;font-size:15px;margin:0 0 4px;display:flex;align-items:center;gap:6px;color:var(--text)}
+.task-now svg{color:var(--teal)}
+.cycle{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);margin-top:6px}
+.cycle i{width:8px;height:8px;border-radius:50%;background:var(--line)}.cycle i.on{background:var(--teal)}.cycle span{margin-left:4px}
+.sponsor{font-size:13px;color:var(--muted);margin:-2px 0 4px}.sponsor b{color:var(--text)}
+.quests{margin-top:20px}
+.quest{display:flex;gap:10px;align-items:center;padding:8px 0}
+.quest .qi{width:34px;height:34px;border-radius:12px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;color:var(--muted);flex:none}
+.quest.done .qi{background:var(--teal);color:#fff;box-shadow:0 3px 0 var(--teal-dk)}
+.quest .qb{flex:1;min-width:0}.quest b{font-size:14px;font-weight:600}
+.quest .xpbar{height:8px;margin:6px 0 0}.quest.done .xpbar i{background:var(--teal)}
+.quest .qr{font-family:var(--display);font-weight:900;color:var(--teal-ink);font-size:14px;white-space:nowrap}
+.hist{list-style:none;padding:0;margin:0}
+.hist li{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:2px solid var(--surface-2);font-size:14px}
+.hist li:last-child{border:0}
+.hist .hd{width:58px;flex:none;font-size:11px;color:var(--muted);line-height:1.35}
+.hist .ht{flex:1;min-width:0}.hist .ht b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hist .ht small{font-size:11px;color:var(--muted)}
+.hist .hm{font-family:var(--display);font-weight:800;white-space:nowrap}
+.taskbar{margin-bottom:12px;font-size:14px}.taskbar div{display:flex;justify-content:space-between;margin-bottom:5px;gap:8px}
+.taskbar span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.taskbar i{display:block;height:10px;border-radius:5px;background:var(--surface-2);overflow:hidden}.taskbar i s{display:block;height:100%;background:var(--blue);text-decoration:none;border-radius:5px}
+.shop{display:flex;gap:12px;align-items:center}
+.shop .si{width:54px;height:54px;border-radius:18px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;flex:none;box-shadow:0 4px 0 var(--blue-dk)}
+.shop b{font-family:var(--display);font-size:16px;font-weight:800}.shop p{font-size:12px;color:var(--muted);margin:2px 0 0}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.demo-banner{background:#1D2433;color:#fff;font-size:12px;font-weight:600;text-align:center;padding:7px 12px}
+.plus-hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;margin:4px 0 6px}
+.cmp{background:var(--surface);border-radius:20px;box-shadow:0 0 0 2px var(--line);padding:6px 14px;margin-top:14px}
+.cmp>div{display:grid;grid-template-columns:1fr 54px 54px;align-items:center;gap:6px;padding:10px 0;border-bottom:2px solid var(--surface-2);font-size:13px}
+.cmp>div:last-child{border:0}
+.cmp .c{text-align:center;color:var(--teal);display:flex;justify-content:center;font-weight:700}
+.cmp .c.no{color:#B5BACB}
+.cmp-h b{text-align:center;font-family:var(--display);font-size:14px}.cmp-h b.pl{color:var(--yellow-ink);background:var(--yellow-soft);border-radius:8px;padding:2px 0}
+.tag-best{display:inline-block;background:var(--yellow);color:var(--yellow-ink);font:700 11px var(--font);padding:3px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
+.sumrow{display:flex;justify-content:space-between;gap:10px;padding:8px 0;font-size:14px}.sumrow b{font-family:var(--display);font-weight:800}
+.sumrow.total{border-top:2px dashed var(--line);margin-top:4px;padding-top:12px;font-size:15px}
+.impact-hero{background:var(--teal);color:#fff;border-radius:24px;padding:18px;display:flex;gap:12px;align-items:center;box-shadow:0 5px 0 var(--teal-dk)}
+.impact-hero b{display:block;font-family:var(--display);font-size:28px;font-weight:900;line-height:1.1}
+.impact-hero p{font-size:13px;opacity:.95}
+.steps{list-style:none;padding:0;margin:0;counter-reset:s}
+.steps li{display:flex;gap:10px;align-items:flex-start;padding:7px 0;font-size:14px;line-height:1.5}
+.steps li::before{counter-increment:s;content:counter(s);width:24px;height:24px;flex:none;border-radius:50%;background:var(--teal-soft);color:var(--teal-ink);font:800 13px var(--display);display:flex;align-items:center;justify-content:center}
+.report{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--surface);border:0;box-shadow:0 0 0 2px var(--line);border-radius:18px;padding:14px;cursor:pointer;margin-bottom:10px}
+.report .rm{flex:1}.report b{font-family:var(--display);font-size:16px;font-weight:800;display:block}.report small{font-size:12px;color:var(--muted)}
+.report .ok{font-size:11px;font-weight:700;color:var(--teal-ink);background:var(--teal-soft);padding:4px 8px;border-radius:999px;white-space:nowrap}
+.partner{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:2px solid var(--surface-2)}.partner:last-child{border:0}
+.partner .pa{width:44px;height:44px;border-radius:14px;flex:none;overflow:hidden}
+.partner b{font-weight:700;font-size:14px}.partner p{font-size:12px;color:var(--muted);line-height:1.5;margin-top:2px}
+textarea.code-box{width:100%;min-height:110px;border:2px solid var(--line);border-radius:14px;padding:10px;font:12px/1.4 ui-monospace,Menlo,monospace;color:var(--text);resize:vertical;word-break:break-all}
+.spinner{width:42px;height:42px;border-radius:50%;border:5px solid var(--teal-soft);border-top-color:var(--teal);margin:10px auto 14px;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#nav button{font-size:10.5px}
 </style>
 </head>
 <body>
@@ -281,7 +340,7 @@ const $=s=>document.querySelector(s);
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const RIVERS=[
   {name:'Ciliwung',seg:5,region:'Jawa Barat dan DKI Jakarta',fact:'Mengalir dari kawasan Puncak, Bogor, membelah Jakarta, lalu bermuara di Teluk Jakarta.'},
-  {name:'Citarum',seg:7,region:'Jawa Barat',fact:'Sungai terpanjang di Jawa Barat yang mengairi tiga waduk besar: Saguling, Cirata, dan Jatiluhur.'},
+  {name:'Citarum',seg:7,sponsor:'Brand Contoh',region:'Jawa Barat',fact:'Sungai terpanjang di Jawa Barat yang mengairi tiga waduk besar: Saguling, Cirata, dan Jatiluhur.'},
   {name:'Brantas',seg:8,region:'Jawa Timur',fact:'Sungai terpanjang di Jawa Timur, mengalir melingkar melewati Malang, Blitar, Tulungagung, dan Kediri.'},
   {name:'Musi',seg:10,region:'Sumatera Selatan',fact:'Membelah kota Palembang dan dilintasi Jembatan Ampera.'},
   {name:'Mahakam',seg:12,region:'Kalimantan Timur',fact:'Rumah bagi pesut mahakam, lumba-lumba air tawar yang terancam punah.'},
@@ -302,14 +361,20 @@ function fresh(){
   return{onboarded:false,view:'onb',onb:0,goal:'Belajar',duration:25,dailyGoal:2,tag:'Belajar',
     riverIdx:0,segDone:0,tetes:240,tetesDay:td,streak:4,best:4,lastSuccess:dayOffset(-1),history:h,heat,
     tagMin:{Belajar:100,Kerja:140,Lainnya:0},today:{date:TODAY(),n:0},sessions:6,longest:45,
-    riverSessions:0,riverMinutes:0,riverStart:null,restored:[],lastRestored:null,demo:true,shareVar:'sungai',failReason:'leave',lastGain:0,lastBonus:0,lastLevelUp:false};
+    riverSessions:0,riverMinutes:0,riverStart:null,restored:[],lastRestored:null,demo:true,shareVar:'sungai',failReason:'leave',lastGain:0,lastBonus:0,lastLevelUp:false,
+    earned:240,freeze:0,cycle:0,task:'',plus:null,planSel:'year',paySel:'qris',lastQuests:[],quests:{date:TODAY(),done:{}},
+    log:[{d:dayOffset(-1),h:'20:10',task:'Skripsi bab 2',tag:'Belajar',m:25},{d:dayOffset(-1),h:'19:30',task:'Skripsi bab 2',tag:'Belajar',m:25},{d:dayOffset(-2),h:'09:05',task:'Desain landing page',tag:'Kerja',m:70},{d:dayOffset(-3),h:'14:15',task:'Laporan magang',tag:'Kerja',m:25},{d:dayOffset(-4),h:'10:00',task:'',tag:'Kerja',m:45}]};
 }
 let S;
 try{S=JSON.parse(localStorage.getItem('klyn-app-v1'))}catch(e){S=null}
 if(!S||typeof S!=='object')S=fresh();
-if(!['home','map','stats','profile','onb','share','congrats'].includes(S.view))S.view=S.onboarded?'home':'onb';
+if(!['home','map','stats','profile','impact','onb','share','congrats'].includes(S.view))S.view=S.onboarded?'home':'onb';
 if(S.today.date!==TODAY())S.today={date:TODAY(),n:0};
-if(S.lastSuccess!==TODAY()&&S.lastSuccess!==dayOffset(-1))S.streak=0;
+S.earned=S.earned??S.tetes;S.freeze=S.freeze??0;S.cycle=S.cycle??0;S.task=S.task??'';S.log=S.log||[];S.plus=S.plus??null;S.planSel=S.planSel||'year';S.paySel=S.paySel||'qris';S.lastQuests=S.lastQuests||[];
+if(!S.quests||S.quests.date!==TODAY())S.quests={date:TODAY(),done:{}};
+let FREEZE_MSG='';
+if(S.streak>0&&S.lastSuccess!==TODAY()&&S.lastSuccess!==dayOffset(-1)){const missed=Math.round((new Date(TODAY())-new Date(S.lastSuccess))/864e5)-1;
+  if(missed>0&&missed<=S.freeze){S.freeze-=missed;S.lastSuccess=dayOffset(-1);FREEZE_MSG=`${missed} streak freeze dipakai. Streak ${S.streak} hari-mu aman.`}else S.streak=0}
 function save(){try{localStorage.setItem('klyn-app-v1',JSON.stringify(S))}catch(e){}}
 
 const IC={
@@ -332,110 +397,55 @@ const IC={
  story:'<rect x="6" y="2" width="12" height="20" rx="3"/><circle cx="12" cy="11" r="3"/>',
  star:'<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
  trophy:'<path d="M8 4h8v5a4 4 0 01-8 0zM8 6H4a3 3 0 003 4M16 6h4a3 3 0 01-3 4M12 13v4M8 21h8M9 17h6v4H9z"/>',
+ heart:'<path d="M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z"/>',
+ snow:'<path d="M12 2v20M3.5 7l17 10M20.5 7l-17 10M9 4l3 2 3-2M9 20l3-2 3 2"/>',
+ card:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18"/>',
+ download:'<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',
+ upload:'<path d="M12 20V9M7 14l5-5 5 5M5 4h14"/>',
  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>'
 };
 function ic(n,s=22,w=2.2){return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[n]}</svg>`}
 
 /* ---------- Lolo the axolotl ---------- */
-let LUID=0;
 function lolo(mood='happy',size=64,cls=''){
-  const u='lo'+(LUID++),ink='#4E2A1B';
-  const defs=`<defs>
-  <radialGradient id="${u}s" cx="40%" cy="28%" r="78%"><stop offset="0" stop-color="#FFF0C4"/><stop offset=".45" stop-color="#FFDA7E"/><stop offset=".82" stop-color="#F8C45E"/><stop offset="1" stop-color="#EDAC47"/></radialGradient>
-  <radialGradient id="${u}b" cx="42%" cy="22%" r="88%"><stop offset="0" stop-color="#FFEDBD"/><stop offset=".55" stop-color="#FFD673"/><stop offset="1" stop-color="#ECAA46"/></radialGradient>
-  <linearGradient id="${u}g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C92230"/><stop offset=".55" stop-color="#E53E41"/><stop offset="1" stop-color="#F26A58"/></linearGradient>
-  <linearGradient id="${u}t" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FFD58F" stop-opacity=".95"/><stop offset="1" stop-color="#F29E6E" stop-opacity=".8"/></linearGradient>
-  <radialGradient id="${u}k"><stop offset="0" stop-color="#FF7560" stop-opacity=".6"/><stop offset="1" stop-color="#FF7560" stop-opacity="0"/></radialGradient>
-  <radialGradient id="${u}e" cx="45%" cy="65%" r="65%"><stop offset="0" stop-color="#8A5030"/><stop offset=".7" stop-color="#3C2216"/><stop offset="1" stop-color="#26150E"/></radialGradient>
-  <radialGradient id="${u}f"><stop offset="0" stop-color="#A8742E" stop-opacity=".28"/><stop offset="1" stop-color="#A8742E" stop-opacity="0"/></radialGradient>
-  <radialGradient id="${u}w" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DDEBFF"/></radialGradient>
-  <linearGradient id="${u}d" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFEBFF" stop-opacity=".95"/><stop offset="1" stop-color="#5FAEF0" stop-opacity=".9"/></linearGradient>
-  <radialGradient id="${u}p" cx="35%" cy="35%" r="70%"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset=".7" stop-color="#CFE8FF" stop-opacity=".55"/><stop offset="1" stop-color="#9CCBF5" stop-opacity=".7"/></radialGradient>
-  <filter id="${u}n" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .62  0 0 0 0 .40  0 0 0 0 .14  0 0 0 .9 -.25"/></filter>
-  <clipPath id="${u}hc"><ellipse cx="60" cy="50" rx="37" ry="30"/></clipPath>
-  </defs>`;
-  const frond=(L,w)=>{const top=[],bot=[],n=8;for(let i=0;i<=n;i++){const t=i/n,x=-L*(.08+.9*t),k=Math.sin(Math.PI*(.15+.85*t))*.85+.15;
-      top.push(`${x.toFixed(1)},${(-w*.72*k).toFixed(1)}`,`${(x-2.4).toFixed(1)},${(-w*k).toFixed(1)}`);
-      bot.unshift(`${(x-2.4).toFixed(1)},${(w*k).toFixed(1)}`,`${x.toFixed(1)},${(w*.72*k).toFixed(1)}`)}
-    return `M0,-2.5 L${top.join(' L')} L${(-L*1.02).toFixed(1)},0 L${bot.join(' L')} L0,2.5Z`};
-  const tilt={sad:-30,cheer:14,sleep:-8,happy:4}[mood]||0;
-  const gl=[[33,35,66,21],[28,43,30,23],[29,52,-8,20]].map(([x,y,r,L])=>`<g transform="translate(${x} ${y}) rotate(${r+tilt})"><path d="${frond(L,8)}" fill="url(#${u}g)" stroke="url(#${u}g)" stroke-width=".6" stroke-linejoin="round"/><path d="M-1 0 L${-L*.92} 0" stroke="#FF9A84" stroke-width="1.7" stroke-linecap="round" opacity=".75"/></g>`).join('');
-  const gills=`<g>${gl}</g><g transform="translate(120 0) scale(-1 1)">${gl}</g>`;
-  const eye=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="url(#${u}e)"/><circle cx="${x+r*.34}" cy="${y-r*.38}" r="${r*.36}" fill="#fff"/><circle cx="${x-r*.3}" cy="${y+r*.38}" r="${r*.15}" fill="#fff" opacity=".9"/>`;
-  const star=(x,y,s,c='#FFC52E')=>`<path d="M${x} ${y-s}Q${x+s*.18} ${y-s*.18} ${x+s} ${y}Q${x+s*.18} ${y+s*.18} ${x} ${y+s}Q${x-s*.18} ${y+s*.18} ${x-s} ${y}Q${x-s*.18} ${y-s*.18} ${x} ${y-s}Z" fill="${c}"/>`;
-  let face='',over='';
-  if(mood==='cheer'){
-    face=[44,76].map(x=>`<path d="M${x-6.5} 54 q6.5 -8 13 0" stroke="${ink}" stroke-width="2.8" fill="none" stroke-linecap="round"/>`).join('')+
-      `<path d="M50 59 q10 2 20 0 q-1.5 14 -10 14 q-8.5 0 -10 -14z" fill="#B83A33"/><path d="M53.5 67.5 q6.5 -4 13 0 q-2.5 5 -6.5 5 q-4 0 -6.5 -5z" fill="#F4917F"/>`+
-      `<ellipse cx="34" cy="62" rx="10" ry="6" fill="url(#${u}k)"/><ellipse cx="86" cy="62" rx="10" ry="6" fill="url(#${u}k)"/>`;
-  } else if(mood==='sad'){
-    face=eye(44,55,6.2)+eye(76,55,6.2)+
-      `<path d="M38 60.5 q6 3 12 0" stroke="#8FD0FF" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".9"/><path d="M70 60.5 q6 3 12 0" stroke="#8FD0FF" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".9"/>`+
-      `<path d="M36 46 L48 41.5" stroke="${ink}" stroke-width="2.2" stroke-linecap="round" opacity=".75"/><path d="M84 46 L72 41.5" stroke="${ink}" stroke-width="2.2" stroke-linecap="round" opacity=".75"/>`+
-      `<path d="M50 70 Q60 58 70 70 Q60 67 50 70Z" fill="#B83A33"/><path d="M55 68.6 Q60 65.5 65 68.6 Q60 67.6 55 68.6Z" fill="#F4917F"/>`+
-      `<g class="tear"><path d="M39 61 C37 68 36 76 38 82 C40 84 43 83 43 80 C43 74 42 67 41 61Z" fill="url(#${u}d)"/><path d="M81 61 C83 68 84 76 82 82 C80 84 77 83 77 80 C77 74 78 67 79 61Z" fill="url(#${u}d)"/></g>`+
-      `<ellipse cx="33" cy="66" rx="8" ry="5" fill="url(#${u}k)"/><ellipse cx="87" cy="66" rx="8" ry="5" fill="url(#${u}k)"/>`;
-    over=`<g fill="url(#${u}d)"><path d="M20 56 q-3 5 0 7 q3 -2 0 -7z"/><path d="M100 54 q-3 5 0 7 q3 -2 0 -7z"/><path d="M14 66 q-2.2 3.6 0 5 q2.2 -1.4 0 -5z"/><path d="M106 66 q-2.2 3.6 0 5 q2.2 -1.4 0 -5z"/></g>`;
-  } else if(mood==='sleep'){
-    face=[44,76].map(x=>`<path d="M${x-6} 53 q6 5 12 0" stroke="${ink}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`).join('')+
-      `<path d="M55 61 q2.5 2.4 5 0 q2.5 2.4 5 0" stroke="${ink}" stroke-width="1.7" fill="none" stroke-linecap="round"/>`+
-      `<ellipse cx="35" cy="62" rx="9" ry="5.5" fill="url(#${u}k)"/><ellipse cx="85" cy="62" rx="9" ry="5.5" fill="url(#${u}k)"/>`+
-      `<circle class="snot" cx="67" cy="60" r="5" fill="url(#${u}p)"/><circle cx="65.5" cy="58.4" r="1.3" fill="#fff"/>`;
-  } else {
-    face=eye(44,52,6)+eye(76,52,6)+
-      `<path d="M53 59 q7 8 14 0z" fill="#B83A33"/><path d="M55.5 62.5 q4.5 -2.4 9 0 q-1.8 3 -4.5 3 q-2.7 0 -4.5 -3z" fill="#F4917F"/>`+
-      `<path d="M52 58.5 q4 3.2 8 0 q4 3.2 8 0" stroke="${ink}" stroke-width="1.7" fill="none" stroke-linecap="round"/>`+
-      `<ellipse cx="35" cy="62" rx="9" ry="5.5" fill="url(#${u}k)"/><ellipse cx="85" cy="62" rx="9" ry="5.5" fill="url(#${u}k)"/>`;
-  }
-  const head=`${gills}
-    <ellipse cx="60" cy="50" rx="37" ry="30" fill="url(#${u}s)"/>
-    <ellipse cx="60" cy="73" rx="24" ry="5" fill="#D9923C" opacity=".22"/>
-    <g clip-path="url(#${u}hc)"><rect x="20" y="18" width="80" height="64" filter="url(#${u}n)" opacity=".12"/></g>
-    <ellipse cx="47" cy="30" rx="12" ry="4.6" fill="#fff" opacity=".6" transform="rotate(-16 47 30)"/><circle cx="62" cy="27" r="1.6" fill="#fff" opacity=".7"/>
-    ${face}`;
-  const tail=(d='M76 104 C90 108 106 100 110 84 C112 76 108 70 104 70 C102 84 92 94 78 96Z')=>`<path d="${d}" fill="url(#${u}t)"/>`;
-  const body='M39 64 C24 88 28 111 60 111 C92 111 96 88 81 64Z';
-  const arm=(x,y,r,c='',ry=9)=>`<g class="${c}"><ellipse cx="${x}" cy="${y}" rx="5.6" ry="${ry}" transform="rotate(${r} ${x} ${y})" fill="url(#${u}b)"/></g>`;
-  let out='';
-  if(mood==='sleep'){
-    out=`<ellipse cx="60" cy="108" rx="52" ry="9" fill="url(#${u}w)"/><ellipse cx="34" cy="103" rx="20" ry="9" fill="url(#${u}w)"/><ellipse cx="82" cy="104" rx="24" ry="9" fill="url(#${u}w)"/>
-    <path d="M86 92 C100 90 112 80 114 64 C106 70 98 76 88 80Z" fill="url(#${u}t)"/>
-    <ellipse cx="74" cy="92" rx="30" ry="14" fill="url(#${u}b)"/><ellipse cx="92" cy="102" rx="7" ry="4" fill="url(#${u}b)"/>
-    <g transform="translate(44 76) rotate(-7) scale(.78) translate(-60 -52)">${head}</g>
-    <ellipse cx="44" cy="100" rx="8" ry="4.5" fill="url(#${u}b)"/>
-    <g fill="#7FA6EA" font-family="Nunito,Poppins,sans-serif" font-weight="900"><text x="8" y="30" font-size="13">z</text><text x="18" y="20" font-size="10">z</text><text x="26" y="12" font-size="8">z</text></g>`;
-  } else if(mood==='cheer'){
-    out=`<ellipse cx="60" cy="114" rx="22" ry="3.2" fill="url(#${u}f)"/>
-    <g transform="translate(0 -6)">
-      ${tail('M76 100 C92 100 108 88 108 68 C110 62 106 58 102 60 C102 76 92 88 78 92Z')}
-      <path d="M39 64 C24 88 28 108 60 108 C92 108 96 88 81 64Z" fill="url(#${u}b)"/>
-      <ellipse cx="60" cy="94" rx="16" ry="12" fill="#FFEDB8" opacity=".6"/>
-      <ellipse cx="42" cy="108" rx="8.5" ry="5" transform="rotate(-18 42 108)" fill="url(#${u}b)"/><ellipse cx="78" cy="108" rx="8.5" ry="5" transform="rotate(18 78 108)" fill="url(#${u}b)"/>
-      <g transform="rotate(-4 60 60)">${head}</g>
-      ${arm(21,50,-58)}${arm(99,50,58,'arm-r')}
-    </g>
-    <path d="M44 117 h-6 M82 117 h6 M60 119 v0" stroke="#E8B660" stroke-width="1.6" stroke-linecap="round" opacity=".7"/>
-    ${star(12,18,5)}${star(108,12,4.5)}${star(104,42,3)}${star(16,48,2.6,'#FF9D5C')}`;
-  } else if(mood==='sad'){
-    out=`<ellipse cx="60" cy="113" rx="31" ry="4.5" fill="url(#${u}f)"/>
-    ${tail('M78 106 C94 110 106 106 112 96 C106 96 96 96 80 98Z')}
-    <path d="M38 68 C24 90 28 111 60 111 C92 111 96 90 82 68Z" fill="url(#${u}b)"/>
-    <ellipse cx="60" cy="98" rx="16" ry="11" fill="#FFEDB8" opacity=".55"/>
-    <ellipse cx="45" cy="108.5" rx="9" ry="5" fill="url(#${u}b)"/><ellipse cx="75" cy="108.5" rx="9" ry="5" fill="url(#${u}b)"/>
-    ${arm(78,94,-8)}
-    <g transform="translate(0 4) rotate(-5 60 60)">${head}</g>
-    ${arm(40,74,38)}
-    ${over}`;
-  } else {
-    out=`<ellipse cx="60" cy="113" rx="31" ry="4.5" fill="url(#${u}f)"/>
-    ${tail()}
-    <path d="M${body.slice(1)}" fill="url(#${u}b)"/>
-    <ellipse cx="60" cy="96" rx="16" ry="12" fill="#FFEDB8" opacity=".6"/>
-    <ellipse cx="45" cy="108.5" rx="9" ry="5" fill="url(#${u}b)"/><ellipse cx="75" cy="108.5" rx="9" ry="5" fill="url(#${u}b)"/>
-    ${arm(40,90,18)}${arm(82,86,-34,'arm-r')}
-    <g transform="rotate(5 60 60)">${head}</g>`;
-  }
-  return `<svg class="lolo ${cls}" width="${size}" height="${size}" viewBox="0 0 120 120" aria-hidden="true" style="flex:none">${defs}${out}</svg>`;
+  const skin='#FFC94F',belly='#FFF0C4',shade='#EDA83A',spotC='#F3B040',gill='#F07A62',gillIn='#FFBFAC',eye='#2E2220',lip='#9C5A2E',ol=`stroke="${shade}" stroke-width="1.3"`;
+  const tilt=mood==='sad'?-20:mood==='cheer'?8:0;
+  const leaf=L=>`M0 -3 C${-L*.3} -7.5 ${-L*.72} -7.5 ${-L*.95} -2.2 Q${-L*1.03} -.2 ${-L*.95} 1.6 C${-L*.72} 7 ${-L*.3} 7 0 3z`;
+  const g=[[31,34,42,19],[28,42,14,21],[29,50,-14,18]].map(([x,y,r,L])=>`<g transform="translate(${x} ${y}) rotate(${r+tilt})"><path d="${leaf(L)}" fill="${gill}"/><ellipse cx="${-L*.52}" cy="-.2" rx="${L*.27}" ry="2.2" fill="${gillIn}"/></g>`).join('');
+  const gills=`<g>${g}</g><g transform="translate(120 0) scale(-1 1)">${g}</g>`;
+  const arms=mood==='cheer'
+    ?`<ellipse cx="36" cy="80" rx="5" ry="8" transform="rotate(-40 36 80)" fill="${skin}" ${ol}/><g class="arm-r"><ellipse cx="84" cy="80" rx="5" ry="8" transform="rotate(40 84 80)" fill="${skin}" ${ol}/></g>`
+    :mood==='sad'
+    ?`<ellipse cx="47" cy="96" rx="5" ry="7" transform="rotate(-20 47 96)" fill="${skin}" ${ol}/><ellipse cx="73" cy="96" rx="5" ry="7" transform="rotate(20 73 96)" fill="${skin}" ${ol}/>`
+    :`<ellipse cx="41" cy="93" rx="5" ry="8" transform="rotate(12 41 93)" fill="${skin}" ${ol}/><g class="arm-r"><ellipse cx="79" cy="93" rx="5" ry="8" transform="rotate(-12 79 93)" fill="${skin}" ${ol}/></g>`;
+  const eyes=mood==='cheer'
+    ?`<path d="M38 53 q5 -6 10 0" stroke="${eye}" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M72 53 q5 -6 10 0" stroke="${eye}" stroke-width="2.8" fill="none" stroke-linecap="round"/>`
+    :mood==='sad'
+    ?`<circle cx="43" cy="53" r="5.4" fill="${eye}"/><circle cx="77" cy="53" r="5.4" fill="${eye}"/><circle cx="44.6" cy="51.4" r="1.5" fill="#fff"/><circle cx="78.6" cy="51.4" r="1.5" fill="#fff"/><path d="M37 45 l8 -3" stroke="${lip}" stroke-width="2" stroke-linecap="round"/><path d="M83 45 l-8 -3" stroke="${lip}" stroke-width="2" stroke-linecap="round"/>`
+    :`<circle cx="43" cy="52" r="6" fill="${eye}"/><circle cx="77" cy="52" r="6" fill="${eye}"/><circle cx="45" cy="50" r="1.7" fill="#fff"/><circle cx="79" cy="50" r="1.7" fill="#fff"/>`;
+  const mouth=mood==='cheer'
+    ?`<path d="M52 59 q8 1.5 16 0 q-1 11 -8 11 q-7 0 -8 -11z" fill="#C95A45"/><path d="M55 66 q5 -3 10 0 q-2 3.5 -5 3.5 q-3 0 -5 -3.5z" fill="#EE8B6E"/>`
+    :mood==='sad'
+    ?`<path d="M54 64 q6 -4.5 12 0" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>`
+    :`<path d="M54 60.5 q6 11 12 0z" fill="#C95A45"/><path d="M56 65.5 q4 -2.2 8 0 q-1.5 3 -4 3 q-2.5 0 -4 -3z" fill="#EE8B6E"/><path d="M52 59 q4 3.5 8 0 q4 3.5 8 0" stroke="${lip}" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const extra=mood==='sad'?`<path class="tear" d="M41 60 q-3.5 6 0 8.5 q3.5 -2.5 0 -8.5z" fill="#7CC7FF"/>`
+    :mood==='cheer'?`<g fill="#FFC93C"><path d="M10 12l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/><path d="M110 6l1.5 3.5 3.5 1.5-3.5 1.5-1.5 3.5-1.5-3.5-3.5-1.5 3.5-1.5z"/></g>`:'';
+  return `<svg class="lolo ${cls}" width="${size}" height="${size}" viewBox="0 0 120 120" aria-hidden="true" style="flex:none">
+  ${extra}
+  <path d="M76 104 q18 2 24 -16 q4 14 -4 22 q-8 6 -20 2z" fill="${skin}" ${ol}/>
+  <path d="M92 106 q8 -5 8 -14 q3 11 -4 17z" fill="${shade}" opacity=".55"/>
+  ${gills}
+  <path d="M41 66 C30 84 30 112 60 112 C90 112 90 84 79 66z" fill="${skin}" ${ol}/>
+  <ellipse cx="60" cy="98" rx="13" ry="12.5" fill="${belly}"/>
+  ${arms}
+  <ellipse cx="46" cy="110" rx="9" ry="6" fill="${skin}" ${ol}/><ellipse cx="74" cy="110" rx="9" ry="6" fill="${skin}" ${ol}/>
+  <path d="M43 108 v3 M47 108 v3 M71 108 v3 M75 108 v3" stroke="${shade}" stroke-width="1.1" stroke-linecap="round"/>
+  <ellipse cx="60" cy="48" rx="36" ry="32" fill="${skin}" ${ol}/>
+  <ellipse cx="46" cy="27" rx="10" ry="4" fill="#fff" opacity=".4" transform="rotate(-18 46 27)"/>
+  <g fill="${spotC}"><circle cx="58" cy="22" r="3"/><circle cx="68" cy="25" r="2"/><circle cx="50" cy="24" r="1.8"/><circle cx="74" cy="30" r="1.5"/><circle cx="62" cy="29" r="1.4"/><circle cx="54" cy="89" r="1.2"/></g>
+  <path d="M60 11 q-6 8 0 12 q6 -4 0 -12z" fill="#14B3A1"/>
+  <ellipse cx="34" cy="62" rx="6.5" ry="4" fill="#F27A5E" opacity=".38"/><ellipse cx="86" cy="62" rx="6.5" ry="4" fill="#F27A5E" opacity=".38"/>
+  ${eyes}${mouth}</svg>`;
 }
 
 /* ---------- River illustration ---------- */
@@ -480,11 +490,35 @@ function confetti(){if(RM)return '';const cols=['#FF9D5C','#8FB8FF','#FFC93C','#
 
 /* ---------- Derived ---------- */
 const R=()=>RIVERS[S.riverIdx];
-const level=()=>Math.floor(S.tetes/LV)+1;
+const level=()=>Math.floor(S.earned/LV)+1;
 function weekTetes(){let t=0;for(let i=0;i<7;i++)t+=S.tetesDay[dayOffset(-i)]||0;return t}
 function dots(i){return `<div class="dots" aria-hidden="true">${[0,1,2,3].map(k=>`<i class="${k===i?'on':''}"></i>`).join('')}</div>`}
 
 /* ---------- Views ---------- */
+const esc=t=>String(t||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const rp=n=>'Rp'+Math.round(n).toLocaleString('id-ID');
+const nf=n=>Math.round(n).toLocaleString('id-ID');
+const QUESTS=[
+  {id:'q1',t:'Selesaikan 2 sesi fokus',r:10,p:()=>[Math.min(S.today.date===TODAY()?S.today.n:0,2),2]},
+  {id:'q2',t:'Fokus total 45 menit',r:15,p:()=>[Math.min(S.history[TODAY()]||0,45),45]},
+  {id:'q3',t:'Beri nama tugas di 1 sesi',r:10,p:()=>[Math.min(S.log.filter(l=>l.d===TODAY()&&l.task).length,1),1]}];
+function checkQuests(){if(S.quests.date!==TODAY())S.quests={date:TODAY(),done:{}};const got=[];
+  QUESTS.forEach(q=>{const [v,m]=q.p();if(v>=m&&!S.quests.done[q.id]){S.quests.done[q.id]=1;addTetes(q.r,TODAY());got.push({t:q.t,r:q.r})}});return got}
+function questsHTML(){if(S.quests.date!==TODAY())S.quests={date:TODAY(),done:{}};
+  return `<div class="card quests"><div class="card-h"><h3>Misi harian</h3><span>Reset tengah malam</span></div>${QUESTS.map(q=>{const [v,m]=q.p(),d=!!S.quests.done[q.id];
+  return `<div class="quest ${d?'done':''}"><span class="qi">${ic(d?'check':'target',18)}</span><div class="qb"><b>${q.t}</b><div class="xpbar"><i style="width:${Math.min(100,v/m*100)}%"></i></div></div><span class="qr">${d?'Selesai':'+'+q.r}</span></div>`}).join('')}</div>`}
+const freezeMax=()=>S.plus?3:2;
+function dayLabel(d){if(d===TODAY())return 'Hari ini';if(d===dayOffset(-1))return 'Kemarin';const x=new Date(d+'T00:00:00');return x.toLocaleDateString('id-ID',{day:'numeric',month:'short'})}
+const PLANS={year:{name:'Tahunan',price:'Rp249.000',per:'/ tahun',sub:'Setara Rp20.750 per bulan, hemat 28%'},month:{name:'Bulanan',price:'Rp29.000',per:'/ bulan',sub:'Bisa dibatalkan kapan saja'}};
+const PAYS=[['qris','QRIS','Scan dari aplikasi bank atau e-wallet apa pun'],['ewallet','E-wallet','GoPay, OVO, DANA, ShopeePay'],['va','Virtual account bank','BCA, BNI, BRI, Mandiri'],['card','Kartu debit atau kredit','Visa, Mastercard, JCB']];
+const longDate=d=>new Date(d+'T00:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+function monthName(off){const d=new Date();d.setDate(1);d.setMonth(d.getMonth()+off);return d.toLocaleDateString('id-ID',{month:'long',year:'numeric'})}
+const PARTNERS=[{n:'Komunitas Sungai Lestari',a:'Bantaran Ciliwung, Jakarta',d:'Membersihkan sampah bantaran sungai setiap akhir pekan bersama warga sekitar.'},
+  {n:'Gerakan Kali Bersih',a:'Hulu Citarum, Bandung',d:'Memasang jaring penahan sampah dan mengajarkan pilah sampah di sekolah.'}];
+const REPORTS=[{off:-1,amt:4200000,p:0,act:'Aksi bersih bantaran Ciliwung di 3 lokasi',kg:820,vol:64,ref:'KLN-TRF-0926'},
+  {off:-2,amt:3650000,p:1,act:'Pemasangan 2 jaring penahan sampah di hulu Citarum',kg:540,vol:28,ref:'KLN-TRF-0826'},
+  {off:-3,amt:2900000,p:0,act:'Edukasi pilah sampah di 4 sekolah dasar',kg:310,vol:41,ref:'KLN-TRF-0726'}];
+
 const V={};
 V.onb=()=>{
   const s=S.onb;
@@ -510,23 +544,28 @@ V.onb=()=>{
 V.home=()=>{
   const r=R(),overall=S.segDone/r.seg,n=S.today.n;
   const msg=n>=S.dailyGoal?'Target hari ini tercapai. Satu sesi lagi?':(S.streak>0&&n===0)?`Streak ${S.streak} hari menunggumu. Satu sesi hari ini menjaganya.`:`Sungai ${r.name} menunggumu. Sampahnya masih banyak.`;
-  return `<div class="topbar sky"><div class="chips"><span class="stat-chip fire" title="Hari beruntun">${ic('flame',20)}${S.streak}</span><span class="stat-chip drop" title="Tetes">${ic('drop',20)}${S.tetes}</span></div>
+  const recent=[...new Set(S.log.map(l=>l.task).filter(Boolean))].slice(0,3);
+  return `<div class="topbar sky"><div class="chips"><span class="stat-chip fire" title="Hari beruntun">${ic('flame',20)}${S.streak}</span><span class="stat-chip drop" title="Saldo tetes">${ic('drop',20)}${S.tetes}</span>${S.freeze?`<span class="stat-chip" style="color:var(--blue-ink)" title="Streak freeze">${ic('snow',18)}${S.freeze}</span>`:''}</div>
     <span class="goal-chip">Target ${Math.min(n,S.dailyGoal)}/${S.dailyGoal} sesi</span></div>
-  <div class="pad"><h1>Pulihkan Sungai ${r.name}</h1>
+  <div class="pad"><h1>Pulihkan Sungai ${r.name}</h1>${r.sponsor?`<p class="sponsor">Dipulihkan bersama <b>${r.sponsor}</b> (sponsor contoh)</p>`:''}
     <div class="segbar" aria-hidden="true">${Array.from({length:r.seg},(_,i)=>`<i class="${i<S.segDone?'done':i===S.segDone?'now':''}"></i>`).join('')}</div>
     <p class="muted">Segmen ${S.segDone+1} dari ${r.seg} berikutnya</p>
+    <p class="cycle" aria-label="Siklus Pomodoro">${[0,1,2,3].map(i=>`<i class="${S.cycle>=4||i<S.cycle?'on':''}"></i>`).join('')}<span>${S.cycle>=4?'Waktunya istirahat panjang':`${S.cycle}/4 sesi menuju istirahat panjang`}</span></p>
     <div class="ring-box sm">${ringSVG(0,overall,{knob:false})}</div>
     <div class="bubble-row">${lolo('happy',64,'m-float')}<p class="bubble">${msg}</p></div>
     <div class="field"><label>Fokus untuk</label><div class="chips">${['Belajar','Kerja','Lainnya'].map(t=>`<button class="chip ${S.tag===t?'on':''}" data-act="tag" data-v="${t}">${t}</button>`).join('')}</div></div>
+    <div class="field"><label for="task">Apa yang mau kamu kerjakan?</label><input id="task" class="text-in" maxlength="40" autocomplete="off" placeholder="Contoh: Skripsi bab 2" value="${esc(S.task)}">
+      ${recent.length?`<div class="recent">${recent.map(t=>`<button data-act="taskPick" data-v="${esc(t)}">${esc(t)}</button>`).join('')}</div>`:''}</div>
     <div class="field"><label for="dur">Durasi <b id="durVal">${S.duration} menit</b></label>
       <input type="range" id="dur" min="10" max="120" step="5" value="${S.duration}">
       <div class="chips">${[25,45,60,90].map(d=>`<button class="chip ${S.duration===d?'on':''}" data-act="preset" data-v="${d}">${d}</button>`).join('')}</div></div>
     <div style="margin-top:24px"><button class="btn btn-primary" data-act="start">Mulai memulihkan</button></div>
-    ${S.demo?'<p class="demo-note">Mode demo aktif: 1 detik = 1 menit. Ubah di Profil.</p>':''}</div>`;
+    ${S.demo?'<p class="demo-note">Mode demo aktif: 1 detik = 1 menit. Ubah di Profil.</p>':''}
+    ${questsHTML()}</div>`;
 };
 V.focus=()=>{const r=R();return `<div class="topbar sky"><span style="width:44px"></span><b id="fTitle">Tetap fokus</b>
   <button class="icon-btn" data-act="music" aria-label="Pilih suara">${ic('head',26)}<small id="mLabel">${SOUND_LABEL[cur]||'Senyap'}</small></button></div>
-  <div class="focus-wrap"><p class="river-name">Sungai ${r.name}, segmen ${S.segDone+1} dari ${r.seg}</p>
+  <div class="focus-wrap">${S.task?`<p class="task-now">${ic('check',16)}${esc(S.task)}</p>`:''}<p class="river-name">Sungai ${r.name}, segmen ${S.segDone+1} dari ${r.seg}</p>
   <div class="ring-box"><div id="ring">${ringSVG(0,0)}</div><span class="pct" id="pct">0%</span></div>
   <p class="stage" id="stage">Sampah menumpuk di bantaran</p><span class="tag-pill">${S.tag}</span>
   <div class="timer" id="time" aria-live="off">${fmt(F.dur*60)}</div>
@@ -542,23 +581,25 @@ V.fail=()=>{const n=S.segDone+1,leave=S.failReason==='leave';
   <button class="btn btn-quiet" data-act="go" data-v="home">Kembali ke beranda</button></div></div>`};
 V.success=()=>{const r=R(),n=Math.min(S.today.n,S.dailyGoal);
   return `<div class="result win">${lolo('cheer',140,'m-cheer')}
-  <h1 style="margin-top:4px">Segmen ${S.segDone} bersih!</h1><p class="lead">Sungai ${r.name}: ${S.segDone} dari ${r.seg} segmen sudah pulih.</p>
+  <h1 style="margin-top:4px">Segmen ${S.segDone} bersih!</h1><p class="lead">Sungai ${r.name}: ${S.segDone} dari ${r.seg} segmen sudah pulih.</p>${S.log[0]&&S.log[0].task?`<p class="task-now" style="justify-content:center;margin-top:8px">${ic('check',16)}${esc(S.log[0].task)}</p>`:''}
   <div class="rewards"><div class="reward r-y pop"><b id="gain">+0</b><span>tetes</span></div><div class="reward r-o pop" style="animation-delay:.1s"><b>${S.streak}</b><span>hari beruntun</span></div><div class="reward r-b pop" style="animation-delay:.2s"><b>${n}/${S.dailyGoal}</b><span>target hari ini</span></div></div>
   ${S.lastBonus?`<span class="bonus pop">Target harian tercapai, bonus +${S.lastBonus} tetes</span>`:''}
   ${S.lastLevelUp?`<span class="bonus pop" style="background:var(--blue);color:#fff">Naik ke level ${level()}!</span>`:''}
+  ${(S.lastQuests||[]).map(q=>`<span class="bonus pop" style="background:var(--orange);color:#fff">Misi selesai: ${q.t}, +${q.r} tetes</span>`).join('')}
+  ${S.cycle>=4?'<span class="bonus pop" style="background:var(--teal);color:#fff">4 sesi selesai! Waktunya istirahat panjang</span>':''}
   <div style="width:100%;max-width:190px;margin:0 auto 18px">${ringSVG(1,1)}</div>
-  <div class="stack" style="width:100%"><button class="btn btn-primary" data-act="breakStart">Istirahat 5 menit</button>
+  <div class="stack" style="width:100%">${S.cycle>=4?'<button class="btn btn-primary" data-act="breakStart" data-v="long">Istirahat panjang 15 menit</button>':'<button class="btn btn-primary" data-act="breakStart">Istirahat 5 menit</button>'}
   <button class="btn btn-ghost" data-act="retry">Lanjut fokus</button><button class="btn btn-quiet" data-act="go" data-v="home">Selesai</button></div></div>`};
-V.break=()=>`<div class="result">${lolo('sleep',130,'m-float')}<p class="muted">Istirahat</p><h1>Tarik napas sejenak</h1>
+V.break=()=>`<div class="result"><p class="muted">${B.long?'Istirahat panjang':'Istirahat'}</p><h1>${B.long?'Kamu sudah fokus 4 sesi':'Tarik napas sejenak'}</h1>
   <div class="ring-box sm">${ringSVG(0,S.segDone/R().seg,{knob:false})}</div>
-  <div class="timer" id="btime">05 : 00</div><p class="lead">Minum air, regangkan badan, dan jauhkan mata dari layar.</p>
+  <div class="timer" id="btime">${fmt(B.len||300)}</div><p class="lead">${B.long?'Jalan sebentar, makan camilan, atau ngobrol dengan teman. Otakmu butuh jeda yang lebih panjang.':'Minum air, regangkan badan, dan jauhkan mata dari layar.'}</p>
   <div style="width:100%;margin-top:22px"><button class="btn btn-ghost" data-act="breakEnd">Selesai istirahat</button></div></div>`;
 V.congrats=()=>{const L=S.lastRestored,next=RIVERS[S.riverIdx+1];
   return `<div class="result win">${confetti()}
   <div style="position:relative;width:min(230px,64vw)"><div id="cring">${ringSVG(1,0)}</div>
     <div style="position:absolute;left:-30px;bottom:-18px">${lolo('cheer',110,'m-cheer')}</div></div>
   <p class="bonus pop" style="margin-top:22px">Badge baru: Pemulih ${L.name}</p>
-  <h1 style="font-size:30px">Sungai ${L.name} pulih!</h1><p class="lead">Kamu membersihkan ${L.seg} segmen. Ikan dan burung sudah kembali.</p>
+  <h1 style="font-size:30px">Sungai ${L.name} pulih!</h1><p class="lead">Kamu membersihkan ${L.seg} segmen. Ikan dan burung sudah kembali.</p>${L.sponsor?`<p class="sponsor" style="margin-top:6px">Dipulihkan bersama <b>${L.sponsor}</b> (sponsor contoh)</p>`:''}
   <div class="rewards"><div class="reward r-t"><b>${L.sessions}</b><span>sesi</span></div><div class="reward r-y"><b>${L.minutes}</b><span>menit fokus</span></div><div class="reward r-o"><b>${L.days}</b><span>hari</span></div></div>
   <div class="stack" style="width:100%"><button class="btn btn-primary" data-act="go" data-v="share">${ic('share',20)}Bagikan pencapaian</button>
   <button class="btn btn-ghost" data-act="nextRiver">${next?`Buka Sungai ${next.name}`:'Kembali ke beranda'}</button></div></div>`};
@@ -570,7 +611,7 @@ V.share=()=>{const L=S.lastRestored||{name:R().name,minutes:0,seg:R().seg},c=SV[
     <div class="ba"><div>${mini(0)}Sebelum</div><div>${mini(1)}Sesudah</div></div>
     <div class="sc-stats"><div style="background:${c.soft}"><b>${L.minutes}</b>menit fokus</div><div style="background:${c.soft}"><b>${S.streak}</b>hari beruntun</div></div>
     <div class="sc-mascot">${lolo('cheer',62)}</div>
-    <div class="sc-foot">Fokus bareng dan pulihkan sungaimu juga.<br>Kode undangan <b>KLYN-8Q2F</b></div></div>
+    <div class="sc-foot">${L.sponsor?`Bersama ${L.sponsor}<br>`:''}Fokus bareng dan pulihkan sungaimu juga.<br>Kode undangan <b>KLYN-8Q2F</b></div></div>
   <div class="chips" style="justify-content:center;margin-bottom:18px">${[['sungai','Sungai'],['oranye','Oranye'],['cerah','Cerah']].map(([k,l])=>`<button class="chip ${S.shareVar===k?'on':''}" data-act="shareVar" data-v="${k}">${l}</button>`).join('')}</div>
   <div class="share-btns"><button data-act="shareBtn" data-v="ig">${ic('story')}Instagram Story</button><button data-act="shareBtn" data-v="wa">${ic('chat')}WhatsApp</button><button data-act="shareBtn" data-v="save">${ic('img')}Simpan gambar</button></div></div>`};
 
@@ -578,7 +619,7 @@ V.map=()=>{
   const off=[0,48,72,48,0,-48,-72,-48];let h=`<div class="topbar sky"><h1 style="margin:0">Peta sungai</h1><div class="chips"><span class="stat-chip fire">${ic('flame',20)}${S.streak}</span><span class="stat-chip drop">${ic('drop',20)}${S.tetes}</span></div></div>`;
   RIVERS.forEach((r,ri)=>{const [c,cd]=UNIT[ri%4],st=ri<S.riverIdx?'done':ri===S.riverIdx?'now':'lock';
     const p=st==='done'?1:st==='now'?S.segDone/r.seg:0;
-    h+=`<div class="unit u${ri%4}" style="${st==='lock'?'opacity:.55':''}"><div><p style="opacity:.9">Sungai ${ri+1}, ${r.region}</p><h3>${r.name}</h3><p>${st==='done'?'Sudah pulih':st==='now'?`${S.segDone} dari ${r.seg} segmen bersih`:`${r.seg} segmen menunggu`}</p></div>
+    h+=`<div class="unit u${ri%4}" style="${st==='lock'?'opacity:.55':''}"><div><p style="opacity:.9">Sungai ${ri+1}, ${r.region}</p><h3>${r.name}</h3>${r.sponsor?`<p style="font-weight:600">Bersama ${r.sponsor} (sponsor contoh)</p>`:''}<p>${st==='done'?'Sudah pulih':st==='now'?`${S.segDone} dari ${r.seg} segmen bersih`:`${r.seg} segmen menunggu`}</p></div>
       <button class="thumb" data-act="riverInfo" data-v="${ri}" aria-label="Info Sungai ${r.name}" style="padding:0;cursor:pointer;background:none">${mini(p)}</button></div>`;
     h+=`<div class="path">`;const show=st==='lock'?3:r.seg;
     for(let i=0;i<show;i++){const s2=st==='done'||(st==='now'&&i<S.segDone)?'done':st==='now'&&i===S.segDone?'now':'lock';
@@ -596,23 +637,29 @@ V.stats=()=>{
   const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const k=dstr(d);days.push({k,l:d.toLocaleDateString('id-ID',{weekday:'short'}),m:S.history[k]||0,t:i===0})}
   const max=Math.max(30,...days.map(d=>d.m)),tm=S.tagMin,tt=Math.max(1,tm.Belajar+tm.Kerja+tm.Lainnya);
   const pB=tm.Belajar/tt*100,pK=tm.Kerja/tt*100;
-  const wk=weekTetes(),lv=level(),prog=S.tetes%LV;
+  const wk=weekTetes(),lv=level(),prog=S.earned%LV;
+  const byTask={};S.log.forEach(l=>{if(!l.task)return;(byTask[l.task]=byTask[l.task]||{m:0,n:0});byTask[l.task].m+=l.m;byTask[l.task].n++});
+  const tasks=Object.entries(byTask).sort((a,b)=>b[1].m-a[1].m).slice(0,5),tmax=Math.max(1,...tasks.map(x=>x[1].m));
   const league=[{n:'Dimas',t:310,c:'var(--blue-soft)',k:'var(--blue-ink)'},{n:'Sari',t:265,c:'var(--yellow-soft)',k:'var(--yellow-ink)'},{n:'Nadia',t:190,c:'var(--orange-soft)',k:'var(--orange-ink)'},{n:'Rafi',t:120,c:'var(--surface-2)',k:'var(--muted)'},{n:'Kamu',t:wk,me:1}].sort((a,b)=>b.t-a.t);
   const hc=m=>!m?'#F1F2F7':m<=20?'#DDF3EF':m<=40?'#9FE0D5':m<=60?'#4FC7B5':'#FFC93C';
   return `<div class="topbar sky"><h1 style="margin:0">Statistik</h1><span class="goal-chip">Minggu ini</span></div><div class="pad">
   <div class="tiles">
     <div class="tile t-o"><span class="ico" style="color:#F07A2A">${ic('flame',20)}</span><b>${S.streak}</b><span>hari beruntun</span></div>
     <div class="tile t-b"><span class="ico">${ic('clock',20)}</span><b>${S.history[TODAY()]||0}</b><span>menit hari ini</span></div>
-    <div class="tile t-y"><span class="ico" style="color:var(--teal)">${ic('drop',20)}</span><b>${S.tetes}</b><span>total tetes</span></div></div>
+    <div class="tile t-y"><span class="ico" style="color:var(--teal)">${ic('drop',20)}</span><b>${S.earned}</b><span>total tetes</span></div></div>
   <div class="stack-lg">
   <div class="card"><div class="lvl">${lolo('happy',66)}<div style="flex:1"><div class="card-h" style="margin:0"><h3>Level ${lv}</h3><span>${prog}/${LV} tetes</span></div>
     <div class="xpbar"><i style="width:${prog/LV*100}%"></i></div><p class="muted" style="font-size:12px">${LV-prog} tetes lagi menuju level ${lv+1}</p></div></div>
-    <p class="note" style="margin-top:12px">Tetes adalah poin fokus: 1 menit fokus = 1 tetes, plus bonus saat target harian tercapai. Tetes bukan uang donasi.</p></div>
+    <p class="note" style="margin-top:12px">Tetes adalah poin fokus: 1 menit fokus = 1 tetes, plus bonus dari target harian dan misi. Level dihitung dari total tetes yang pernah dikumpulkan, jadi menukar tetes di toko tidak menurunkan level. Tetes bukan uang donasi.</p></div>
   <div class="card league"><div class="card-h"><h3>Liga Sungai</h3><span>Reset setiap Senin</span></div><ol>
     ${league.map((u,i)=>`<li class="${u.me?'me':''}"><span class="rk">${i+1}</span><span class="av" style="background:${u.me?'#fff':u.c};color:${u.me?'var(--teal-ink)':u.k}">${u.me?lolo('happy',30):u.n[0]}</span>${u.n}<span class="pts">${u.t} tetes</span></li>`).join('')}</ol>
     <p class="zone">3 teratas naik ke Liga Citarum minggu depan</p></div>
   <div class="card"><div class="card-h"><h3>Menit fokus</h3><span>7 hari terakhir</span></div>
     <div class="bars">${days.map(d=>`<div class="${d.t?'today':''}">${d.m?`<em>${d.m}</em>`:''}<i style="height:${Math.round(d.m/max*78)}%"></i>${d.l}</div>`).join('')}</div></div>
+  <div class="card"><div class="card-h"><h3>Per tugas</h3><span>Semua waktu</span></div>
+    ${tasks.length?tasks.map(([k,v])=>`<div class="taskbar"><div><span>${esc(k)}</span><span class="muted">${v.n} sesi, ${v.m} menit</span></div><i><s style="width:${Math.round(v.m/tmax*100)}%"></s></i></div>`).join(''):'<p class="muted">Isi nama tugas sebelum mulai fokus untuk melihat rinciannya di sini.</p>'}</div>
+  <div class="card"><div class="card-h"><h3>Riwayat sesi</h3><span>${S.log.length} sesi tercatat</span></div>
+    ${S.log.length?`<ul class="hist">${S.log.slice(0,8).map(l=>`<li><span class="hd">${dayLabel(l.d)}<br>${l.h}</span><span class="ht"><b>${l.task?esc(l.task):'Tanpa nama tugas'}</b><small>${l.tag}</small></span><span class="hm">${l.m} mnt</span></li>`).join('')}</ul>`:'<p class="muted">Belum ada sesi.</p>'}</div>
   <div class="card"><div class="card-h"><h3>Kapan kamu paling fokus</h3></div>
     <div class="heat"><span></span>${days.map(d=>`<span style="text-align:center">${d.l.slice(0,3)}</span>`).join('')}
     ${SLOTS.map(s=>`<span>${s}</span>${days.map(d=>`<i title="${s}: ${S.heat[d.k+'|'+s]||0} menit" style="background:${hc(S.heat[d.k+'|'+s]||0)}"></i>`).join('')}`).join('')}</div>
@@ -623,36 +670,77 @@ V.stats=()=>{
   </div><p class="demo-note">Termasuk data contoh untuk keperluan prototype.</p></div>`;
 };
 
-V.profile=()=>{const lv=level(),prog=S.tetes%LV;
+V.profile=()=>{const lv=level(),prog=S.earned%LV,fm=freezeMax();
   const ach=[
     {t:'Langkah pertama',d:'Selesaikan 1 sesi fokus',v:S.sessions,m:1,c:'var(--teal)',cd:'var(--teal-dk)',i:'check'},
     {t:'Api menyala',d:'Capai streak 7 hari',v:S.best,m:7,c:'var(--orange)',cd:'var(--orange-dk)',i:'flame'},
     {t:'Maraton fokus',d:'Selesaikan satu sesi 60 menit',v:S.longest,m:60,c:'var(--blue)',cd:'var(--blue-dk)',i:'clock'},
     {t:'Pemulih pertama',d:'Pulihkan 1 sungai sampai bersih',v:S.restored.length,m:1,c:'var(--yellow)',cd:'var(--yellow-dk)',i:'trophy'},
-    {t:'Kolektor tetes',d:'Kumpulkan 1.000 tetes',v:S.tetes,m:1000,c:'var(--teal)',cd:'var(--teal-dk)',i:'drop'}];
+    {t:'Kolektor tetes',d:'Kumpulkan 1.000 tetes',v:S.earned,m:1000,c:'var(--teal)',cd:'var(--teal-dk)',i:'drop'}];
   return `<div class="topbar sky"><h1 style="margin:0">Profil</h1></div><div class="pad">
   <div class="hero"><span class="bub" style="width:70px;height:70px;right:-14px;top:-18px"></span><span class="bub" style="width:26px;height:26px;right:46px;bottom:12px"></span><span class="bub" style="width:14px;height:14px;right:24px;top:62px"></span>
     <div class="avatar">${lolo('happy',86,'m-float')}</div>
     <div style="position:relative"><h1>Pemulih sungai</h1><p class="muted" style="color:var(--blue-ink)">${S.restored.length} sungai pulih, ${S.sessions} sesi selesai</p><span class="lvl-pill">Level ${lv}</span></div></div>
   <div class="mini-stats"><div><span style="color:#F07A2A">${ic('flame',22)}</span><div><b>${S.streak}</b><span>streak</span></div></div>
-    <div><span style="color:var(--teal)">${ic('drop',22)}</span><div><b>${S.tetes}</b><span>tetes</span></div></div>
+    <div><span style="color:var(--teal)">${ic('drop',22)}</span><div><b>${S.tetes}</b><span>saldo tetes</span></div></div>
     <div><span style="color:var(--yellow-dk)">${ic('trophy',22)}</span><div><b>${prog}</b><span>/${LV} ke Lv ${lv+1}</span></div></div></div>
   <h2>Pencapaian</h2><div class="card" style="padding:4px 16px">
   ${ach.map(a=>{const done=a.v>=a.m,pc=Math.min(100,a.v/a.m*100);return `<div class="ach"><span class="ai ${done?'':'off'}" style="background:${a.c};color:#fff;box-shadow:0 4px 0 ${a.cd}">${ic(a.i,26)}</span>
     <div class="body"><b>${a.t}</b><p>${a.d}</p><div class="xpbar"><i style="width:${pc}%;background:${done?'var(--yellow)':a.c}"></i></div></div><small>${Math.min(a.v,a.m)}/${a.m}</small></div>`}).join('')}</div>
+  <h2>Toko tetes</h2><div class="card"><div class="shop"><span class="si">${ic('snow',28)}</span><div style="flex:1"><b>Streak freeze</b><p>Menyelamatkan streak saat kamu melewatkan 1 hari. Dipakai otomatis. Kamu punya ${S.freeze}/${fm}.</p></div></div>
+    <button class="btn btn-primary" style="margin-top:14px" data-act="buyFreeze" ${S.tetes<200||S.freeze>=fm?'disabled':''}>${S.freeze>=fm?'Slot penuh':`Tukar 200 tetes`}</button>
+    ${S.tetes<200&&S.freeze<fm?`<p class="demo-note">Saldo tetes kurang ${200-S.tetes} lagi.</p>`:''}</div>
   <h2>Badge sungai</h2>${S.restored.length?`<div class="badges">${S.restored.map(n=>`<div class="bdg"><div>${mini(1)}</div>${n}</div>`).join('')}</div>`:`<div class="bubble-row">${lolo('happy',54)}<p class="bubble">Pulihkan Sungai ${R().name} untuk badge pertamamu.</p></div>`}
   <div class="invite">${lolo('cheer',64)}<div><b>Ajak teman fokus bareng</b><p>Teman yang bergabung lewat kodemu masuk ke Liga Sungai yang sama.</p><span class="code">KLYN-8Q2F</span></div></div>
-  <div class="plus"><div class="pm">${lolo('cheer',96)}</div><h3>Klyn Plus</h3><ul><li>Ekosistem baru: mangrove, danau, terumbu karang</li><li>Mode fokus ketat (Android)</li><li>Streak freeze untuk hari sibuk</li><li>Pilihan musik lengkap</li></ul>
-    <button class="btn" data-act="plus">Lihat Klyn Plus</button></div>
+  ${S.plus?`<div class="plus"><div class="pm">${lolo('cheer',96)}</div><h3>Klyn Plus aktif</h3><ul><li>Paket ${PLANS[S.plus.plan].name}</li><li>Uji coba gratis sampai ${longDate(S.plus.trialEnd)}</li><li>Slot streak freeze: 3</li><li>Demo, tidak ada tagihan nyata</li></ul>
+    <button class="btn" data-act="plusCancel">Batalkan langganan (demo)</button></div>`:`<div class="plus"><div class="pm">${lolo('cheer',96)}</div><h3>Klyn Plus</h3><ul><li>Ekosistem baru: mangrove, danau, terumbu karang</li><li>Mode fokus ketat (Android)</li><li>3 slot streak freeze</li><li>Pilihan musik lengkap</li></ul>
+    <button class="btn" data-act="go" data-v="plus">Lihat Klyn Plus</button></div>`}
   <h2>Pengaturan</h2>
   <div class="row"><span>Mode demo<br><small class="muted">1 detik = 1 menit</small></span><button class="switch ${S.demo?'on':''}" role="switch" aria-checked="${S.demo}" aria-label="Mode demo" data-act="demo"></button></div>
   <div class="row" style="flex-direction:column;align-items:flex-start;gap:10px"><span>Target harian</span><div class="chips">${[1,2,4].map(n=>`<button class="chip ${S.dailyGoal===n?'on':''}" data-act="goalSet" data-v="${n}">${n} sesi</button>`).join('')}</div></div>
+  <div class="row" style="flex-direction:column;align-items:flex-start;gap:10px"><span>Cadangan progres<br><small class="muted">Progres hanya tersimpan di perangkat ini. Simpan cadangan sebelum ganti HP atau menghapus data browser.</small></span>
+    <div class="chips"><button class="chip" data-act="exportData">${ic('download',16)} Ekspor</button><button class="chip" data-act="importData">${ic('upload',16)} Impor</button></div></div>
   <div style="margin-top:22px"><button class="btn btn-quiet" data-act="reset">Atur ulang prototype</button></div></div>`};
 
+
+const DEMO=t=>`<div class="demo-banner">${t||'Demo portfolio: tidak ada pembayaran nyata'}</div>`;
+const back=(to,title)=>`<div class="topbar"><button class="icon-btn" data-act="go" data-v="${to}" aria-label="Kembali" style="color:var(--text)">${ic('back',24)}</button><b>${title}</b><span style="width:44px"></span></div>`;
+V.plus=()=>{const ck=v=>v===1?`<span class="c">${ic('check',18,2.8)}</span>`:v===0?'<span class="c no">–</span>':`<span class="c">${v}</span>`;
+  const rows=[['Timer fokus dan pemulihan sungai',1,1],['Statistik, riwayat, misi harian',1,1],['Ekosistem baru: mangrove, danau, terumbu karang',0,1],['Mode fokus ketat (Android)',0,1],['Slot streak freeze','2','3'],['Pilihan musik lengkap',0,1]];
+  const plan=(k,badge)=>{const P=PLANS[k];return `<button class="opt ${S.planSel===k?'on':''}" data-act="planSel" data-v="${k}"><span>${P.name}${badge?`<span class="tag-best">${badge}</span>`:''}<small>${P.price} ${P.per}. ${P.sub}</small></span>${S.planSel===k?ic('check'):''}</button>`};
+  return DEMO()+back('profile','Klyn Plus')+`<div class="pad"><div class="plus-hero">${lolo('cheer',110,'m-float')}<h1>Fokus lebih dalam, dampak lebih besar</h1><p class="lead">20% pendapatan Klyn Plus disalurkan ke mitra pemulih sungai, dan laporannya bisa kamu lihat di halaman Dampak.</p></div>
+  <div class="cmp"><div class="cmp-h"><span></span><b>Gratis</b><b class="pl">Plus</b></div>${rows.map(r=>`<div><span>${r[0]}</span>${ck(r[1])}${ck(r[2])}</div>`).join('')}</div>
+  <h2>Pilih paket</h2><div class="stack">${plan('year','Paling hemat')}${plan('month','')}</div>
+  <p class="muted" style="margin:14px 0 18px;line-height:1.6">Coba gratis 7 hari. Kamu tidak ditagih hari ini dan bisa membatalkan sebelum uji coba berakhir.</p>
+  <button class="btn btn-primary" data-act="go" data-v="checkout">Mulai uji coba gratis</button></div>`};
+V.checkout=()=>{const P=PLANS[S.planSel],end=dayOffset(7);
+  return DEMO()+back('plus','Pembayaran')+`<div class="pad"><div class="card"><div class="card-h"><h3>Ringkasan</h3></div>
+  <div class="sumrow"><span>Klyn Plus ${P.name}</span><b>${P.price}</b></div>
+  <div class="sumrow"><span>Uji coba gratis 7 hari</span><b style="color:var(--teal-ink)">Gratis</b></div>
+  <div class="sumrow total"><span>Dibayar hari ini</span><b>Rp0</b></div>
+  <p class="muted" style="font-size:12px;line-height:1.5">Tagihan pertama ${P.price} pada ${longDate(end)}, lalu diperpanjang otomatis ${S.planSel==='year'?'setiap tahun':'setiap bulan'}.</p></div>
+  <h2>Metode pembayaran</h2><div class="stack">${PAYS.map(([k,l,d])=>`<button class="opt ${S.paySel===k?'on':''}" data-act="paySel" data-v="${k}"><span>${l}<small>${d}</small></span>${S.paySel===k?ic('check'):ic('card',20)}</button>`).join('')}</div>
+  <p class="muted" style="margin:14px 0 18px;line-height:1.6;font-size:13px">Dengan melanjutkan, kamu menyetujui perpanjangan otomatis. Batalkan kapan saja dari halaman Profil.</p>
+  <button class="btn btn-primary" data-act="pay">Bayar Rp0 dan mulai uji coba</button></div>`};
+V.plusOk=()=>`${DEMO()}<div class="result win">${confetti()}${lolo('cheer',140,'m-cheer')}<h1>Selamat datang di Klyn Plus!</h1>
+  <p class="lead">Uji coba gratis aktif sampai ${longDate(S.plus.trialEnd)}.</p>
+  <div class="rewards"><div class="reward r-t"><b>3</b><span>slot streak freeze</span></div><div class="reward r-y"><b>3</b><span>ekosistem baru</span></div><div class="reward r-b"><b>20%</b><span>ke mitra sungai</span></div></div>
+  <p class="note">Ini simulasi untuk portfolio. Tidak ada uang yang ditagih, dan fitur Plus lainnya ditampilkan sebagai contoh.</p>
+  <div class="stack" style="width:100%;margin-top:18px"><button class="btn btn-primary" data-act="go" data-v="home">Mulai fokus</button><button class="btn btn-quiet" data-act="go" data-v="profile">Lihat Profil</button></div></div>`;
+V.impact=()=>{const ym=TODAY().slice(0,7),mine=Object.entries(S.history).filter(([k])=>k.startsWith(ym)).reduce((a,[,v])=>a+v,0);
+  const total=REPORTS.reduce((a,r)=>a+r.amt,0),kg=REPORTS.reduce((a,r)=>a+r.kg,0),vol=REPORTS.reduce((a,r)=>a+r.vol,0);
+  return DEMO('Data simulasi dan mitra fiktif untuk portfolio')+`<div class="topbar sky"><h1 style="margin:0">Dampak</h1><span class="goal-chip">${monthName(0)}</span></div><div class="pad">
+  <div class="impact-hero">${lolo('cheer',72)}<div><p>Bulan ini, pengguna Klyn fokus selama</p><b>${nf(1284500+mine)} menit</b><p>Kontribusimu: ${nf(mine)} menit</p></div></div>
+  <div class="tiles" style="margin-top:14px"><div class="tile t-b"><b style="font-size:19px">${rp(total)}</b><span>tersalurkan, 3 bulan</span></div><div class="tile t-o"><b>${nf(kg)}</b><span>kg sampah terangkat</span></div><div class="tile t-y"><b>${vol}</b><span>relawan terlibat</span></div></div>
+  <div class="stack-lg"><div class="card"><div class="card-h"><h3>Cara kerjanya</h3></div><ol class="steps"><li>Kamu fokus, dan sebagian user berlangganan Klyn Plus.</li><li>20% pendapatan Klyn Plus dikumpulkan setiap bulan.</li><li>Dana disalurkan ke mitra pemulih sungai, lalu laporan dan buktinya ditampilkan di sini.</li></ol></div>
+  <div><h2 style="margin-top:4px">Laporan bulanan</h2>${REPORTS.map((r,i)=>`<button class="report" data-act="report" data-v="${i}"><span style="width:52px;height:52px;border-radius:14px;overflow:hidden;flex:none">${mini(1)}</span><span class="rm"><b>${monthName(r.off)}</b><small>${rp(r.amt)} ke ${PARTNERS[r.p].n}</small></span><span class="ok">Bukti tersedia</span></button>`).join('')}</div>
+  <div class="card"><div class="card-h"><h3>Mitra penerima</h3><span>Fiktif</span></div>${PARTNERS.map((p,i)=>`<div class="partner"><span class="pa">${mini(i?.6:.85)}</span><div><b>${p.n}</b><p>${p.a}. ${p.d}</p></div></div>`).join('')}</div>
+  <div class="card"><div class="card-h"><h3>Mau berdonasi langsung?</h3></div><p class="muted" style="line-height:1.6">Klyn tidak menampung donasi dari pengguna. Kalau ingin berdonasi langsung, lakukan lewat kanal resmi mitra yang sudah memiliki izin pengumpulan dana.</p>
+    <button class="btn btn-ghost" style="margin-top:12px" data-act="partnerLink">Kunjungi kanal resmi mitra</button></div></div></div>`};
 /* ---------- Render ---------- */
-function navHTML(){return [['home','Beranda','home'],['map','Peta','map'],['stats','Statistik','chart'],['profile','Profil','user']].map(([k,l,i])=>`<button class="${S.view===k?'on':''}" data-act="go" data-v="${k}" aria-current="${S.view===k?'page':'false'}">${ic(i,24)}${l}</button>`).join('')}
+function navHTML(){return [['home','Beranda','home'],['map','Peta','map'],['stats','Statistik','chart'],['impact','Dampak','heart'],['profile','Profil','user']].map(([k,l,i])=>`<button class="${S.view===k?'on':''}" data-act="go" data-v="${k}" aria-current="${S.view===k?'page':'false'}">${ic(i,24)}${l}</button>`).join('')}
 function render(keep){const sc=$('#screen'),top=sc.scrollTop;sc.innerHTML=V[S.view]();sc.scrollTop=keep?top:0;
-  const nav=$('#nav');nav.hidden=!['home','map','stats','profile'].includes(S.view);nav.innerHTML=navHTML();save();
+  const nav=$('#nav');nav.hidden=!['home','map','stats','impact','profile'].includes(S.view);nav.innerHTML=navHTML();save();
   if(S.view==='success')countUp();if(S.view==='congrats')celebrate();
   if(S.view==='map'&&!keep){const n=sc.querySelector('.pnode.now');if(n)n.scrollIntoView({block:'center'})}}
 function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');clearTimeout(toast.h);toast.h=setTimeout(()=>el.classList.remove('show'),2800)}
@@ -668,7 +756,7 @@ async function keepAwake(on){try{if(on&&'wakeLock' in navigator){if(!wakeLock){w
 function graceNotify(){try{if('Notification' in window&&Notification.permission==='granted'&&navigator.serviceWorker)navigator.serviceWorker.ready.then(r=>r.showNotification('Lolo memanggilmu!',{body:'Sungai mulai kotor lagi. Kembali dalam 10 detik.',icon:'icons/icon-192.png',badge:'icons/icon-192.png',tag:'klyn-grace',renotify:true}))}catch(e){}}
 function graceClear(){try{if(navigator.serviceWorker)navigator.serviceWorker.ready.then(r=>r.getNotifications({tag:'klyn-grace'})).then(ns=>ns&&ns.forEach(n=>n.close()))}catch(e){}}
 /* ---------- Session ---------- */
-let F={},B={};
+let F={},B={len:300,long:false};
 function stageText(p){return p<.15?'Sampah menumpuk di bantaran':p<.4?'Sampah mulai terangkat':p<.65?'Air mulai mengalir lancar':p<.85?'Ikan mulai kembali':p<1?'Airnya hampir jernih':'Segmen ini bersih!'}
 function startSession(){stopAll();if(!S.riverStart)S.riverStart=TODAY();
   F={active:true,start:Date.now(),dur:S.duration,lastP:-1,hiddenAt:null,pauseAt:null};S.view='focus';render();F.int=setInterval(tick,200);keepAwake(true)}
@@ -677,17 +765,19 @@ function tick(){if(!F.active||F.pauseAt)return;const fac=S.demo?60:1,total=F.dur
   if(p-F.lastP>.004||p===1){F.lastP=p;$('#ring').innerHTML=ringSVG(p,p)}
   $('#stage').textContent=stageText(p);$('#fTitle').textContent=p>=1?'Kamu berhasil!':'Tetap fokus';if(p>=1)complete()}
 function stopAll(){keepAwake(false);clearInterval(F.int);clearInterval(F.graceInt);clearInterval(B.int);F.active=false;stopSound();closeSheet()}
-function addTetes(n,d){S.tetes+=n;S.tetesDay[d]=(S.tetesDay[d]||0)+n}
+function addTetes(n,d){S.tetes+=n;S.earned=(S.earned||0)+n;S.tetesDay[d]=(S.tetesDay[d]||0)+n}
 function complete(){stopAll();const m=F.dur,t=TODAY(),lvBefore=level();
   addTetes(m,t);S.history[t]=(S.history[t]||0)+m;S.tagMin[S.tag]=(S.tagMin[S.tag]||0)+m;
   const sl=t+'|'+slotOf(new Date().getHours());S.heat[sl]=(S.heat[sl]||0)+m;
   if(S.today.date!==t)S.today={date:t,n:0};S.today.n++;S.sessions++;S.longest=Math.max(S.longest,m);
+  S.log.unshift({d:t,h:new Date().toTimeString().slice(0,5),task:(S.task||'').trim(),tag:S.tag,m});if(S.log.length>200)S.log.length=200;S.cycle++;
   S.lastBonus=0;if(S.today.n===S.dailyGoal){S.lastBonus=10;addTetes(10,t)}
+  S.lastQuests=checkQuests();
   S.lastLevelUp=level()>lvBefore;
   if(S.lastSuccess!==t){S.streak=S.lastSuccess===dayOffset(-1)?S.streak+1:1;S.lastSuccess=t;S.best=Math.max(S.best,S.streak)}
   S.riverSessions++;S.riverMinutes+=m;S.segDone++;S.lastGain=m;
   const r=R();if(S.segDone>=r.seg){const days=Math.max(1,Math.round((new Date(t)-new Date(S.riverStart))/864e5)+1);
-    S.lastRestored={name:r.name,seg:r.seg,sessions:S.riverSessions,minutes:S.riverMinutes,days};
+    S.lastRestored={name:r.name,seg:r.seg,sessions:S.riverSessions,minutes:S.riverMinutes,days,sponsor:r.sponsor||''};
     if(!S.restored.includes(r.name))S.restored.push(r.name);S.view='congrats'}else S.view='success';
   setTimeout(()=>render(),S.view==='congrats'?0:500)}
 function fail(reason){stopAll();S.failReason=reason;S.view='fail';render()}
@@ -707,8 +797,8 @@ document.addEventListener('visibilitychange',()=>{if(S.view!=='focus'||!F.active
   if(document.hidden){F.hiddenAt=Date.now();if(S.demo)F.pauseAt=Date.now();graceNotify()}
   else if(F.hiddenAt){graceClear();keepAwake(true);const gone=Date.now()-F.hiddenAt;F.hiddenAt=null;if(F.pauseAt&&!$('#graceN')){F.start+=Date.now()-F.pauseAt;F.pauseAt=null}
     if(gone>10000)fail('leave');else toast('Tepat waktu. Segmenmu tetap aman.')}});
-function startBreak(){stopAll();S.view='break';render();B={start:Date.now()};
-  B.int=setInterval(()=>{const fac=S.demo?60:1,rem=300-(Date.now()-B.start)/1000*fac,el=$('#btime');if(el)el.textContent=fmt(Math.max(0,Math.ceil(rem)));
+function startBreak(v){stopAll();const long=v==='long';B={start:Date.now(),len:long?900:300,long};if(long)S.cycle=0;S.view='break';render();
+  B.int=setInterval(()=>{const fac=S.demo?60:1,rem=B.len-(Date.now()-B.start)/1000*fac,el=$('#btime');if(el)el.textContent=fmt(Math.max(0,Math.ceil(rem)));
     if(rem<=0){clearInterval(B.int);S.view='home';render();toast('Istirahat selesai. Siap untuk segmen berikutnya?')}},200)}
 
 /* ---------- Sound (generated) ---------- */
@@ -721,7 +811,7 @@ function playSound(kind){stopSound();try{AC=AC||new(window.AudioContext||window.
 function stopSound(){try{src&&src.stop()}catch(e){}src=null;cur=null}
 function openMusic(){const opts=[['off','Senyap','Tanpa suara'],['rain','Hujan','Gerimis lembut'],['river','Aliran sungai','Air mengalir'],['piano','Piano','Klyn Plus'],['guitar','Gitar','Klyn Plus']];
   openSheet(`<div class="sheet-head"><h2>Pilih suara fokus</h2><button class="x" data-act="closeSheet" aria-label="Tutup">${ic('x')}</button></div>
-  <div class="sound-grid">${opts.map(([k,l,s])=>`<button class="sound ${(cur||'off')===k?'on':''}" data-act="sound" data-v="${k}">${l}<small>${s}</small>${k==='piano'||k==='guitar'?`<span class="lk">${ic('lock',16)}</span>`:''}</button>`).join('')}</div>`)}
+  <div class="sound-grid">${opts.map(([k,l,s])=>`<button class="sound ${(cur||'off')===k?'on':''}" data-act="sound" data-v="${k}">${l}<small>${s}</small>${k==='piano'||k==='guitar'?`${S.plus?'':`<span class="lk">${ic('lock',16)}</span>`}`:''}</button>`).join('')}</div>`)}
 
 /* ---------- Actions ---------- */
 const ACT={
@@ -732,7 +822,7 @@ const ACT={
   tag(v){S.tag=v;render(true)},preset(v){S.duration=+v;render(true)},
   start:startSession,retry:startSession,retryShort(){S.duration=15;startSession()},
   music:openMusic,
-  sound(v){if(v==='piano'||v==='guitar'){toast('Pilihan ini tersedia di Klyn Plus.');return}if(v==='off')stopSound();else playSound(v);closeSheet();const l=$('#mLabel');if(l)l.textContent=SOUND_LABEL[cur]||'Senyap'},
+  sound(v){if(v==='piano'||v==='guitar'){toast(S.plus?'Demo: suara ini hadir di versi penuh Klyn Plus.':'Pilihan ini tersedia di Klyn Plus.');return}if(v==='off')stopSound();else playSound(v);closeSheet();const l=$('#mLabel');if(l)l.textContent=SOUND_LABEL[cur]||'Senyap'},
   giveup(){openSheet(`<div style="display:flex;flex-direction:column;align-items:center;text-align:center">${lolo('sad',100)}<h2 style="margin:10px 0 6px">Yakin mau berhenti?</h2>
     <p class="lead">Sampah akan kembali ke segmen ini. Streak-mu tetap aman.</p><div class="stack" style="width:100%;margin-top:18px">
     <button class="btn btn-primary" data-act="closeSheet">Lanjut fokus</button><button class="btn btn-danger" data-act="confirmGiveup">Berhenti</button></div></div>`)},
@@ -749,15 +839,51 @@ const ACT={
     <p class="muted">${r.region}</p><p style="margin:8px 0 12px;line-height:1.6">${r.fact}</p><p class="note">${st}</p>
     ${i===S.riverIdx?'<div style="margin-top:16px"><button class="btn btn-primary" data-act="sheetStart">Lanjutkan memulihkan</button></div>':''}`)},
   sheetStart(){closeSheet();S.view='home';render()},
-  plus(){toast('Klyn Plus segera hadir.')},
+
+  taskPick(v){S.task=v;render(true)},
+  buyFreeze(){if(S.tetes<200||S.freeze>=freezeMax())return;S.tetes-=200;S.freeze++;render(true);toast('Streak freeze tersimpan. Akan dipakai otomatis kalau kamu melewatkan satu hari.')},
+  planSel(v){S.planSel=v;render(true)},paySel(v){S.paySel=v;render(true)},
+  pay(){openSheet(`<div style="text-align:center"><div class="spinner"></div><h2 style="margin:0 0 6px">Memproses pembayaran</h2><p class="muted">Simulasi, tidak ada uang yang ditagih.</p></div>`);
+    setTimeout(()=>{S.plus={plan:S.planSel,pay:S.paySel,since:TODAY(),trialEnd:dayOffset(7)};closeSheet();S.view='plusOk';render()},1300)},
+  plusCancel(){if(confirm('Batalkan Klyn Plus (demo)?')){S.plus=null;if(S.freeze>2)S.freeze=2;render(true);toast('Langganan demo dibatalkan.')}},
+  report(v){const r=REPORTS[+v],p=PARTNERS[r.p];
+    openSheet(`<div class="sheet-head"><h2>Laporan ${monthName(r.off)}</h2><button class="x" data-act="closeSheet" aria-label="Tutup">${ic('x')}</button></div>
+    <p class="demo-note" style="margin:-6px 0 12px;text-align:left">Data simulasi, mitra fiktif</p>
+    <div class="sumrow"><span>Dana terkumpul (20% pendapatan Plus)</span><b>${rp(r.amt)}</b></div>
+    <div class="sumrow"><span>Dana tersalurkan</span><b>${rp(r.amt)}</b></div>
+    <div class="sumrow"><span>Penerima</span><b>${p.n}</b></div>
+    <div class="sumrow"><span>Bukti transfer</span><b>${r.ref}</b></div>
+    <h3 style="margin:16px 0 8px;font-size:15px">Kegiatan</h3><p style="line-height:1.6">${r.act}. ${nf(r.kg)} kg sampah terangkat, melibatkan ${r.vol} relawan.</p>
+    <h3 style="margin:16px 0 8px;font-size:15px">Dokumentasi</h3><div class="ba" style="gap:12px"><div><div style="border-radius:16px;overflow:hidden">${mini(0)}</div>Sebelum</div><div><div style="border-radius:16px;overflow:hidden">${mini(1)}</div>Sesudah</div></div>`)},
+  partnerLink(){toast('Di versi nyata, tombol ini membuka halaman donasi resmi milik mitra yang sudah berizin.')},
+  exportData(){const code=btoa(unescape(encodeURIComponent(JSON.stringify(S))));
+    openSheet(`<div class="sheet-head"><h2>Ekspor progres</h2><button class="x" data-act="closeSheet" aria-label="Tutup">${ic('x')}</button></div>
+    <p class="muted" style="margin-bottom:10px;line-height:1.5">Simpan kode ini di tempat aman, misalnya catatan pribadi. Tempel kode yang sama lewat Impor untuk memulihkan progres.</p>
+    <textarea class="code-box" id="expTxt" readonly>${code}</textarea>
+    <div class="stack" style="margin-top:12px"><button class="btn btn-primary" data-act="copyCode">Salin kode</button><button class="btn btn-ghost" data-act="dlData">Unduh file cadangan</button></div>`)},
+  copyCode(){const t=$('#expTxt');if(!t)return;const done=()=>toast('Kode cadangan tersalin.');
+    if(navigator.clipboard)navigator.clipboard.writeText(t.value).then(done).catch(()=>{t.select();document.execCommand&&document.execCommand('copy');done()});else{t.select();document.execCommand('copy');done()}},
+  dlData(){try{const blob=new Blob([JSON.stringify(S)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`klyn-cadangan-${TODAY()}.json`;document.body.appendChild(a);a.click();a.remove();toast('Kalau unduhan tidak berjalan, pakai Salin kode.')}catch(e){toast('Unduhan tidak didukung di sini. Pakai Salin kode.')}},
+  importData(){openSheet(`<div class="sheet-head"><h2>Impor progres</h2><button class="x" data-act="closeSheet" aria-label="Tutup">${ic('x')}</button></div>
+    <p class="muted" style="margin-bottom:10px;line-height:1.5">Tempel kode cadangan, atau pilih file cadangan .json. Progres di perangkat ini akan diganti.</p>
+    <textarea class="code-box" id="impTxt" placeholder="Tempel kode di sini"></textarea>
+    <input type="file" id="impFile" accept=".json,application/json" style="margin:10px 0;font:13px var(--font)">
+    <button class="btn btn-primary" data-act="doImport">Pulihkan progres</button>`)},
+  doImport(){const raw=($('#impTxt')||{}).value||'';let obj=null;
+    try{obj=JSON.parse(decodeURIComponent(escape(atob(raw.trim()))))}catch(e){try{obj=JSON.parse(raw)}catch(e2){obj=null}}
+    if(!obj||typeof obj!=='object'||!('history' in obj)||!('tetes' in obj)){toast('Kode cadangan tidak dikenali. Periksa lagi isinya.');return}
+    if(!confirm('Ganti progres di perangkat ini dengan cadangan?'))return;
+    stopAll();S=Object.assign(fresh(),obj);S.onboarded=true;S.view='profile';closeSheet();render();toast('Progres berhasil dipulihkan.')},
+
   demo(){S.demo=!S.demo;render(true)},goalSet(v){S.dailyGoal=+v;render(true)},
   reset(){if(confirm('Atur ulang semua progres prototype?')){stopAll();try{localStorage.removeItem('klyn-app-v1')}catch(e){}S=fresh();render()}}
 };
 document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b||b.disabled)return;const f=ACT[b.dataset.act];if(f)f(b.dataset.v,b)});
-document.addEventListener('input',e=>{if(e.target.id==='dur'){S.duration=+e.target.value;$('#durVal').textContent=S.duration+' menit';
+document.addEventListener('input',e=>{if(e.target.id==='task'){S.task=e.target.value.slice(0,40);save();return}if(e.target.id==='dur'){S.duration=+e.target.value;$('#durVal').textContent=S.duration+' menit';
   document.querySelectorAll('[data-act="preset"]').forEach(c=>c.classList.toggle('on',+c.dataset.v===S.duration));save()}});
+document.addEventListener('change',e=>{if(e.target.id==='impFile'&&e.target.files[0]){const r=new FileReader();r.onload=()=>{const t=$('#impTxt');if(t)t.value=r.result};r.readAsText(e.target.files[0])}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#overlay').hidden&&!$('#graceN'))closeSheet()});
-render();
+render();if(FREEZE_MSG)setTimeout(()=>toast(FREEZE_MSG),700);
 if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 </script>
 </body>
